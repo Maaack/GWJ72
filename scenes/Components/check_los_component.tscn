@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://6qkhhrqmdpeq"]
+
+[ext_resource type="Script" path="res://scenes/Components/check_los_component.gd" id="1_83qef"]
+
+[node name="CheckLOSComponent" type="Node3D"]
+script = ExtResource("1_83qef")
+collision_mask = 1
+
+[node name="UpdateTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bak2rwmorbup3"]
+
+[ext_resource type="Script" path="res://scenes/Components/target_navigation_component.gd" id="1_pqndi"]
+
+[node name="TargetNavigationComponent" type="Node"]
+script = ExtResource("1_pqndi")

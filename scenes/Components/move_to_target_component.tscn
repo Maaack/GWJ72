@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgs04lod8nj65"]
+
+[ext_resource type="Script" path="res://scenes/Components/move_to_target_component.gd" id="1_1uhwc"]
+
+[node name="MoveToTargetComponent" type="Node"]
+script = ExtResource("1_1uhwc")
+
+[node name="SoundDelayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SoundDelayTimer" to="." method="_on_sound_delay_timer_timeout"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://biwffh7yskm6v"]
+
+[ext_resource type="Script" path="res://scenes/Components/turn_to_target_component.gd" id="1_nuh8c"]
+
+[node name="TurnToTargetComponent" type="Node"]
+script = ExtResource("1_nuh8c")

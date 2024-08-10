@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bitrlr0wde4k4"]
+
+[ext_resource type="Script" path="res://scenes/Components/move_or_turn_component.gd" id="1_0vnkg"]
+
+[node name="MoveOrTurnComponent" type="Node"]
+script = ExtResource("1_0vnkg")

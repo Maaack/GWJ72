@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://chuse4uqnjnxw"]
+
+[ext_resource type="Script" path="res://scenes/Components/ray_attack_component_3d.gd" id="1_iusb8"]
+
+[node name="RayAttackComponent3D" type="Node3D"]
+script = ExtResource("1_iusb8")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, -3)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.984314, 0, 0, 1)
+debug_shape_thickness = 4

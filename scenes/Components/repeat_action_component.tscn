@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba8kwb0gdp8eb"]
+
+[ext_resource type="Script" path="res://scenes/Components/repeat_action_component.gd" id="1_p8okk"]
+
+[node name="RepeatActionComponent" type="Node"]
+script = ExtResource("1_p8okk")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0eheh04avnu8"]
+
+[ext_resource type="Script" path="res://scenes/Door/door.gd" id="1_i0hpn"]
+
+[sub_resource type="Animation" id="Animation_jle80"]
+resource_name = "OPEN"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.67559, 0, 0.737277)
+
+[sub_resource type="Animation" id="Animation_cqppi"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpcji"]
+_data = {
+"OPEN": SubResource("Animation_jle80"),
+"RESET": SubResource("Animation_cqppi")
+}
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_i0hpn")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vpcji")
+}
+
+[node name="OpeningStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"
+
+[node name="ClosingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"
+
+[node name="LockedStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"
+
+[node name="LockingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"
+
+[node name="UnlockingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"

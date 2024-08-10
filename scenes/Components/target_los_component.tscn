@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chfi12yqxs18g"]
+
+[ext_resource type="Script" path="res://scenes/Components/target_los_component.gd" id="1_mm3bf"]
+
+[node name="TargetLOSComponent" type="Node"]
+script = ExtResource("1_mm3bf")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci1tgp8bwaroa"]
+
+[ext_resource type="Script" path="res://scenes/Weapons/thrown_object.gd" id="1_ybmi5"]
+[ext_resource type="PackedScene" uid="uid://c7hagb5bur6tw" path="res://scenes/Components/hit_box_3d.tscn" id="3_sa6dj"]
+
+[sub_resource type="Animation" id="Animation_owqt6"]
+resource_name = "FLIPPING"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.707107, 0, 0, 0.707107, 0.2, 1, 1, 0, 0, -4.37114e-08, 0.3, 1, -0.707107, 0, 0, 0.707107, 0.4, 1, 8.74228e-08, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_lmkir"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fryii"]
+_data = {
+"FLIPPING": SubResource("Animation_owqt6"),
+"RESET": SubResource("Animation_lmkir")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xhkum"]
+radius = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j756"]
+radius = 0.125
+height = 0.5
+
+[node name="ThrownObject" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_ybmi5")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fryii")
+}
+autoplay = "FLIPPING"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xhkum")
+
+[node name="HitBox3D" parent="." instance=ExtResource("3_sa6dj")]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 8
+
+[node name="HitCollisionShape3D" type="CollisionShape3D" parent="HitBox3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_8j756")
+
+[node name="SpinningStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -15.0
+autoplay = true
+max_distance = 50.0
+bus = &"SFX"
+doppler_tracking = 2
