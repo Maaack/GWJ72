@@ -1,9 +1,12 @@
+class_name PlayerCharacter
 extends CharacterBody3D
 
 signal died
 signal orbs_count_changed(new_count : int)
 signal health_changed(new_value : float)
 signal stamina_changed(new_value : float, max_value : float)
+signal interactable_focused(interactable_3d : Interactable3D)
+signal interactable_unfocused
 
 @export var base_mouse_sensitivity = 0.005
 @export var max_stamina : float = 10.0 :
@@ -81,6 +84,10 @@ func _input(event):
 		if $InventoryComponent.has_orbs() and stamina > SECONDARY_ATTACK_STAMINA_COST:
 			stamina -= SECONDARY_ATTACK_STAMINA_COST
 			%RangedAttackComponent.attack()
+	if event.is_action_pressed("interact"):
+		if focused_interactable is Interactable3D:
+			focused_interactable.interact()
+			_update_focused_interaction()
 
 func initialize():
 	stamina = max_stamina
@@ -99,3 +106,17 @@ func _on_health_component_health_changed(new_value):
 
 func _on_inventory_component_orbs_count_changed(new_count):
 	orbs_count_changed.emit(new_count)
+
+func _update_focused_interaction():
+	if focused_interactable is Interactable3D:
+		interactable_focused.emit(focused_interactable)
+
+func _on_interacting_component_interactable_focused(object):
+	if object is Interactable3D and focused_interactable == null:
+		focused_interactable = object
+		_update_focused_interaction()
+
+func _on_interacting_component_interactable_unfocused(object):
+	if object is Interactable3D and object == focused_interactable:
+		focused_interactable = null
+		interactable_unfocused.emit()

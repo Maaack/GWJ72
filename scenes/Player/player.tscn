@@ -104,9 +104,10 @@ bus = &"SFX"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
-light_energy = 0.5
 omni_range = 10.0
 
+[connection signal="interactable_focused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_focused"]
+[connection signal="interactable_unfocused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_unfocused"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="orbs_count_changed" from="InventoryComponent" to="." method="_on_inventory_component_orbs_count_changed"]
