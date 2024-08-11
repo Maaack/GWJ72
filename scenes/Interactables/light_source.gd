@@ -11,8 +11,10 @@ func _updated_light_orbs():
 		toggled = has_orbs
 		if toggled:
 			$AnimationPlayer.play(LIGHT_UP_ANIMATION)
+			$OrbReceiver.orb_entered()
 		else:
 			$AnimationPlayer.play_backwards(LIGHT_UP_ANIMATION)
+			$OrbReceiver.orb_exited()
 
 func _on_light_trigger_body_entered(body):
 	light_orbs.append(body)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1l848ekwb200"]
+[gd_scene load_steps=12 format=3 uid="uid://c1l848ekwb200"]
 
 [ext_resource type="Script" path="res://scenes/Interactables/light_source.gd" id="1_2rdpc"]
 [ext_resource type="Texture2D" uid="uid://buc7b8r52ttff" path="res://assets/objects/dungeon_texture.png" id="1_6bx1k"]
 [ext_resource type="PackedScene" uid="uid://chc6agqy16l6o" path="res://scenes/Interactables/light_trigger.tscn" id="2_0s0aj"]
+[ext_resource type="PackedScene" uid="uid://cd43f2eyqrxps" path="res://scenes/Interactables/orb_receiver.tscn" id="3_satv6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xu8b"]
 resource_name = "texture"
@@ -45,29 +46,6 @@ shadow_mesh = SubResource("ArrayMesh_xh360")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ll6j0"]
 points = PackedVector3Array(-0.275142, 0.61954, -0.0457852, -0.275142, 0.61954, 0.0457312, -0.211473, 0.646457, -0.0457852, -0.0457851, 0.61954, -0.275142, -0.152599, 0.490971, -0.152599, -0.19456, 0.284098, -0.0457852, -0.0363588, -0.384442, -5.39124e-05, -0.152599, 0.490971, 0.152545, -0.0457851, 0.61954, 0.275142, -0.0457851, 0.646559, 0.211419, -0.211473, 0.646457, 0.0457312, -0.19456, 0.284098, 0.0457312, -0.0457851, 0.646457, -0.211473, 0.0457312, 0.61954, -0.275142, 0, -0.384442, -0.0363588, -0.0457851, 0.284098, -0.19456, 0, -0.395046, -5.39124e-05, 0, -0.384442, 0.0363049, -0.0457851, 0.284098, 0.194506, 0.0457312, 0.61954, 0.275142, 0.0457312, 0.646457, 0.211419, 0.21142, 0.646559, 0.0457312, 0.0457312, 0.646457, -0.211473, 0.275142, 0.61954, -0.0457852, 0.152545, 0.490971, -0.152599, 0.0457312, 0.284098, -0.19456, 0.0363049, -0.384442, -5.39124e-05, 0.0457312, 0.284098, 0.194506, 0.152545, 0.490971, 0.152545, 0.275142, 0.61954, 0.0457312, 0.21142, 0.646457, -0.0457852, 0.194506, 0.284098, -0.0457852, 0.194506, 0.284098, 0.0457312)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acmbc"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_v2uhr"]
-material = SubResource("StandardMaterial3D_acmbc")
-flip_faces = true
-radius = 0.2
-height = 0.4
-radial_segments = 16
-rings = 8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhji3"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_0l6s3"]
-material = SubResource("StandardMaterial3D_bhji3")
-radius = 0.1
-height = 0.2
-radial_segments = 16
-rings = 8
 
 [sub_resource type="Animation" id="Animation_wh2ci"]
 resource_name = "LIGHT_UP"
@@ -118,12 +96,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="torch/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_ll6j0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="torch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("SphereMesh_v2uhr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="torch/MeshInstance3D"]
-mesh = SubResource("SphereMesh_0l6s3")
+[node name="OrbReceiver" parent="." instance=ExtResource("3_satv6")]
 
 [node name="LightTrigger" parent="." instance=ExtResource("2_0s0aj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
