@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0aw65bakq6lr"]
+
+[ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_l86hp"]
+[ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_r0oge"]
+[ext_resource type="PackedScene" uid="uid://c0eheh04avnu8" path="res://scenes/Door/door.tscn" id="3_ds7rx"]
+[ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="4_6xwwg"]
+
+[node name="LevelBase" instance=ExtResource("1_l86hp")]
+
+[node name="WallsGridMap" parent="." index="2"]
+data = {
+"cells": PackedInt32Array(65533, 65532, 1048586, 65534, 65532, 5, 65535, 65532, 5, 0, 65532, 5, 1, 65532, 5, 2, 65532, 5, 65533, 3, 5, 65534, 3, 655370, 65535, 3, 5, 0, 3, 655370, 1, 3, 5, 2, 3, 5, 3, 2, 1441797, 3, 1, 10, 3, 0, 1441797, 3, 65535, 1441797, 3, 65534, 10, 65532, 65533, 1441797, 65532, 65534, 1441797, 65532, 65535, 1441797, 65532, 0, 1441797, 65532, 1, 655370, 65532, 2, 1441797, 3, 3, 1441801, 65532, 65532, 1048585, 65532, 3, 655369, 2, 65534, 5, 1, 65534, 5, 2, 1, 5, 1, 1, 5, 0, 0, 1441799, 0, 65535, 1048584, 0, 65534, 1048585, 0, 1, 655370, 65534, 65535, 1048581, 65534, 65534, 1048582, 65534, 65533, 1048585, 65533, 65535, 1048583, 65533, 65533, 1048583, 65534, 0, 1048582, 65533, 0, 1048582, 65535, 1, 655371, 65534, 1, 655370, 0, 2, 1441803, 65534, 2, 1441803, 65533, 1, 655371, 65535, 65533, 7, 0, 65533, 7, 1, 65533, 7, 2, 65533, 7, 3, 65533, 9, 3, 65532, 5)
+}
+
+[node name="GridMap" type="GridMap" parent="." index="3"]
+mesh_library = ExtResource("2_r0oge")
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(7, 65530, 1441803)
+}
+
+[node name="Door" parent="." index="5" instance=ExtResource("3_ds7rx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
+
+[node name="ExitDoor" parent="." index="6" instance=ExtResource("4_6xwwg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, -13)

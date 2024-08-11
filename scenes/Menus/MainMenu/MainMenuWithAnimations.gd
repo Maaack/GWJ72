@@ -4,6 +4,7 @@ var animation_state_machine : AnimationNodeStateMachinePlayback
 
 func play_game():
 	GameLog.game_started()
+	GameLevelLog.set_current_level(0)
 	super.play_game()
 
 func intro_done():

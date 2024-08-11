@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1fi1nji5pj2q"]
+[gd_scene load_steps=5 format=3 uid="uid://d1fi1nji5pj2q"]
 
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="1_5ekvh"]
+[ext_resource type="Script" path="res://scenes/GameScene/Levels/level_base.gd" id="1_lwkkh"]
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/Player/player.tscn" id="2_k6i3t"]
 
 [sub_resource type="Environment" id="Environment_5umm5"]
@@ -9,6 +10,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.3
 
 [node name="LevelBase" type="Node3D" groups=["level"]]
+script = ExtResource("1_lwkkh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5umm5")
