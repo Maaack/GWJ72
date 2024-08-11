@@ -46,24 +46,24 @@ shadow_mesh = SubResource("ArrayMesh_xh360")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ll6j0"]
 points = PackedVector3Array(-0.275142, 0.61954, -0.0457852, -0.275142, 0.61954, 0.0457312, -0.211473, 0.646457, -0.0457852, -0.0457851, 0.61954, -0.275142, -0.152599, 0.490971, -0.152599, -0.19456, 0.284098, -0.0457852, -0.0363588, -0.384442, -5.39124e-05, -0.152599, 0.490971, 0.152545, -0.0457851, 0.61954, 0.275142, -0.0457851, 0.646559, 0.211419, -0.211473, 0.646457, 0.0457312, -0.19456, 0.284098, 0.0457312, -0.0457851, 0.646457, -0.211473, 0.0457312, 0.61954, -0.275142, 0, -0.384442, -0.0363588, -0.0457851, 0.284098, -0.19456, 0, -0.395046, -5.39124e-05, 0, -0.384442, 0.0363049, -0.0457851, 0.284098, 0.194506, 0.0457312, 0.61954, 0.275142, 0.0457312, 0.646457, 0.211419, 0.21142, 0.646559, 0.0457312, 0.0457312, 0.646457, -0.211473, 0.275142, 0.61954, -0.0457852, 0.152545, 0.490971, -0.152599, 0.0457312, 0.284098, -0.19456, 0.0363049, -0.384442, -5.39124e-05, 0.0457312, 0.284098, 0.194506, 0.152545, 0.490971, 0.152545, 0.275142, 0.61954, 0.0457312, 0.21142, 0.646457, -0.0457852, 0.194506, 0.284098, -0.0457852, 0.194506, 0.284098, 0.0457312)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyg3i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acmbc"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_v2uhr"]
-material = SubResource("StandardMaterial3D_lyg3i")
+material = SubResource("StandardMaterial3D_acmbc")
 flip_faces = true
 radius = 0.2
 height = 0.4
 radial_segments = 16
 rings = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylw3o"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhji3"]
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_0l6s3"]
-material = SubResource("StandardMaterial3D_ylw3o")
+material = SubResource("StandardMaterial3D_bhji3")
 radius = 0.1
 height = 0.2
 radial_segments = 16
@@ -132,7 +132,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 light_energy = 0.0
 light_size = 0.2
-omni_range = 50.0
+light_specular = 0.1
+omni_range = 40.0
+omni_attenuation = 0.35
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
