@@ -95,6 +95,13 @@ run={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="obstacles"
+3d_physics/layer_2="player_pickup"
+3d_physics/layer_3="player_hurt"
+3d_physics/layer_4="light"
+
 [maaacks_game_template]
 
 disable_plugin_dialogues=true

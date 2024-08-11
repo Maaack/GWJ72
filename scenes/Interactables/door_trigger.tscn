@@ -72,3 +72,4 @@ shape = SubResource("ConvexPolygonShape3D_ffn2l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [connection signal="body_entered" from="LightTrigger" to="." method="_on_light_trigger_body_entered"]
+[connection signal="body_exited" from="LightTrigger" to="." method="_on_light_trigger_body_exited"]
