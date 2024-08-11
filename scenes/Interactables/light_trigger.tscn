@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://chc6agqy16l6o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8qyh8"]
+radius = 2.0
+
+[node name="LightTrigger" type="Area3D"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_8qyh8")

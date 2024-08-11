@@ -2,18 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://dj05fiexb44ek" path="res://scenes/Pickups/spinning_pickup.tscn" id="1_u65vp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_assxm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7v5r"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lkg31"]
-material = SubResource("StandardMaterial3D_assxm")
+material = SubResource("StandardMaterial3D_s7v5r")
 radius = 0.1
 height = 0.2
 radial_segments = 16
 rings = 8
 
 [node name="LightBallPickup" groups=["orb"] instance=ExtResource("1_u65vp")]
+collision_layer = 10
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" index="0"]
 mesh = SubResource("SphereMesh_lkg31")

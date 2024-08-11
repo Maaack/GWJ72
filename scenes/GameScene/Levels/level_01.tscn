@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://6j4mi2twixt1"]
+[gd_scene load_steps=7 format=3 uid="uid://6j4mi2twixt1"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_d4uxk"]
 [ext_resource type="PackedScene" uid="uid://c0eheh04avnu8" path="res://scenes/Door/door.tscn" id="2_ddrae"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_eqwre"]
 [ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="4_piuep"]
+[ext_resource type="PackedScene" uid="uid://blhwdtcsf0s4y" path="res://scenes/Interactables/door_trigger.tscn" id="5_7f6cs"]
+[ext_resource type="PackedScene" uid="uid://c1l848ekwb200" path="res://scenes/Interactables/light_source.tscn" id="6_7lylw"]
 
 [node name="LevelBase" instance=ExtResource("1_d4uxk")]
 
@@ -23,6 +25,17 @@ data = {
 
 [node name="Door" parent="." index="5" instance=ExtResource("2_ddrae")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
+locked = true
 
 [node name="ExitDoor" parent="." index="6" instance=ExtResource("4_piuep")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, -13)
+
+[node name="DoorTrigger" parent="." index="7" node_paths=PackedStringArray("doors") instance=ExtResource("5_7f6cs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+doors = [NodePath("../Door")]
+
+[node name="LightSource" parent="." index="8" instance=ExtResource("6_7lylw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="LightSource2" parent="." index="9" instance=ExtResource("6_7lylw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 10)

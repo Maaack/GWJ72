@@ -15,6 +15,7 @@ radial_segments = 16
 rings = 8
 
 [node name="ThrownLightBall" instance=ExtResource("1_qih34")]
+collision_layer = 8
 object_pickup_scene = ExtResource("2_mut2b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" index="0"]
