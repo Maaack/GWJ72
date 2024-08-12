@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://fjg0y4u0wiva" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_qhd5o"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_qgesj"]
 [ext_resource type="PackedScene" uid="uid://ns1o08cpcrk7" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_pmtgl"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_v7isc"]
+[ext_resource type="Script" path="res://scenes/GameScene/level_loader.gd" id="6_si4ym"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_ekdma"]
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_uru51"]
 [ext_resource type="Material" uid="uid://bjytouf3pc57b" path="res://scenes/GameScene/texture_dither_material.tres" id="9_2xvie"]
@@ -27,10 +27,8 @@ script = ExtResource("4_qgesj")
 pause_menu_packed = ExtResource("5_pmtgl")
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
-script = ExtResource("6_v7isc")
+script = ExtResource("6_si4ym")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport/LevelContainer")
-files = Array[String](["res://scenes/GameScene/Levels/level_01.tscn", "res://scenes/GameScene/Levels/level_02.tscn", "res://scenes/GameScene/Levels/level_base.tscn"])
-directory = "res://scenes/GameScene/Levels"
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_ekdma")]
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameStateData" load_steps=2 format=3 uid="uid://dp340ulnks8fi"]
+
+[ext_resource type="Script" path="res://scripts/game_state_data.gd" id="1_0o86e"]
+
+[resource]
+script = ExtResource("1_0o86e")
+current_level = "res://scenes/GameScene/Levels/level_01.tscn"
+entered_from = ""
+player_orbs = 0

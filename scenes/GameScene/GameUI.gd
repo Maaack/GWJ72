@@ -14,11 +14,10 @@ var _player_node
 func _ready():
 	InGameMenuController.scene_tree = get_tree()
 
-func _on_level_lost():
-	InGameMenuController.open_menu(lose_scene, get_viewport())
-
-func _on_level_won():
-	$LevelLoader.advance_and_load_level()
+func _on_level_changed(level_path : String):
+	GameState.current.current_level = level_path
+	_save_player_state()
+	$LevelLoader.load_level(level_path)
 	_on_player_interactable_unfocused()
 
 func _connect_player_node_signals():
@@ -29,10 +28,12 @@ func _connect_player_node_signals():
 		_player_node.connect(&"interactable_unfocused", _on_player_interactable_unfocused)
 
 func _connect_level_node_signals():
-	if _current_level.has_signal("level_won"):
-		_current_level.level_won.connect(_on_level_won)
-	if _current_level.has_signal("level_lost"):
-		_current_level.level_lost.connect(_on_level_lost)
+	if _current_level.has_signal("level_changed"):
+		_current_level.level_changed.connect(_on_level_changed)
+
+func _save_player_state():
+	var _inventory_component : InventoryComponent = _player_node.get_node(^"InventoryComponent")
+	GameState.current.player_orbs = _inventory_component.orbs_count
 
 func _on_level_loader_level_loaded():
 	_current_level = $LevelLoader.current_level
