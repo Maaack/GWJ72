@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://scenes/Interactables/orb_receiver.gd" id="1_8ibok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyg3i"]
+resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.498039)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_es3fs"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_lyg3i")
 flip_faces = true
 radius = 0.2
@@ -21,6 +23,7 @@ shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_df1pi"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_ylw3o")
 radius = 0.1
 height = 0.2

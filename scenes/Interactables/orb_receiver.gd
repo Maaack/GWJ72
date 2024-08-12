@@ -17,8 +17,3 @@ func orb_exited():
 	animation_player.play(GLOW_DOWN_ANIMATION)
 	animation_player.seek(remaining_time)
 
-func _ready():
-	$GlowMesh.mesh = $GlowMesh.mesh.duplicate()
-	$GlowMesh.mesh.material = $GlowMesh.mesh.material.duplicate()
-	$DarkOrbMesh.mesh = $DarkOrbMesh.mesh.duplicate()
-	$LightOrbMesh.mesh = $LightOrbMesh.mesh.duplicate()
