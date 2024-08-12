@@ -15,6 +15,9 @@ func _ready():
 	InGameMenuController.scene_tree = get_tree()
 
 func _on_level_changed(level_path : String):
+	if level_path.is_empty():
+		InGameMenuController.open_menu(win_scene, get_viewport())
+		return
 	GameState.current.current_level = level_path
 	_save_player_state()
 	$LevelLoader.load_level(level_path)
