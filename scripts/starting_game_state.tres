@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_0o86e")
-current_level = "res://scenes/GameScene/Levels/level_01.tscn"
+current_level = "res://scenes/GameScene/Levels/entry_way_level.tscn"
 entered_from = ""
 player_orbs = 0

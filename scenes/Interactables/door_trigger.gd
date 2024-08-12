@@ -28,16 +28,28 @@ func _close_and_lock_doors():
 		door.close()
 		door.lock()
 
+func toggle_door(door : Door3D):
+	if door.locked:
+		door.unlock()
+		door.open()
+	else:
+		door.close()
+		door.lock()
+
+func toggle_doors():
+	for door in doors:
+		toggle_door(door)
+
 func trigger_on():
 	$OrbReceiver.orb_entered()
-	_unlock_and_open_doors()
+	toggle_doors()
 	uses += 1
 	doors_triggered.emit()
 
 func trigger_off():
 	if stay_on: return
 	$OrbReceiver.orb_exited()
-	_close_and_lock_doors()
+	toggle_doors()
 	
 func _on_light_trigger_body_entered(body):
 	light_orbs.append(body)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cd43f2eyqrxps"]
+[gd_scene load_steps=14 format=3 uid="uid://cd43f2eyqrxps"]
 
 [ext_resource type="Script" path="res://scenes/Interactables/orb_receiver.gd" id="1_8ibok"]
+[ext_resource type="PackedScene" uid="uid://rlat8qxfsacl" path="res://scenes/Interactables/orb_attractor.tscn" id="2_c4xe5"]
+[ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="3_hjpge"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyg3i"]
 resource_local_to_scene = true
@@ -332,3 +334,8 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_imwyb")
 }
+
+[node name="OrbAttractor" parent="." instance=ExtResource("2_c4xe5")]
+attract_force = 200.0
+
+[node name="OrbHolder" parent="." instance=ExtResource("3_hjpge")]

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://hd835rtp70qv" path="res://scenes/Weapons/thrown_light_ball.tscn" id="8_5qv4v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
-height = 1.0
+height = 1.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_44vvd"]
 
@@ -20,7 +20,6 @@ radius = 2.0
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_vj77x"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_layer = 3
 script = ExtResource("1_1w47b")
 base_mouse_sensitivity = 0.003
 max_stamina = 4.0

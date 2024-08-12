@@ -1,23 +1,41 @@
-extends Node3D
+@tool
 class_name Door3D
+extends Node3D
 
 const OPEN_ANIMATION = &"OPEN"
 
 @export var locked : bool = false
-var opened : bool = false
+@export var start_opened : bool = false :
+	set(value):
+		start_opened = value
+		opened = start_opened
+		if start_opened:
+			$AnimationPlayer.play(OPEN_ANIMATION, -1, 0, true)
+
+var opened : bool = false :
+	set(value):
+		opened = value
+		if opened:
+			_open_actions()
+		else:
+			_close_actions()
+
+func _open_actions():
+	$AnimationPlayer.play(OPEN_ANIMATION, -1, 1.0)
+
+func _close_actions():
+	$AnimationPlayer.play(OPEN_ANIMATION, -1, -3.0, true)
 
 func open():
 	if locked:
 		locked_feedback()
 		return
-	$AnimationPlayer.play(OPEN_ANIMATION, -1, 1.0)
 	opened = true
 	opening_feedback()
 
 func close():
-	$AnimationPlayer.play(OPEN_ANIMATION, -1, -3.0, true)
-	closing_feedback()
 	opened = false
+	closing_feedback()
 
 func toggle():
 	if opened:
