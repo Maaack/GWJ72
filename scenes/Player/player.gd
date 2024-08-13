@@ -79,7 +79,6 @@ func get_nearest_orb_not_held():
 	if orbs.is_empty() : return
 	for orb in orbs:
 		if orb.held_by == %OrbHolder : continue
-		print(_get_dot_product(orb.global_position))
 		if _get_dot_product(orb.global_position) > 0.7:
 			focused_orbs.append(orb)
 	if focused_orbs.is_empty() : return
@@ -94,7 +93,6 @@ func get_nearest_orb_not_held():
 
 func _release_closest_orb_from_holder():
 	var nearest_orb = get_nearest_orb_not_held()
-	print(nearest_orb)
 	if nearest_orb is Orb:
 		var held_by = nearest_orb.held_by
 		if held_by is OrbHolder:
