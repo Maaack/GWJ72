@@ -52,6 +52,7 @@ radius = 0.1
 [node name="Orb" type="CharacterBody3D"]
 collision_layer = 9
 script = ExtResource("2_uy578")
+friction = 0.5
 
 [node name="Pivot" type="Node3D" parent="."]
 

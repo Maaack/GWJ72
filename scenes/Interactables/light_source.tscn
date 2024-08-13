@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1l848ekwb200"]
+[gd_scene load_steps=14 format=3 uid="uid://c1l848ekwb200"]
 
 [ext_resource type="Script" path="res://scenes/Interactables/light_source.gd" id="1_2rdpc"]
 [ext_resource type="Texture2D" uid="uid://buc7b8r52ttff" path="res://assets/objects/dungeon_texture.png" id="1_6bx1k"]
 [ext_resource type="PackedScene" uid="uid://chc6agqy16l6o" path="res://scenes/Interactables/light_trigger.tscn" id="2_0s0aj"]
 [ext_resource type="PackedScene" uid="uid://cd43f2eyqrxps" path="res://scenes/Interactables/orb_receiver.tscn" id="3_satv6"]
+[ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="4_dtnrm"]
+[ext_resource type="PackedScene" uid="uid://rlat8qxfsacl" path="res://scenes/Interactables/orb_attractor.tscn" id="5_l8o0c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xu8b"]
 resource_name = "texture"
@@ -96,9 +98,16 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="torch/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_ll6j0")
 
-[node name="OrbReceiver" parent="." instance=ExtResource("3_satv6")]
-
 [node name="LightTrigger" parent="." instance=ExtResource("2_0s0aj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="OrbReceiver" parent="." instance=ExtResource("3_satv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="OrbHolder" parent="." instance=ExtResource("4_dtnrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="OrbAttractor" parent="." instance=ExtResource("5_l8o0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

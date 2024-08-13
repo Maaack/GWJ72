@@ -5,20 +5,14 @@ extends Node3D
 const OPEN_ANIMATION = &"OPEN"
 
 @export var locked : bool = false
-@export var start_opened : bool = false :
-	set(value):
-		start_opened = value
-		opened = start_opened
-		if start_opened:
-			$AnimationPlayer.play(OPEN_ANIMATION, -1, 0, true)
-
-var opened : bool = false :
+@export var opened : bool = false :
 	set(value):
 		opened = value
-		if opened:
-			_open_actions()
-		else:
-			_close_actions()
+		if is_inside_tree():
+			if opened:
+				_open_actions()
+			else:
+				_close_actions()
 
 func _open_actions():
 	$AnimationPlayer.play(OPEN_ANIMATION, -1, 1.0)
@@ -68,3 +62,6 @@ func unlocking_feedback():
 
 func _on_character_body_3d_interacting_succeeded():
 	toggle()
+
+func _ready():
+	if opened: $AnimationPlayer.play(OPEN_ANIMATION, -1, 0, true)

@@ -1,17 +1,23 @@
+@tool
 class_name DoorTrigger3D
 extends Node3D
 signal doors_triggered
 
 @export var doors : Array[Door3D]
+@export var orbs : Array[Orb] :
+	set(value):
+		orbs = value
+		if is_inside_tree():
+			_updated_orbs()
+@export var toggled : bool = false
 @export var stay_on : bool = false
+
 var uses : int = 0
 
-var light_orbs : Array 
-var toggled : bool
-
-func _updated_light_orbs():
-	var has_orbs = !light_orbs.is_empty()
+func _updated_orbs():
+	var has_orbs = !orbs.is_empty()
 	if has_orbs != toggled:
+		$OrbReceiver.has_orbs = has_orbs
 		toggled = has_orbs
 		if toggled:
 			trigger_on()
@@ -41,20 +47,23 @@ func toggle_doors():
 		toggle_door(door)
 
 func trigger_on():
-	$OrbReceiver.orb_entered()
 	toggle_doors()
 	uses += 1
 	doors_triggered.emit()
 
 func trigger_off():
 	if stay_on: return
-	$OrbReceiver.orb_exited()
 	toggle_doors()
 	
 func _on_light_trigger_body_entered(body):
-	light_orbs.append(body)
-	_updated_light_orbs()
+	if body not in orbs:
+		orbs.append(body)
+		_updated_orbs()
 
 func _on_light_trigger_body_exited(body):
-	light_orbs.erase(body)
-	_updated_light_orbs()
+	if body in orbs:
+		orbs.erase(body)
+		_updated_orbs()
+
+func _ready():
+	orbs = orbs

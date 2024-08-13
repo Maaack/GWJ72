@@ -1,25 +1,37 @@
+@tool
+class_name LightSource3D
 extends Node3D
 
 const LIGHT_UP_ANIMATION = &"LIGHT_UP"
 
-var light_orbs : Array 
-var toggled : bool
+@export var orbs : Array[Orb] :
+	set(value):
+		orbs = value
+		if is_inside_tree():
+			_updated_orbs()
+@export var toggled : bool
 
-func _updated_light_orbs():
-	var has_orbs = !light_orbs.is_empty()
+func _updated_orbs():
+	var has_orbs = !orbs.is_empty()
 	if has_orbs != toggled:
+		$OrbReceiver.has_orbs = has_orbs
 		toggled = has_orbs
 		if toggled:
 			$AnimationPlayer.play(LIGHT_UP_ANIMATION)
-			$OrbReceiver.orb_entered()
 		else:
 			$AnimationPlayer.play_backwards(LIGHT_UP_ANIMATION)
-			$OrbReceiver.orb_exited()
+	else:
+		$OmniLight3D.light_energy = 1 if has_orbs else 0
 
 func _on_light_trigger_body_entered(body):
-	light_orbs.append(body)
-	_updated_light_orbs()
+	if body not in orbs:
+		orbs.append(body)
+		_updated_orbs()
 
 func _on_light_trigger_body_exited(body):
-	light_orbs.erase(body)
-	_updated_light_orbs()
+	if body in orbs:
+		orbs.erase(body)
+		_updated_orbs()
+
+func _ready():
+	orbs = orbs
