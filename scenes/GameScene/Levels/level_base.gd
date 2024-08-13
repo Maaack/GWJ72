@@ -1,9 +1,9 @@
 extends Node3D
 
-signal level_changed(new_level : String)
+signal level_changed(new_level : String, entering_door : String)
 
-func _change_level(new_level : StringName):
-	level_changed.emit(new_level)
+func _change_level(new_level : String, entering_door : String):
+	level_changed.emit(new_level, entering_door)
 
 func _connect_exit_door(exit_door : ExitDoor3D):
 	if not exit_door.player_exited.is_connected(_change_level):

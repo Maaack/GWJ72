@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr1hp03uwukc6"]
+[gd_scene load_steps=9 format=3 uid="uid://cr1hp03uwukc6"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_yyhry"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_iphm8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://blhwdtcsf0s4y" path="res://scenes/Interactables/door_trigger.tscn" id="4_7vhuo"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="5_587f4"]
 [ext_resource type="PackedScene" uid="uid://c1l848ekwb200" path="res://scenes/Interactables/light_source.tscn" id="6_b8bdc"]
+[ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="7_22mdc"]
 
 [sub_resource type="Environment" id="Environment_h7ncb"]
 ambient_light_source = 2
@@ -153,6 +154,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -2, -72)
 
 [node name="Orb3" parent="." index="27" instance=ExtResource("5_587f4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -72)
+
+[node name="ExitDoor" parent="." index="28" instance=ExtResource("7_22mdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+level_path = "res://scenes/GameScene/Levels/grand_hall_level.tscn"
+entering_door_name = "ExitDoor3"
+flipped = true
+
+[node name="ExitDoor2" parent="." index="29" instance=ExtResource("7_22mdc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 0, 6)
+level_path = "res://scenes/GameScene/Levels/grand_hall_level.tscn"
+entering_door_name = "ExitDoor2"
 
 [editable path="DoorTrigger"]
 [editable path="LightSource"]

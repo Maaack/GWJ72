@@ -73,6 +73,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="OrbCountLabel" type="Label" parent="MarginContainer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

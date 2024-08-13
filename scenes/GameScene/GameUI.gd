@@ -14,11 +14,12 @@ var _player_node
 func _ready():
 	InGameMenuController.scene_tree = get_tree()
 
-func _on_level_changed(level_path : String):
+func _on_level_changed(level_path : String, entering_door : String):
 	if level_path.is_empty():
 		InGameMenuController.open_menu(win_scene, get_viewport())
 		return
 	GameState.current.current_level = level_path
+	GameState.current.entering_door_name = entering_door
 	_save_player_state()
 	$LevelLoader.load_level(level_path)
 	_on_player_interactable_unfocused()
@@ -38,12 +39,22 @@ func _save_player_state():
 	var _inventory_component : InventoryComponent = _player_node.get_node(^"InventoryComponent")
 	GameState.current.player_orbs = _inventory_component.orbs_count
 
+func _move_player_to_door(door_name : String):
+	if door_name.is_empty(): return
+	var door_node = _current_level.find_child(door_name)
+	if door_node is ExitDoor3D:
+		if _player_node is Node3D:
+			_player_node.global_position = door_node.get_start_position()
+			var direction = door_node.get_start_direction()
+			_player_node.global_transform = _player_node.global_transform.looking_at(direction)
+
 func _on_level_loader_level_loaded():
 	_current_level = $LevelLoader.current_level
 	await _current_level.ready
 	_player_node = get_tree().get_first_node_in_group(&"player")
 	_connect_player_node_signals()
 	_connect_level_node_signals()
+	_move_player_to_door(GameState.current.entering_door_name)
 	$LoadingScreen.close()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

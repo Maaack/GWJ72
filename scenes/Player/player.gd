@@ -119,9 +119,9 @@ func _input(event):
 		%OrbAttractor.attract_force = 0
 	if event.is_action_pressed("interact"):
 		%RangedAttackComponent.attack()
-		#if focused_interactable is Interactable3D:
-			#focused_interactable.interact()
-			#_update_focused_interaction()
+		if focused_interactable is Interactable3D:
+			focused_interactable.interact()
+			_update_focused_interaction()
 
 func initialize():
 	stamina = max_stamina

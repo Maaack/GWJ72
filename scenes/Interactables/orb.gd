@@ -28,7 +28,8 @@ func hold(holding_node : Node):
 func release():
 	velocity = Vector3.ZERO
 	held_by = null
-	$HoldDelayTimer.start()
+	if $HoldDelayTimer.is_inside_tree():
+		$HoldDelayTimer.start()
 
 func can_be_held():
 	return (not is_instance_valid(held_by)) and $HoldDelayTimer.is_stopped()
