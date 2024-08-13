@@ -5,6 +5,7 @@ signal orb_held(orb : Orb)
 @export var ring_spin : float = 0.0
 @export var ring_radius : float = 0.0
 @export var ring_scaling : float = 0
+@export var collision_fudge : Vector3
 
 var elapsed_delta : float
 
@@ -88,7 +89,8 @@ func _physics_process(delta):
 		var target_position := global_position + _get_ring_offset(index, elapsed_delta)
 		var motion := target_position - held_orb.global_position
 		if _run_body_test_motion(held_orb, motion, result):
-			held_orb.global_position += result.get_travel()
+			var direction = ((index % 2) * 2) - 1
+			held_orb.global_position += result.get_travel() + (direction * collision_fudge * delta)
 		else:
 			held_orb.global_position = target_position
 		index += 1

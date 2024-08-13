@@ -10,6 +10,7 @@ script = ExtResource("1_ksghw")
 ring_spin = 0.25
 ring_radius = 0.15
 ring_scaling = 0.025
+collision_fudge = Vector3(0, 0.1, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
