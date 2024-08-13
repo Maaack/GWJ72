@@ -4,7 +4,7 @@ extends Node3D
 
 signal player_exited(new_level : String)
 
-const CENTER_OFFSET = Vector3(1, 1, 0)
+const CENTER_OFFSET = Vector3(0, 1, 0)
 
 @export_file("*.tscn") var level_path : String
 @export var entering_door_name : String = "ExitDoor"
@@ -21,8 +21,8 @@ func get_start_position():
 	return $Marker3D.global_position
 
 func get_start_direction():
-	var offset_centered_position = $Marker3D.position - CENTER_OFFSET
-	return $Marker3D.global_position - offset_centered_position
+	var offset_centered_position = $Marker3D.global_position - (CENTER_OFFSET + global_position)
+	return get_start_position() + offset_centered_position
 
 func _on_character_body_3d_interacting_succeeded():
 	$ExitDelayTimer.start()

@@ -156,13 +156,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -2, -72)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -72)
 
 [node name="ExitDoor" parent="." index="28" instance=ExtResource("7_22mdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
 level_path = "res://scenes/GameScene/Levels/grand_hall_level.tscn"
 entering_door_name = "ExitDoor3"
 flipped = true
 
 [node name="ExitDoor2" parent="." index="29" instance=ExtResource("7_22mdc")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 0, 6)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 6)
 level_path = "res://scenes/GameScene/Levels/grand_hall_level.tscn"
 entering_door_name = "ExitDoor2"
 

@@ -60,17 +60,18 @@ points = PackedVector3Array(1.28214, 2.77183, 0.115167, -0.17283, 0.017256, -0.1
 [node name="ExitDoor" type="Node3D"]
 script = ExtResource("1_ki4qi")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 script = ExtResource("1_oqtf6")
 interactable_type = &"exit_door"
 
-[node name="wall_doorway_door" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="wall_doorway_door" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, 0, 0)
 mesh = SubResource("ArrayMesh_o4jpm")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_622qs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.825, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_afu26")
 
 [node name="ExitDelayTimer" type="Timer" parent="."]
@@ -78,7 +79,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
 gizmo_extents = 1.0
 
-[connection signal="interacting_succeeded" from="CharacterBody3D" to="." method="_on_character_body_3d_interacting_succeeded"]
+[connection signal="interacting_succeeded" from="StaticBody3D" to="." method="_on_character_body_3d_interacting_succeeded"]

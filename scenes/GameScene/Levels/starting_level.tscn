@@ -89,7 +89,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="ExitDoor" parent="." index="5" instance=ExtResource("3_qb0xl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -32)
 level_path = "res://scenes/GameScene/Levels/grand_hall_level.tscn"
 
 [node name="column" type="MeshInstance3D" parent="." index="6"]
