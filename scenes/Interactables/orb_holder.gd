@@ -66,7 +66,6 @@ func get_ring_radius() -> float:
 	if count < 2: return 0.0
 	return ring_radius + (ring_scaling * (held_orbs.size() - 2)) 
 
-
 func _get_ring_offset(index : int, time : float = 0.0) -> Vector3:
 	var count := held_orbs.size()
 	if count < 2 or index >= count: return Vector3.ZERO

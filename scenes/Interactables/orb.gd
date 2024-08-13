@@ -3,9 +3,9 @@ class_name Orb
 extends CharacterBody3D
 
 @export var friction : float = 1.0
+var held_by : Node
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var held_by
 
 func _physics_process(delta):
 	if Engine.is_editor_hint():
@@ -26,8 +26,12 @@ func hold(holding_node : Node):
 	held_by = holding_node
 
 func release():
+	velocity = Vector3.ZERO
 	held_by = null
 	$HoldDelayTimer.start()
 
 func can_be_held():
 	return (not is_instance_valid(held_by)) and $HoldDelayTimer.is_stopped()
+
+func _ready():
+	held_by = held_by

@@ -20,8 +20,6 @@ func _updated_orbs():
 			$AnimationPlayer.play(LIGHT_UP_ANIMATION)
 		else:
 			$AnimationPlayer.play_backwards(LIGHT_UP_ANIMATION)
-	else:
-		$OmniLight3D.light_energy = 1 if has_orbs else 0
 
 func _on_light_trigger_body_entered(body):
 	if body not in orbs:
@@ -35,3 +33,4 @@ func _on_light_trigger_body_exited(body):
 
 func _ready():
 	orbs = orbs
+	$OmniLight3D.light_energy = 1 if !orbs.is_empty() else 0
