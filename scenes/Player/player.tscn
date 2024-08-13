@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://curng0bjom18b" path="res://scenes/Components/health_component.tscn" id="3_sw2dm"]
 [ext_resource type="PackedScene" uid="uid://ck4g01ma0b022" path="res://scenes/Components/hurt_box_3d.tscn" id="4_vnb4j"]
 [ext_resource type="PackedScene" uid="uid://b7pefmfsnj1gc" path="res://scenes/Components/inventory_component.tscn" id="5_3vhi2"]
+[ext_resource type="PackedScene" uid="uid://rlat8qxfsacl" path="res://scenes/Interactables/orb_attractor.tscn" id="6_o85go"]
 [ext_resource type="PackedScene" uid="uid://ouqfvb7r6tu8" path="res://scenes/Components/ranged_attack_component.tscn" id="6_skuyj"]
 [ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="7_k1v0c"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="8_qpybw"]
@@ -14,15 +15,13 @@ height = 1.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_44vvd"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_oquny"]
-radius = 2.0
-
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_vj77x"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_1w47b")
 base_mouse_sensitivity = 0.003
 max_stamina = 6.0
+orb_attraction_strength = 100.0
 
 [node name="InteractingComponent" parent="." node_paths=PackedStringArray("ray_cast") instance=ExtResource("2_awhmw")]
 ray_cast = NodePath("../Head/RayCast3D")
@@ -57,16 +56,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.6)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.1, -1)
 
-[node name="InventoryComponent" parent="." node_paths=PackedStringArray("pickup_area_3d") instance=ExtResource("5_3vhi2")]
+[node name="OrbAttractor" parent="Head" instance=ExtResource("6_o85go")]
+unique_name_in_owner = true
+
+[node name="InventoryComponent" parent="." instance=ExtResource("5_3vhi2")]
 orbs_count = 2
-pickup_area_3d = NodePath("../PickupArea3D")
-
-[node name="PickupArea3D" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea3D"]
-shape = SubResource("CylinderShape3D_oquny")
 
 [node name="RangedAttackComponent" parent="." node_paths=PackedStringArray("rotation_reference", "position_reference", "attack_audio_stream") instance=ExtResource("6_skuyj")]
 unique_name_in_owner = true

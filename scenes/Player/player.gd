@@ -13,6 +13,7 @@ signal interactable_unfocused
 	set(value):
 		max_stamina = value
 		stamina_changed.emit(stamina, max_stamina)
+@export var orb_attraction_strength : float
 
 var stamina : float :
 	set(value):
@@ -38,6 +39,7 @@ var _was_on_floor
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
+	get_nearest_orb_not_held()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -67,6 +69,29 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta * STEP_DOWN_BOOST
 	_was_on_floor = is_on_floor()
 
+func _get_dot_product(vector : Vector3) -> float: 
+	var vector_a = vector.normalized()
+	var vector_b = -global_basis.z.normalized()
+	return vector_a.dot(vector_b)
+
+func get_nearest_orb_not_held():
+	var orbs : Array[Orb] = %OrbAttractor.orbs
+	var focused_orbs : Array[Orb] = []
+	if orbs.is_empty() : return
+	for orb in orbs:
+		if orb.held_by == %OrbHolder : continue
+		if _get_dot_product(orb.global_position) > 0.9:
+			focused_orbs.append(orb)
+	if focused_orbs.is_empty() : return
+	var closest_orb = focused_orbs.front()
+	var closest_distance_squared := INF
+	for orb in focused_orbs:
+		var distance_squared = orb.global_position.distance_squared_to(global_position)
+		if distance_squared < closest_distance_squared:
+			closest_distance_squared = distance_squared
+			closest_orb = orb
+	return closest_orb
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_sensitivity = Config.get_config(AppSettings.INPUT_SECTION, &"MouseSensitivity", 1.0)
@@ -82,12 +107,14 @@ func _input(event):
 			var throwing_orb = %OrbHolder.get_closest_orb(target_direction)
 			%RangedAttackComponent.attack(throwing_orb)
 	if event.is_action_pressed("alt_attack"):
-		if $InventoryComponent.has_orbs():
-			%RangedAttackComponent.attack()
+		%OrbAttractor.attract_force = orb_attraction_strength
+	elif event.is_action_released("alt_attack"):
+		%OrbAttractor.attract_force = 0
 	if event.is_action_pressed("interact"):
-		if focused_interactable is Interactable3D:
-			focused_interactable.interact()
-			_update_focused_interaction()
+		%RangedAttackComponent.attack()
+		#if focused_interactable is Interactable3D:
+			#focused_interactable.interact()
+			#_update_focused_interaction()
 
 func initialize():
 	stamina = max_stamina
