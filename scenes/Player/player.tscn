@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=14 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://ct4hnidrqacu0" path="res://scenes/Components/interacting_component.tscn" id="2_awhmw"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://chuse4uqnjnxw" path="res://scenes/Components/ray_attack_component_3d.tscn" id="5_3tgg3"]
 [ext_resource type="PackedScene" uid="uid://b7pefmfsnj1gc" path="res://scenes/Components/inventory_component.tscn" id="5_3vhi2"]
 [ext_resource type="PackedScene" uid="uid://ouqfvb7r6tu8" path="res://scenes/Components/ranged_attack_component.tscn" id="6_skuyj"]
-[ext_resource type="PackedScene" uid="uid://hd835rtp70qv" path="res://scenes/Weapons/thrown_light_ball.tscn" id="8_5qv4v"]
+[ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="7_k1v0c"]
+[ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="8_qpybw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 height = 1.25
@@ -22,7 +23,7 @@ radius = 2.0
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_1w47b")
 base_mouse_sensitivity = 0.003
-max_stamina = 4.0
+max_stamina = 6.0
 
 [node name="InteractingComponent" parent="." node_paths=PackedStringArray("ray_cast") instance=ExtResource("2_awhmw")]
 ray_cast = NodePath("../Head/RayCast3D")
@@ -58,6 +59,10 @@ attack_audio_stream = NodePath("../../MeleeAttackStreamPlayer3D")
 [node name="ThrowMarker3D" type="Marker3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.6)
 
+[node name="OrbHolder" parent="Head" instance=ExtResource("7_k1v0c")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.1, -1)
+
 [node name="InventoryComponent" parent="." node_paths=PackedStringArray("pickup_area_3d") instance=ExtResource("5_3vhi2")]
 orbs_count = 2
 pickup_area_3d = NodePath("../PickupArea3D")
@@ -69,13 +74,12 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea3D"]
 shape = SubResource("CylinderShape3D_oquny")
 
-[node name="RangedAttackComponent" parent="." node_paths=PackedStringArray("rotation_reference", "position_reference", "inventory_component", "attack_audio_stream") instance=ExtResource("6_skuyj")]
+[node name="RangedAttackComponent" parent="." node_paths=PackedStringArray("rotation_reference", "position_reference", "attack_audio_stream") instance=ExtResource("6_skuyj")]
 unique_name_in_owner = true
-projectile_scene = ExtResource("8_5qv4v")
+projectile_scene = ExtResource("8_qpybw")
 rotation_reference = NodePath("../Head/Camera3D")
 position_reference = NodePath("../Head/ThrowMarker3D")
 initial_velocity = 12.0
-inventory_component = NodePath("../InventoryComponent")
 attack_audio_stream = NodePath("../RangedAttackStreamPlayer3D")
 
 [node name="CollisionRay3D" type="CollisionShape3D" parent="."]
@@ -103,6 +107,7 @@ bus = &"SFX"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
+visible = false
 omni_range = 10.0
 
 [connection signal="interactable_focused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_focused"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://jn0xjth7242y"]
+
+[ext_resource type="Script" path="res://scenes/Interactables/orb.gd" id="2_uy578"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_184v4"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w2iin"]
+material = SubResource("StandardMaterial3D_184v4")
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Animation" id="Animation_owqt6"]
+resource_name = "FLIPPING"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.707107, 0, 0, 0.707107, 0.2, 1, 1, 0, 0, -4.37114e-08, 0.3, 1, -0.707107, 0, 0, 0.707107, 0.4, 1, 8.74228e-08, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_lmkir"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fryii"]
+_data = {
+"FLIPPING": SubResource("Animation_owqt6"),
+"RESET": SubResource("Animation_lmkir")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xhkum"]
+radius = 0.1
+
+[node name="Orb" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.45822e+07, 0)
+collision_layer = 9
+velocity = Vector3(0, -26065.5, 0)
+script = ExtResource("2_uy578")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("SphereMesh_w2iin")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pivot"]
+omni_range = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fryii")
+}
+autoplay = "FLIPPING"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xhkum")
+
+[node name="SpinningStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -15.0
+autoplay = true
+max_distance = 50.0
+bus = &"SFX"
+doppler_tracking = 2
+
+[node name="HoldDelayTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true

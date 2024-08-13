@@ -77,12 +77,12 @@ func _input(event):
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 	if event.is_action_pressed("attack"):
-		if $InventoryComponent.has_orbs() and stamina > PRIMARY_ATTACK_STAMINA_COST:
-			stamina -= PRIMARY_ATTACK_STAMINA_COST
-			%RayAttackComponent3D.attack()
+		if %OrbHolder.has_orbs():
+			var target_direction = %RangedAttackComponent.get_target_direction()
+			var throwing_orb = %OrbHolder.get_closest_orb(target_direction)
+			%RangedAttackComponent.attack(throwing_orb)
 	if event.is_action_pressed("alt_attack"):
-		if $InventoryComponent.has_orbs() and stamina > SECONDARY_ATTACK_STAMINA_COST:
-			stamina -= SECONDARY_ATTACK_STAMINA_COST
+		if $InventoryComponent.has_orbs():
 			%RangedAttackComponent.attack()
 	if event.is_action_pressed("interact"):
 		if focused_interactable is Interactable3D:

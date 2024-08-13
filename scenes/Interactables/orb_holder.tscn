@@ -6,6 +6,8 @@
 
 [node name="OrbHolder" type="Node3D"]
 script = ExtResource("1_ksghw")
+ring_spin = 0.25
+ring_radius = 0.15
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
@@ -16,3 +18,4 @@ monitorable = false
 shape = SubResource("SphereShape3D_6crp8")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

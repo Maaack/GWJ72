@@ -336,6 +336,6 @@ libraries = {
 }
 
 [node name="OrbAttractor" parent="." instance=ExtResource("2_c4xe5")]
-attract_force = 200.0
+attract_force = 150.0
 
 [node name="OrbHolder" parent="." instance=ExtResource("3_hjpge")]
