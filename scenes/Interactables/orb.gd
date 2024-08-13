@@ -15,6 +15,7 @@ func _physics_process(delta):
 		move_and_slide()
 
 func hold(holding_node : Node):
+	velocity = Vector3.ZERO
 	held_by = holding_node
 
 func release():

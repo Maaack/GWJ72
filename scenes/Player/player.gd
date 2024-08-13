@@ -39,7 +39,6 @@ var _was_on_floor
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
-	get_nearest_orb_not_held()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -70,7 +69,7 @@ func _physics_process(delta):
 	_was_on_floor = is_on_floor()
 
 func _get_dot_product(vector : Vector3) -> float: 
-	var vector_a = vector.normalized()
+	var vector_a = (vector - global_position).normalized()
 	var vector_b = -global_basis.z.normalized()
 	return vector_a.dot(vector_b)
 
@@ -80,17 +79,26 @@ func get_nearest_orb_not_held():
 	if orbs.is_empty() : return
 	for orb in orbs:
 		if orb.held_by == %OrbHolder : continue
-		if _get_dot_product(orb.global_position) > 0.9:
+		print(_get_dot_product(orb.global_position))
+		if _get_dot_product(orb.global_position) > 0.7:
 			focused_orbs.append(orb)
 	if focused_orbs.is_empty() : return
-	var closest_orb = focused_orbs.front()
-	var closest_distance_squared := INF
+	var nearest_orb = focused_orbs.front()
+	var nearest_distance_squared := INF
 	for orb in focused_orbs:
 		var distance_squared = orb.global_position.distance_squared_to(global_position)
-		if distance_squared < closest_distance_squared:
-			closest_distance_squared = distance_squared
-			closest_orb = orb
-	return closest_orb
+		if distance_squared < nearest_distance_squared:
+			nearest_distance_squared = distance_squared
+			nearest_orb = orb
+	return nearest_orb
+
+func _release_closest_orb_from_holder():
+	var nearest_orb = get_nearest_orb_not_held()
+	print(nearest_orb)
+	if nearest_orb is Orb:
+		var held_by = nearest_orb.held_by
+		if held_by is OrbHolder:
+			held_by.remove_orb(nearest_orb)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -107,6 +115,7 @@ func _input(event):
 			var throwing_orb = %OrbHolder.get_closest_orb(target_direction)
 			%RangedAttackComponent.attack(throwing_orb)
 	if event.is_action_pressed("alt_attack"):
+		_release_closest_orb_from_holder()
 		%OrbAttractor.attract_force = orb_attraction_strength
 	elif event.is_action_released("alt_attack"):
 		%OrbAttractor.attract_force = 0

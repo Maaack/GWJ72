@@ -1,3 +1,4 @@
+class_name OrbHolder
 extends Node3D
 
 signal orb_held(orb : Orb)
