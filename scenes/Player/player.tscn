@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=13 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://ct4hnidrqacu0" path="res://scenes/Components/interacting_component.tscn" id="2_awhmw"]
 [ext_resource type="PackedScene" uid="uid://curng0bjom18b" path="res://scenes/Components/health_component.tscn" id="3_sw2dm"]
 [ext_resource type="PackedScene" uid="uid://ck4g01ma0b022" path="res://scenes/Components/hurt_box_3d.tscn" id="4_vnb4j"]
-[ext_resource type="PackedScene" uid="uid://chuse4uqnjnxw" path="res://scenes/Components/ray_attack_component_3d.tscn" id="5_3tgg3"]
 [ext_resource type="PackedScene" uid="uid://b7pefmfsnj1gc" path="res://scenes/Components/inventory_component.tscn" id="5_3vhi2"]
 [ext_resource type="PackedScene" uid="uid://ouqfvb7r6tu8" path="res://scenes/Components/ranged_attack_component.tscn" id="6_skuyj"]
 [ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="7_k1v0c"]
@@ -51,11 +50,6 @@ current = true
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 target_position = Vector3(0, 0, -2)
 
-[node name="RayAttackComponent3D" parent="Head" node_paths=PackedStringArray("attack_audio_stream") instance=ExtResource("5_3tgg3")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47, 0)
-attack_audio_stream = NodePath("../../MeleeAttackStreamPlayer3D")
-
 [node name="ThrowMarker3D" type="Marker3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.6)
 
@@ -69,7 +63,7 @@ pickup_area_3d = NodePath("../PickupArea3D")
 
 [node name="PickupArea3D" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea3D"]
 shape = SubResource("CylinderShape3D_oquny")

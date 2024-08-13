@@ -4,6 +4,7 @@ signal orb_held(orb : Orb)
 
 @export var ring_spin : float = 0.0
 @export var ring_radius : float = 0.0
+@export var ring_scaling : float = 0
 
 var elapsed_delta : float
 
@@ -26,7 +27,7 @@ func has_orbs():
 
 func get_closest_orb(direction : Vector3 = Vector3.FORWARD):
 	if held_orbs.size() == 0: return
-	var ring_position := global_position + (direction.normalized() * ring_radius)
+	var ring_position := global_position + (direction.normalized() * get_ring_radius())
 	var closest_orb = held_orbs.front()
 	var closest_distance_squared := INF
 	for orb in held_orbs:
@@ -58,10 +59,16 @@ func _run_body_test_motion(body : PhysicsBody3D, motion : Vector3, result = null
 	params.motion = motion
 	return PhysicsServer3D.body_test_motion(body.get_rid(), params, result)
 
+func get_ring_radius() -> float:
+	var count := held_orbs.size()
+	if count < 2: return 0.0
+	return ring_radius + (ring_scaling * (held_orbs.size() - 2)) 
+
+
 func _get_ring_offset(index : int, time : float = 0.0) -> Vector3:
 	var count := held_orbs.size()
 	if count < 2 or index >= count: return Vector3.ZERO
-	var offset = Vector3.FORWARD * ring_radius
+	var offset = Vector3.FORWARD * get_ring_radius()
 	var radians = 2*PI / count
 	radians *= index
 	if ring_spin > 0:
@@ -73,7 +80,7 @@ func _physics_process(delta):
 	elapsed_delta += delta
 	for orb in orbs:
 		if orb not in held_orbs and orb.can_be_held():
-			orb.hold()
+			orb.hold(self)
 			held_orbs.append(orb)
 			orb_held.emit(orb)
 	for held_orb in held_orbs:

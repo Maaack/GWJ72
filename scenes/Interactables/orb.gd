@@ -4,19 +4,22 @@ extends CharacterBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var held : bool = false
+var held_by
 
 func _physics_process(delta):
-	if not held:
+	if Engine.is_editor_hint():
+		velocity = Vector3.ZERO
+		return
+	if not held_by:
 		velocity += Vector3.DOWN * gravity * delta
 		move_and_slide()
 
-func hold():
-	held = true
+func hold(holding_node : Node):
+	held_by = holding_node
 
 func release():
-	held = false
+	held_by = null
 	$HoldDelayTimer.start()
 
 func can_be_held():
-	return (not held) and $HoldDelayTimer.is_stopped()
+	return (not is_instance_valid(held_by)) and $HoldDelayTimer.is_stopped()

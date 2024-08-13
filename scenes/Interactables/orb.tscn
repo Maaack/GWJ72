@@ -38,9 +38,7 @@ _data = {
 radius = 0.1
 
 [node name="Orb" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.45822e+07, 0)
 collision_layer = 9
-velocity = Vector3(0, -26065.5, 0)
 script = ExtResource("2_uy578")
 
 [node name="Pivot" type="Node3D" parent="."]
