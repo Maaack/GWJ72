@@ -166,6 +166,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 
 level_path = "res://scenes/GameScene/Levels/grand_hall_level.tscn"
 entering_door_name = "ExitDoor2"
 
+[node name="ExitDoor3" parent="." index="30" instance=ExtResource("7_22mdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+
+[node name="ExitDoor4" parent="." index="31" instance=ExtResource("7_22mdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -12, -70)
+
+[node name="ExitDoor5" parent="." index="32" instance=ExtResource("7_22mdc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, -12, -70)
+flipped = true
+
 [editable path="DoorTrigger"]
 [editable path="LightSource"]
 [editable path="LightSource2"]
