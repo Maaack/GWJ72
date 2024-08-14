@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://byqtcevo5a1y5" path="res://assets/images/bayer16.png" id="3_4njv4"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("3")
 shader_parameter/bit_depth = 32
 shader_parameter/pixel_size = 1

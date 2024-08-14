@@ -5,6 +5,7 @@ This shader is under MIT license.
 shader_type canvas_item;
 
 uniform sampler2D dither_texture : repeat_enable;
+uniform sampler2D mask_texture : hint_default_black;
 uniform sampler2D color_palette;
 
 uniform int bit_depth = 32;
@@ -61,6 +62,9 @@ vec3 texture_dither(in sampler2D _texture, in vec2 _uv, in vec2 _texture_pixel_s
 void fragment() 
 {
 	if (active) {
-		COLOR.rgb = texture_dither(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
+		vec3 dither_color = texture_dither(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
+		float mask_value = texture(mask_texture, UV + TEXTURE_PIXEL_SIZE / 2.0).r;
+		vec3 current_color = texture(TEXTURE, UV + TEXTURE_PIXEL_SIZE / 2.0).rgb;
+		COLOR.rgb = mix(dither_color, current_color, mask_value);
 	}
 }
