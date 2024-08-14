@@ -97,10 +97,10 @@ run={
 
 [layer_names]
 
-3d_physics/layer_1="obstacles"
-3d_physics/layer_2="player_pickup"
-3d_physics/layer_3="player_hurt"
-3d_physics/layer_4="light"
+3d_physics/layer_1="player_collide"
+3d_physics/layer_2="player"
+3d_physics/layer_3="orb_collide"
+3d_physics/layer_4="orbs"
 
 [maaacks_game_template]
 

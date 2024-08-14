@@ -76,6 +76,21 @@ func _get_ring_offset(index : int, time : float = 0.0) -> Vector3:
 		radians += 2*PI * fmod(time, 1.0 / ring_spin) * ring_spin
 	return offset.rotated(Vector3.UP, radians)
 
+func hold_orb_silent(orb : Orb):
+	if not orb in orbs:
+		orbs.append(orb)
+	if not orb in held_orbs:
+		orb.hold(self)
+		held_orbs.append(orb)
+
+func hold_orb(orb : Orb):
+	if orb.can_be_held():
+		hold_orb_silent(orb)
+		orb_held.emit(orb)
+
+func get_held_orb_count():
+	return held_orbs.size()
+
 func _physics_process(delta):
 	var index = 0
 	elapsed_delta += delta
@@ -83,7 +98,6 @@ func _physics_process(delta):
 		if orb not in held_orbs and orb.can_be_held():
 			orb.hold(self)
 			held_orbs.append(orb)
-			orb_held.emit(orb)
 	for held_orb in held_orbs:
 		var result := PhysicsTestMotionResult3D.new()
 		var target_position := global_position + _get_ring_offset(index, elapsed_delta)

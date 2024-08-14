@@ -50,7 +50,8 @@ _data = {
 radius = 0.1
 
 [node name="Orb" type="CharacterBody3D"]
-collision_layer = 9
+collision_layer = 12
+collision_mask = 4
 script = ExtResource("2_uy578")
 friction = 0.5
 

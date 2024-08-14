@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7pefmfsnj1gc"]
-
-[ext_resource type="Script" path="res://scenes/Components/inventory_component.gd" id="1_oc64e"]
-
-[node name="InventoryComponent" type="Node"]
-script = ExtResource("1_oc64e")

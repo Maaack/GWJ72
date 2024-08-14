@@ -129,9 +129,6 @@ func initialize():
 		if child is ComponentBase or child is ComponentBase3D:
 			child.initialize()
 
-func get_inventory() -> InventoryComponent:
-	return $InventoryComponent
-
 func _on_health_component_died():
 	died.emit()
 
@@ -154,3 +151,10 @@ func _on_interacting_component_interactable_unfocused(object):
 	if object is Interactable3D and object == focused_interactable:
 		focused_interactable = null
 		interactable_unfocused.emit()
+
+func give_orb(orb : Orb):
+	orb.global_position = %OrbHolder.global_position
+	%OrbHolder.hold_orb_silent(orb)
+
+func get_held_orbs_count():
+	return %OrbHolder.get_held_orb_count()
