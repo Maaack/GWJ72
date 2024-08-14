@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://r27xbd24npvu"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/light_mask_world.gd" id="1_fl3j3"]
+[ext_resource type="Texture2D" uid="uid://i6laau0j4sut" path="res://assets/images/glowing_orb_sprite_small.png" id="2_kbepm"]
+
+[sub_resource type="Environment" id="Environment_5ll0v"]
+background_mode = 1
+ambient_light_energy = 0.0
+
+[node name="LightMaskWorld" type="Node3D"]
+script = ExtResource("1_fl3j3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5ll0v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+pixel_size = 0.005
+billboard = 1
+texture = ExtResource("2_kbepm")
