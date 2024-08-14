@@ -34,3 +34,4 @@ func _on_light_trigger_body_exited(body):
 func _ready():
 	orbs = orbs
 	$OmniLight3D.light_energy = 1 if !orbs.is_empty() else 0
+	$OmniLight3D.visible = !orbs.is_empty()

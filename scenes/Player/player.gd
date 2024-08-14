@@ -75,10 +75,11 @@ func _get_dot_product(vector : Vector3) -> float:
 
 func get_nearest_orb_not_held():
 	var orbs : Array[Orb] = %OrbAttractor.orbs
+	orbs.append_array(%SpecialOrbAttractor.orbs)
 	var focused_orbs : Array[Orb] = []
 	if orbs.is_empty() : return
 	for orb in orbs:
-		if orb.held_by == %OrbHolder : continue
+		if orb.held_by == %OrbHolder or orb.held_by == %SpecialOrbHolder : continue
 		if _get_dot_product(orb.global_position) > 0.7:
 			focused_orbs.append(orb)
 	if focused_orbs.is_empty() : return
@@ -107,21 +108,23 @@ func _input(event):
 		$Head.rotation.x = clamp($Head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("throw"):
 		if %OrbHolder.has_orbs():
 			var target_direction = %RangedAttackComponent.get_target_direction()
 			var throwing_orb = %OrbHolder.get_closest_orb(target_direction)
 			%RangedAttackComponent.attack(throwing_orb)
-	if event.is_action_pressed("alt_attack"):
+	if event.is_action_pressed("pickup"):
 		_release_closest_orb_from_holder()
 		%OrbAttractor.attract_force = orb_attraction_strength
-	elif event.is_action_released("alt_attack"):
+		%SpecialOrbAttractor.attract_force = orb_attraction_strength
+	elif event.is_action_released("pickup"):
 		%OrbAttractor.attract_force = 0
 	if event.is_action_pressed("interact"):
-		%RangedAttackComponent.attack()
 		if focused_interactable is Interactable3D:
 			focused_interactable.interact()
 			_update_focused_interaction()
+	if event.is_action_pressed("cheat"):
+		%RangedAttackComponent.attack()
 
 func initialize():
 	stamina = max_stamina

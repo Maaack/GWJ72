@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2hkb4wywcxs7"]
+
+[ext_resource type="PackedScene" uid="uid://blhwdtcsf0s4y" path="res://scenes/Interactables/door_trigger.tscn" id="1_k080a"]
+
+[node name="SpecialDoorTrigger" instance=ExtResource("1_k080a")]
+
+[node name="LightTrigger" parent="." index="1"]
+collision_mask = 32
+
+[node name="Area3D" parent="OrbAttractor" index="0"]
+collision_mask = 32
+
+[node name="Area3D" parent="OrbHolder" index="0"]
+collision_mask = 32
+
+[editable path="OrbAttractor"]
+[editable path="OrbHolder"]

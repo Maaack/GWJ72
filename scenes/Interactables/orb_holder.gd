@@ -7,6 +7,7 @@ signal orb_held(orb : Orb)
 @export var ring_radius : float = 0.0
 @export var ring_scaling : float = 0
 @export var collision_fudge : Vector3
+@export var dim_orbs : bool = false
 
 var elapsed_delta : float
 
@@ -80,7 +81,7 @@ func hold_orb_silent(orb : Orb):
 	if not orb in orbs:
 		orbs.append(orb)
 	if not orb in held_orbs:
-		orb.hold(self)
+		orb.hold(self, dim_orbs)
 		held_orbs.append(orb)
 
 func hold_orb(orb : Orb):
@@ -95,9 +96,8 @@ func _physics_process(delta):
 	var index = 0
 	elapsed_delta += delta
 	for orb in orbs:
-		if orb not in held_orbs and orb.can_be_held():
-			orb.hold(self)
-			held_orbs.append(orb)
+		if orb not in held_orbs:
+			hold_orb(orb)
 	for held_orb in held_orbs:
 		var result := PhysicsTestMotionResult3D.new()
 		var target_position := global_position + _get_ring_offset(index, elapsed_delta)

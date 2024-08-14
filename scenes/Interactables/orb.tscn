@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jn0xjth7242y"]
+[gd_scene load_steps=14 format=3 uid="uid://jn0xjth7242y"]
 
 [ext_resource type="Script" path="res://scenes/Interactables/orb.gd" id="2_uy578"]
 
@@ -49,6 +49,66 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_xhkum"]
 radius = 0.1
 
+[sub_resource type="Animation" id="Animation_jce4u"]
+resource_name = "LIGHT_UP"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_gsr8h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwocn"]
+_data = {
+"LIGHT_UP": SubResource("Animation_jce4u"),
+"RESET": SubResource("Animation_gsr8h")
+}
+
 [node name="Orb" type="CharacterBody3D"]
 collision_layer = 12
 collision_mask = 4
@@ -60,10 +120,7 @@ friction = 0.5
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
 mesh = SubResource("SphereMesh_w2iin")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Pivot"]
-omni_range = 10.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="SpinAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fryii")
 }
@@ -83,3 +140,11 @@ doppler_tracking = 2
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 15.0
+
+[node name="GlowAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xwocn")
+}

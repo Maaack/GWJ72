@@ -51,6 +51,10 @@ func _gui_input(event):
 	if event is InputEventMouse and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _unhandled_input(event):
+	if event.is_action_pressed("restart"):
+		$LevelLoader.load_level()
+
 func _on_player_door_focused(opened : bool, locked : bool):
 	if locked:
 		%InteractionLabel.text = LOCKED_DOOR_STRING
