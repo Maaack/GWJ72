@@ -25,8 +25,9 @@ var stamina : float :
 
 var mouse_relative_x = 0
 var mouse_relative_y = 0
-const SPEED = 5.5
-const JUMP_VELOCITY = 4.5
+const SPEED = 400
+const AIR_FRICTION = 0.1
+const AIR_SPEED = 40
 const STEP_DOWN_BOOST = 15.0
 const RUN_SPEED_MOD = 1.5
 const STAMINA_RECHARGE_MOD = 0.5
@@ -41,12 +42,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-		velocity.x = move_toward(velocity.x, 0, delta)
-		velocity.z = move_toward(velocity.z, 0, delta)
-		move_and_slide()
-		return
+	var _current_speed = SPEED * delta
 	var _is_running : bool = false
 	if Input.is_action_pressed("run"):
 		var stamina_required = delta
@@ -58,15 +54,25 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var _current_speed = SPEED
 	if _is_running:
 		_current_speed *= RUN_SPEED_MOD
-	if direction:
-		velocity.x = direction.x * _current_speed
-		velocity.z = direction.z * _current_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	var horizontal_velocity = direction * _current_speed
+	if is_on_floor() and direction:
+		velocity.x = horizontal_velocity.x
+		velocity.z = horizontal_velocity.z
+	elif is_on_floor() and not direction:
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+		velocity.z = move_toward(velocity.z, 0, SPEED * delta)
+	elif not is_on_floor():
+		if direction:
+			horizontal_velocity = direction * AIR_SPEED * delta
+			velocity.x = move_toward(velocity.x, horizontal_velocity.x, delta)
+			velocity.z = move_toward(velocity.z, horizontal_velocity.z, delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, delta)
+			velocity.z = move_toward(velocity.z, 0, delta)
+		velocity.y -= gravity * delta
+		velocity.limit_length(AIR_SPEED)
 
 	var collision = move_and_slide()
 	if not collision and _was_on_floor and %StepDownRayCast3D.is_colliding():
@@ -186,6 +192,12 @@ func release_special_orb():
 	%SpecialOrbHolder.lock = false
 	if %SpecialOrbHolder.held_orbs.is_empty(): return
 	%SpecialOrbHolder.remove_orb(%SpecialOrbHolder.held_orbs.back())
+
+func start_floating_upwards():
+	gravity = -0.02
+	position += Vector3(0, 0.1, 0)
+	var tween := get_tree().create_tween()
+	tween.tween_property(self, ^"gravity", 0.0, 10.0)
 
 func is_holding_orb(orb : Orb):
 	return orb in %OrbHolder.orbs or orb in %SpecialOrbHolder.orbs

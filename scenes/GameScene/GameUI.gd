@@ -25,7 +25,6 @@ func _on_level_changed(level_path : String, entering_door : String):
 	_on_player_interactable_unfocused()
 
 func _on_level_win_triggered():
-	print("triggered win?")
 	%LightMaskWorld.glow_up()
 
 func _connect_player_node_signals():
