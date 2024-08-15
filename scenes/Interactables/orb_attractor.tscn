@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/Interactables/orb_attractor.gd" id="1_kkiao"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_4muv0"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_1f5eq"]
 radius = 3.0
 
 [node name="OrbAttractor" type="Node3D"]
@@ -15,7 +15,7 @@ collision_mask = 8
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_4muv0")
+shape = SubResource("SphereShape3D_1f5eq")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

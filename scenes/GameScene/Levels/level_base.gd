@@ -144,3 +144,4 @@ func _ready():
 	_load_orbs_from_level_state()
 	_reset_orb_holder_containers()
 	_connect_exit_doors()
+	$Player.initialize()

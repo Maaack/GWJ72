@@ -188,9 +188,10 @@ func get_camera_transform() -> Transform3D:
 
 func _on_special_orb_holder_orb_held(orb):
 	%SpecialOrbHolder.lock = true
-	var orb_attractor_shape = %OrbAttractor/Area3D/CollisionShape3D.shape
+	var orb_attractor_shape = %OrbAttractor/Area3D/CollisionShape3D.shape.duplicate()
 	if orb_attractor_shape is SphereShape3D:
 		orb_attractor_shape.radius = special_pull_radius
+		%OrbAttractor/Area3D/CollisionShape3D.shape = orb_attractor_shape 
 
 func release_special_orb():
 	%SpecialOrbHolder.lock = false
