@@ -82,8 +82,5 @@ func reset_state():
 	init_state()
 
 func _on_player_detector_area_3d_body_entered(body):
-	print("take it!")
 	if body is PlayerCharacter:
-		print("take it ASSHOLE!")
-
 		body.release_special_orb()
