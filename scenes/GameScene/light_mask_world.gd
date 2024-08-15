@@ -15,4 +15,5 @@ func show_sprite():
 func glow_up():
 	var environment : Environment = $WorldEnvironment.environment
 	var tween = get_tree().create_tween()
-	tween.tween_property(environment, ^"background_color", Color.WHITE, 2.0)
+	tween.tween_property($Sprite3D, ^"pixel_size", 0.2, 10.0)
+	tween.parallel().tween_property(environment, ^"background_color", Color.WHITE, 10.0)

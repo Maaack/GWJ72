@@ -24,6 +24,10 @@ func _on_level_changed(level_path : String, entering_door : String):
 	$LevelLoader.load_level(level_path)
 	_on_player_interactable_unfocused()
 
+func _on_level_win_triggered():
+	print("triggered win?")
+	%LightMaskWorld.glow_up()
+
 func _connect_player_node_signals():
 	if not _player_node is PlayerCharacter: return
 	if _player_node.has_signal(&"interactable_focused") and not _player_node.is_connected(&"interactable_focused", _on_player_interactable_focused):
@@ -32,8 +36,10 @@ func _connect_player_node_signals():
 		_player_node.connect(&"interactable_unfocused", _on_player_interactable_unfocused)
 
 func _connect_level_node_signals():
-	if _current_level.has_signal("level_changed") and not _current_level.is_connected("level_changed", _on_level_changed):
+	if _current_level.has_signal(&"level_changed") and not _current_level.is_connected("level_changed", _on_level_changed):
 		_current_level.level_changed.connect(_on_level_changed)
+	if _current_level.has_signal(&"win_triggered") and not _current_level.is_connected(&"win_triggered", _on_level_win_triggered):
+		_current_level.win_triggered.connect(_on_level_win_triggered)
 
 func _level_setup():
 	_player_node = get_tree().get_first_node_in_group(&"player")

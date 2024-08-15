@@ -178,5 +178,10 @@ func _on_special_orb_holder_orb_held(orb):
 	if orb_attractor_shape is SphereShape3D:
 		orb_attractor_shape.radius = special_pull_radius
 
+func release_special_orb():
+	%SpecialOrbHolder.lock = false
+	if %SpecialOrbHolder.held_orbs.is_empty(): return
+	%SpecialOrbHolder.remove_orb(%SpecialOrbHolder.held_orbs.back())
+
 func is_holding_orb(orb : Orb):
 	return orb in %OrbHolder.orbs or orb in %SpecialOrbHolder.orbs
