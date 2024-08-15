@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxd028kkvymby"]
+[gd_scene load_steps=8 format=3 uid="uid://cxd028kkvymby"]
 
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="1_2v6lk"]
+[ext_resource type="Script" path="res://scenes/Interactables/special_orb.gd" id="2_vgh6j"]
 
 [sub_resource type="Gradient" id="Gradient_iym5e"]
 offsets = PackedFloat32Array(0, 0.151982, 0.330396, 0.495595, 0.702643, 0.859031, 1)
@@ -27,8 +28,9 @@ height = 0.2
 radial_segments = 16
 rings = 8
 
-[node name="SpecialOrb" instance=ExtResource("1_2v6lk")]
+[node name="SpecialOrb" groups=["special_orbs"] instance=ExtResource("1_2v6lk")]
 collision_layer = 36
+script = ExtResource("2_vgh6j")
 
 [node name="Pivot" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, -1.74846e-07, 0, 1.74846e-07, 1, 0, 0, 0)

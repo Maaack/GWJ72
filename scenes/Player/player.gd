@@ -161,3 +161,6 @@ func give_orb(orb : Orb):
 
 func get_held_orbs_count():
 	return %OrbHolder.get_held_orb_count()
+
+func get_camera_transform() -> Transform3D:
+	return %Camera3D.global_transform

@@ -10,6 +10,7 @@ const EXIT_DOOR_STRING : String = "Press E to exit"
 
 var _current_level
 var _player_node
+var _special_orb
 
 func _ready():
 	InGameMenuController.scene_tree = get_tree()
@@ -36,6 +37,7 @@ func _on_level_loader_level_loaded():
 	_current_level = $LevelLoader.current_level
 	await _current_level.ready
 	_player_node = get_tree().get_first_node_in_group(&"player")
+	_special_orb = get_tree().get_first_node_in_group(&"special_orbs")
 	_connect_player_node_signals()
 	_connect_level_node_signals()
 	$LoadingScreen.close()
@@ -76,3 +78,11 @@ func _on_player_interactable_focused(interactable_3d : Interactable3D):
 
 func _on_player_interactable_unfocused():
 	%InteractionLabel.visible = false
+
+func _process(delta):
+	if is_instance_valid(_special_orb):
+		%LightMaskWorld.show_sprite()
+		%LightMaskWorld.set_camera_transform(_player_node.get_camera_transform())
+		%LightMaskWorld.set_sprite_position(_special_orb.global_position)
+	else:
+		%LightMaskWorld.hide_sprite()
