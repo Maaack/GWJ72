@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://2dhnymxig044"]
+
+[ext_resource type="Shader" path="res://scripts/black_hole.gdshader" id="1_f3njj"]
+[ext_resource type="Script" path="res://scenes/Interactables/black_hole_3d.gd" id="2_k5llu"]
+
+[sub_resource type="Gradient" id="Gradient_m5v62"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ey0w5"]
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q5mw1"]
+width = 2048
+height = 2048
+seamless = true
+color_ramp = SubResource("Gradient_m5v62")
+noise = SubResource("FastNoiseLite_ey0w5")
+
+[sub_resource type="Curve" id="Curve_m58oy"]
+_data = [Vector2(0.00255755, 0.846909), 0.0, 0.0, 0, 0, Vector2(0.0971867, 0), 0.215836, 0.215836, 0, 0, Vector2(1, 0.808636), 3.56301, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bqw3x"]
+curve = SubResource("Curve_m58oy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmbuj"]
+render_priority = 0
+shader = ExtResource("1_f3njj")
+shader_parameter/energy = 4.0
+shader_parameter/color = Color(1, 0.2, 0, 1)
+shader_parameter/hole_color = Color(0, 0, 0, 1)
+shader_parameter/rim = 0.1
+shader_parameter/proximity_fade = 0.3
+shader_parameter/black_hole_radius = 2.0
+shader_parameter/accretion_radius_inner = 1.5
+shader_parameter/accretion_radius_outer = 9.0
+shader_parameter/lensing_radius = 0.2
+shader_parameter/lensing_falloff = 1.0
+shader_parameter/lensing_strength = 0.5
+shader_parameter/uv_mul = Vector2(1, 1)
+shader_parameter/uv_add = Vector2(0, 0)
+shader_parameter/accretion_disk = SubResource("NoiseTexture2D_q5mw1")
+shader_parameter/errosion_ramp = SubResource("CurveTexture_bqw3x")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3pc0l"]
+material = SubResource("ShaderMaterial_xmbuj")
+flip_faces = true
+radius = 2.0
+height = 4.0
+radial_segments = 16
+rings = 8
+
+[node name="BlackHole3D" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_3pc0l")
+script = ExtResource("2_k5llu")
