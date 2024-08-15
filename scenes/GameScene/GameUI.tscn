@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_cxna0"]
 [ext_resource type="PackedScene" uid="uid://drlf5jqav4jn8" path="res://scenes/WinScreen/WinScreen.tscn" id="2_02jfp"]
-[ext_resource type="PackedScene" uid="uid://fjg0y4u0wiva" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_qhd5o"]
+[ext_resource type="PackedScene" uid="uid://cu65a48yncws4" path="res://scenes/EndCredits/EndCredits.tscn" id="3_8t2xt"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_qgesj"]
 [ext_resource type="PackedScene" uid="uid://ns1o08cpcrk7" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_pmtgl"]
 [ext_resource type="Script" path="res://scenes/GameScene/level_loader.gd" id="6_si4ym"]
@@ -38,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cxna0")
 win_scene = ExtResource("2_02jfp")
-lose_scene = ExtResource("3_qhd5o")
+end_credits_scene = ExtResource("3_8t2xt")
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("4_qgesj")

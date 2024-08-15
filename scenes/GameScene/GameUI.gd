@@ -6,7 +6,7 @@ const LOCKED_DOOR_STRING : String = "Locked"
 const EXIT_DOOR_STRING : String = "Press E to exit"
 
 @export var win_scene : PackedScene
-@export var lose_scene : PackedScene
+@export var end_credits_scene : PackedScene
 
 var _current_level
 var _player_node
@@ -26,6 +26,9 @@ func _on_level_changed(level_path : String, entering_door : String):
 
 func _on_level_win_triggered():
 	%LightMaskWorld.glow_up()
+	await get_tree().create_timer(20.0, false).timeout
+	var end_credits_instance = end_credits_scene.instantiate()
+	add_child(end_credits_instance)
 
 func _connect_player_node_signals():
 	if not _player_node is PlayerCharacter: return

@@ -25,9 +25,10 @@ var stamina : float :
 
 var mouse_relative_x = 0
 var mouse_relative_y = 0
-const SPEED = 400
+const SPEED = 350
 const AIR_FRICTION = 0.1
 const AIR_SPEED = 40
+const AIR_SPEED_MOD = 0.1
 const STEP_DOWN_BOOST = 15.0
 const RUN_SPEED_MOD = 1.5
 const STAMINA_RECHARGE_MOD = 0.5
@@ -65,14 +66,15 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED * delta)
 	elif not is_on_floor():
 		if direction:
-			horizontal_velocity = direction * AIR_SPEED * delta
+			horizontal_velocity *= AIR_SPEED_MOD
+			horizontal_velocity.limit_length(SPEED * AIR_SPEED_MOD)
 			velocity.x = move_toward(velocity.x, horizontal_velocity.x, delta)
 			velocity.z = move_toward(velocity.z, horizontal_velocity.z, delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, delta)
 			velocity.z = move_toward(velocity.z, 0, delta)
 		velocity.y -= gravity * delta
-		velocity.limit_length(AIR_SPEED)
+
 
 	var collision = move_and_slide()
 	if not collision and _was_on_floor and %StepDownRayCast3D.is_colliding():
@@ -114,6 +116,8 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_sensitivity = Config.get_config(AppSettings.INPUT_SECTION, &"MouseSensitivity", 1.0)
 		mouse_sensitivity *= base_mouse_sensitivity
+		if not is_on_floor():
+			mouse_sensitivity *= AIR_SPEED_MOD
 		rotation.y -= event.relative.x * mouse_sensitivity
 		$Head.rotation.x -= event.relative.y * mouse_sensitivity
 		$Head.rotation.x = clamp($Head.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
@@ -195,7 +199,7 @@ func release_special_orb():
 
 func start_floating_upwards():
 	gravity = -0.02
-	position += Vector3(0, 0.1, 0)
+	set_deferred(&"position", position + Vector3(0, 0.1, 0))
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, ^"gravity", 0.0, 10.0)
 
