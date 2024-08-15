@@ -46,15 +46,14 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="ExitDoor" parent="." index="6" instance=ExtResource("3_mnv4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
-level_path = "res://scenes/GameScene/Levels/starting_level.tscn"
-flipped = true
+level_path = "res://scenes/GameScene/Levels/throne_room_level.tscn"
 
 [node name="ExitDoor2" parent="." index="7" instance=ExtResource("3_mnv4m")]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 6, -12, -98)
 level_path = "res://scenes/GameScene/Levels/entry_way_level.tscn"
 entering_door_name = "ExitDoor2"
-flipped = true
 
 [node name="ExitDoor3" parent="." index="8" instance=ExtResource("3_mnv4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -12, -98)
 level_path = "res://scenes/GameScene/Levels/entry_way_level.tscn"
+flipped = true

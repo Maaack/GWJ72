@@ -144,17 +144,20 @@ entering_door_name = "ExitDoor2"
 
 [node name="ExitDoor3" parent="." index="24" instance=ExtResource("7_22mdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+level_path = "res://scenes/GameScene/Levels/cliff_face_level.tscn"
+entering_door_name = "ExitDoor6"
+flipped = true
 
 [node name="ExitDoor4" parent="." index="25" instance=ExtResource("7_22mdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -12, -70)
 level_path = "res://scenes/GameScene/Levels/cliff_face_level.tscn"
 entering_door_name = "ExitDoor4"
+flipped = true
 
 [node name="ExitDoor5" parent="." index="26" instance=ExtResource("7_22mdc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, -12, -70)
 level_path = "res://scenes/GameScene/Levels/cliff_face_level.tscn"
 entering_door_name = "ExitDoor5"
-flipped = true
 
 [editable path="DoorTrigger"]
 [editable path="LightSource"]
