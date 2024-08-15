@@ -43,6 +43,10 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		velocity.x = move_toward(velocity.x, 0, delta)
+		velocity.z = move_toward(velocity.z, 0, delta)
+		move_and_slide()
+		return
 	var _is_running : bool = false
 	if Input.is_action_pressed("run"):
 		var stamina_required = delta
