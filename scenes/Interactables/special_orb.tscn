@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/Interactables/special_orb.gd" id="2_vgh6j"]
 
 [sub_resource type="Gradient" id="Gradient_iym5e"]
-offsets = PackedFloat32Array(0, 0.151982, 0.330396, 0.495595, 0.702643, 0.859031, 1)
+offsets = PackedFloat32Array(0, 0.192837, 0.37741, 0.495595, 0.614325, 0.801653, 1)
 colors = PackedColorArray(0, 0.585305, 0.704536, 1, 0.361892, 0.461486, 1, 1, 0.820464, 0.00120365, 0.914398, 1, 0.941113, 0.199615, 0, 1, 0.658524, 0.49868, 0, 1, 0.246681, 0.623033, 0, 1, 0, 0.585305, 0.704536, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5w14g"]
@@ -15,10 +15,11 @@ color_ramp = SubResource("Gradient_iym5e")
 noise = SubResource("FastNoiseLite_5w14g")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynnln"]
+cull_mode = 1
 albedo_texture = SubResource("NoiseTexture2D_cpgcl")
+albedo_texture_force_srgb = true
 roughness_texture = SubResource("NoiseTexture2D_cpgcl")
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
+roughness_texture_channel = 4
 emission_energy_multiplier = 0.6
 
 [sub_resource type="SphereMesh" id="SphereMesh_hdfj7"]
