@@ -13,7 +13,7 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.6
 
-[node name="MoatLevel" instance=ExtResource("1_e77k2")]
+[node name="CliffFaceLevel" instance=ExtResource("1_e77k2")]
 
 [node name="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_es4ph")

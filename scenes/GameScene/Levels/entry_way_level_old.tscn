@@ -171,12 +171,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 
 [node name="ExitDoor4" parent="." index="31" instance=ExtResource("7_1iis4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -12, -70)
-level_path = "res://scenes/GameScene/Levels/moat_level.tscn"
+level_path = "res://scenes/GameScene/Levels/cliff_face_level.tscn"
 entering_door_name = "ExitDoor4"
 
 [node name="ExitDoor5" parent="." index="32" instance=ExtResource("7_1iis4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, -12, -70)
-level_path = "res://scenes/GameScene/Levels/moat_level.tscn"
+level_path = "res://scenes/GameScene/Levels/cliff_face_level.tscn"
 entering_door_name = "ExitDoor5"
 flipped = true
 
