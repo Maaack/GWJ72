@@ -1,3 +1,4 @@
+@tool
 class_name OrbHolder
 extends Node3D
 
@@ -9,14 +10,14 @@ signal orb_held(orb : Orb)
 @export var collision_fudge : Vector3
 @export var dim_orbs : bool = false
 @export var lock : bool = false
+@export var orbs : Array[Orb]
+@export var preserve_state : bool = true
 
 var elapsed_delta : float
 
-var orbs : Array[Orb]
 var held_orbs : Array[Orb]
 
 func add_orb(orb : Orb):
-	if lock: return
 	if not orb in orbs:
 		orbs.append(orb)
 
@@ -30,6 +31,11 @@ func remove_orb(orb : Orb):
 
 func has_orbs():
 	return !held_orbs.is_empty()
+
+func give_orb(orb : Orb):
+	add_orb(orb)
+	var index = orbs.size() - 1
+	orb.global_position = global_position + _get_ring_offset(index)
 
 func get_closest_orb(direction : Vector3 = Vector3.FORWARD):
 	if held_orbs.size() == 0: return
@@ -80,16 +86,13 @@ func _get_ring_offset(index : int, time : float = 0.0) -> Vector3:
 		radians += 2*PI * fmod(time, 1.0 / ring_spin) * ring_spin
 	return offset.rotated(Vector3.UP, radians)
 
-func hold_orb_silent(orb : Orb):
-	if not orb in orbs:
-		orbs.append(orb)
-	if not orb in held_orbs:
-		orb.hold(self, dim_orbs)
-		held_orbs.append(orb)
-
 func hold_orb(orb : Orb):
 	if orb.can_be_held():
-		hold_orb_silent(orb)
+		if not orb in orbs:
+			orbs.append(orb)
+		if not orb in held_orbs:
+			orb.hold(self, dim_orbs)
+			held_orbs.append(orb)
 		orb_held.emit(orb)
 
 func get_held_orb_count():

@@ -109,7 +109,7 @@ _data = {
 "RESET": SubResource("Animation_48h4d")
 }
 
-[node name="LightSource" type="Node3D"]
+[node name="LightSource" type="Node3D" groups=["orb_holder_containers"]]
 script = ExtResource("1_2rdpc")
 
 [node name="torch" type="MeshInstance3D" parent="."]
@@ -129,6 +129,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="OrbHolder" parent="." instance=ExtResource("4_dtnrm")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 dim_orbs = true
 

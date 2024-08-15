@@ -65,5 +65,18 @@ func _on_light_trigger_body_exited(body):
 		orbs.erase(body)
 		_updated_orbs()
 
+func init_state():
+	$OrbReceiver.has_orbs = orbs.size() > 0
+	$OrbReceiver.instant_update()
+
 func _ready():
 	orbs = orbs
+	%OrbHolder.orbs = orbs.duplicate()
+	init_state()
+
+func init_orbs_from_holder():
+	orbs = %OrbHolder.orbs.duplicate()
+
+func reset_state():
+	init_orbs_from_holder()
+	init_state()

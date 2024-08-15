@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_0o86e")
-current_level = "res://scenes/GameScene/Levels/edge_of_darkness.tscn"
+current_level = "res://scenes/GameScene/Levels/second_dungeon.tscn"
 entered_from = ""
 player_orbs = 0
-entering_door_name = ""
+player_special_orbs = 1
+entering_door_name = "ExitDoor"
+level_states = {}

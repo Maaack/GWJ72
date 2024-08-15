@@ -56,6 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.6)
 [node name="OrbHolder" parent="Head" instance=ExtResource("7_k1v0c")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.15, -1)
+preserve_state = false
 
 [node name="OrbAttractor" parent="Head" instance=ExtResource("6_o85go")]
 unique_name_in_owner = true
@@ -66,6 +67,7 @@ attracts_unholdable = true
 [node name="SpecialOrbHolder" parent="Head" instance=ExtResource("7_k1v0c")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.15, -1)
+preserve_state = false
 
 [node name="Area3D" parent="Head/SpecialOrbHolder" index="0"]
 collision_mask = 32

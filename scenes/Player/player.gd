@@ -179,3 +179,6 @@ func _on_special_orb_holder_orb_held(orb):
 	var orb_attractor_shape = %OrbAttractor/Area3D/CollisionShape3D.shape
 	if orb_attractor_shape is SphereShape3D:
 		orb_attractor_shape.radius = special_pull_radius
+
+func is_holding_orb(orb : Orb):
+	return orb in %OrbHolder.orbs or orb in %SpecialOrbHolder.orbs

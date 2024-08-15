@@ -6,3 +6,7 @@ static var current : GameStateData
 
 static func start_new():
 	current = starting.duplicate()
+
+static func get_current_level_state():
+	if current:
+		return current.get_current_level_state()

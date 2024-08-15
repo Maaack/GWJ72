@@ -8,12 +8,16 @@ const GLOW_DOWN_ANIMATION = &"GLOW_DOWN"
 
 @export var has_orbs : bool = false :
 	set(value):
+		var _changed = value != has_orbs
 		has_orbs = value
-		if is_inside_tree():
-			if has_orbs:
-				orb_entered_animation()
-			else:
-				orb_exited_animation()
+		if _changed and is_inside_tree():
+			orb_feedback()
+
+func orb_feedback():
+	if has_orbs:
+		orb_entered_animation()
+	else:
+		orb_exited_animation()
 
 func orb_entered_animation():
 	var current_position = 0
@@ -33,6 +37,10 @@ func orb_exited_animation():
 	animation_player.play(GLOW_DOWN_ANIMATION, -1 , 2.0)
 	animation_player.seek(remaining_time)
 
+func instant_update():
+	orb_feedback()
+	animation_player.seek(animation_player.current_animation_length)
+
 func _ready():
 	has_orbs = has_orbs
-	animation_player.seek(animation_player.current_animation_length)
+	instant_update()

@@ -124,8 +124,12 @@ toggled = true
 [node name="OrbReceiver" parent="DoorTrigger4" index="2"]
 has_orbs = true
 
+[node name="OrbHolder" parent="DoorTrigger4" index="4" node_paths=PackedStringArray("orbs")]
+orbs = [NodePath("../../Orb4")]
+
 [node name="Orb" parent="." index="18" instance=ExtResource("6_v2jpw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.5, 2)
+dimmed = true
 
 [node name="LightSource" parent="." index="19" node_paths=PackedStringArray("orbs") instance=ExtResource("7_u4306")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
@@ -135,11 +139,16 @@ toggled = true
 [node name="OrbReceiver" parent="LightSource" index="2"]
 has_orbs = true
 
+[node name="OrbHolder" parent="LightSource" index="3" node_paths=PackedStringArray("orbs")]
+orbs = [NodePath("../../Orb")]
+
 [node name="Orb2" parent="." index="20" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.5, 1.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.84813, 1.46854, 2.03183)
+dimmed = true
 
 [node name="Orb5" parent="." index="21" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.5, 2.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1519, 1.53145, 1.96817)
+dimmed = true
 
 [node name="LightSource2" parent="." index="22" node_paths=PackedStringArray("orbs") instance=ExtResource("7_u4306")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 2)
@@ -149,11 +158,15 @@ toggled = true
 [node name="OrbReceiver" parent="LightSource2" index="2"]
 has_orbs = true
 
+[node name="OrbHolder" parent="LightSource2" index="3" node_paths=PackedStringArray("orbs")]
+orbs = [NodePath("../../Orb2"), NodePath("../../Orb5")]
+
 [node name="Orb4" parent="." index="23" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2, -18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1.8, -18)
 
 [node name="Orb3" parent="." index="24" instance=ExtResource("6_v2jpw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, -2.5, 30)
+dimmed = true
 
 [node name="LightSource3" parent="." index="25" node_paths=PackedStringArray("orbs") instance=ExtResource("7_u4306")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, -4, 30)
@@ -162,6 +175,9 @@ toggled = true
 
 [node name="OrbReceiver" parent="LightSource3" index="2"]
 has_orbs = true
+
+[node name="OrbHolder" parent="LightSource3" index="3" node_paths=PackedStringArray("orbs")]
+orbs = [NodePath("../../Orb3")]
 
 [editable path="DoorTrigger2"]
 [editable path="DoorTrigger4"]

@@ -5,7 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_6crp8"]
 radius = 0.6
 
-[node name="OrbHolder" type="Node3D"]
+[node name="OrbHolder" type="Node3D" groups=["orb_holders"]]
 script = ExtResource("1_ksghw")
 ring_spin = 0.25
 ring_radius = 0.15
