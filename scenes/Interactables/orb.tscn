@@ -137,7 +137,7 @@ bus = &"SFX"
 doppler_tracking = 2
 
 [node name="HoldDelayTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 autostart = true
 

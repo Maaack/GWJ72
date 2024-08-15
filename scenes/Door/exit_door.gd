@@ -8,6 +8,7 @@ const CENTER_OFFSET = Vector3(0, 1, 0)
 
 @export_file("*.tscn") var level_path : String
 @export var entering_door_name : String = "ExitDoor"
+@export var marker_position = Vector3(0, 1, 1.5)
 @export var flipped : bool = false :
 	set(value):
 		flipped = value
@@ -15,7 +16,6 @@ const CENTER_OFFSET = Vector3(0, 1, 0)
 			var weight = (int(flipped) * 2) - 1
 			$Marker3D.position.z = marker_position.z * weight
 
-@onready var marker_position = $Marker3D.position
 
 func get_start_position():
 	return $Marker3D.global_position

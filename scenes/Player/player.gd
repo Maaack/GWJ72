@@ -14,6 +14,7 @@ signal interactable_unfocused
 		max_stamina = value
 		stamina_changed.emit(stamina, max_stamina)
 @export var orb_attraction_strength : float
+@export var special_pull_radius : float
 
 var stamina : float :
 	set(value):
@@ -119,6 +120,7 @@ func _input(event):
 		%SpecialOrbAttractor.attract_force = orb_attraction_strength
 	elif event.is_action_released("pickup"):
 		%OrbAttractor.attract_force = 0
+		%SpecialOrbAttractor.attract_force = 0
 	if event.is_action_pressed("interact"):
 		if focused_interactable is Interactable3D:
 			focused_interactable.interact()
@@ -156,11 +158,24 @@ func _on_interacting_component_interactable_unfocused(object):
 		interactable_unfocused.emit()
 
 func give_orb(orb : Orb):
-	orb.global_position = %OrbHolder.global_position
-	%OrbHolder.hold_orb_silent(orb)
+	if orb is SpecialOrb:
+		orb.global_position = %SpecialOrbHolder.global_position
+		%SpecialOrbHolder.hold_orb(orb)
+	else:
+		orb.global_position = %OrbHolder.global_position
+		%OrbHolder.hold_orb(orb)
 
 func get_held_orbs_count():
 	return %OrbHolder.get_held_orb_count()
 
+func get_held_special_orbs_count():
+	return %SpecialOrbHolder.get_held_orb_count()
+
 func get_camera_transform() -> Transform3D:
 	return %Camera3D.global_transform
+
+func _on_special_orb_holder_orb_held(orb):
+	%SpecialOrbHolder.lock = true
+	var orb_attractor_shape = %OrbAttractor/Area3D/CollisionShape3D.shape
+	if orb_attractor_shape is SphereShape3D:
+		orb_attractor_shape.radius = special_pull_radius

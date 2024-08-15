@@ -12,6 +12,8 @@ var _current_level
 var _player_node
 var _special_orb
 
+var _restarted : bool = false
+
 func _ready():
 	InGameMenuController.scene_tree = get_tree()
 
@@ -24,24 +26,27 @@ func _on_level_changed(level_path : String, entering_door : String):
 
 func _connect_player_node_signals():
 	if not _player_node is PlayerCharacter: return
-	if _player_node.has_signal(&"interactable_focused"):
+	if _player_node.has_signal(&"interactable_focused") and not _player_node.is_connected(&"interactable_focused", _on_player_interactable_focused):
 		_player_node.connect(&"interactable_focused", _on_player_interactable_focused)
-	if _player_node.has_signal(&"interactable_unfocused"):
+	if _player_node.has_signal(&"interactable_unfocused") and not _player_node.is_connected(&"interactable_unfocused", _on_player_interactable_unfocused):
 		_player_node.connect(&"interactable_unfocused", _on_player_interactable_unfocused)
 
 func _connect_level_node_signals():
-	if _current_level.has_signal("level_changed"):
+	if _current_level.has_signal("level_changed") and not _current_level.is_connected("level_changed", _on_level_changed):
 		_current_level.level_changed.connect(_on_level_changed)
 
-func _on_level_loader_level_loaded():
-	_current_level = $LevelLoader.current_level
-	await _current_level.ready
+func _level_setup():
 	_player_node = get_tree().get_first_node_in_group(&"player")
 	_special_orb = get_tree().get_first_node_in_group(&"special_orbs")
 	_connect_player_node_signals()
 	_connect_level_node_signals()
 	$LoadingScreen.close()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _on_level_loader_level_loaded():
+	_current_level = $LevelLoader.current_level
+	await _current_level.ready
+	_level_setup()
 
 func _on_level_loader_levels_finished():
 	InGameMenuController.open_menu(win_scene, get_viewport())

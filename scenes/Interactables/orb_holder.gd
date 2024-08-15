@@ -8,6 +8,7 @@ signal orb_held(orb : Orb)
 @export var ring_scaling : float = 0
 @export var collision_fudge : Vector3
 @export var dim_orbs : bool = false
+@export var lock : bool = false
 
 var elapsed_delta : float
 
@@ -15,10 +16,12 @@ var orbs : Array[Orb]
 var held_orbs : Array[Orb]
 
 func add_orb(orb : Orb):
+	if lock: return
 	if not orb in orbs:
 		orbs.append(orb)
 
 func remove_orb(orb : Orb):
+	if lock: return
 	if orb in orbs:
 		orbs.erase(orb)
 	if orb in held_orbs:

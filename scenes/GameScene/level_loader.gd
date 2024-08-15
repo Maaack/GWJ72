@@ -27,13 +27,16 @@ func _attach_level(level_resource : Resource):
 func _clear_current_level():
 	if is_instance_valid(current_level):
 		current_level.queue_free()
+		await current_level.tree_exited
 	current_level = null
 
 func load_level(level_path : String = get_current_level_path()):
 	_clear_current_level()
+	if is_instance_valid(current_level):
+		await current_level.tree_exited
 	SceneLoader.load_scene(level_path, true)
 	emit_signal("level_load_started")
-	await(SceneLoader.scene_loaded)
+	await SceneLoader.scene_loaded
 	current_level = _attach_level(SceneLoader.get_resource())
 	emit_signal("level_loaded")
 

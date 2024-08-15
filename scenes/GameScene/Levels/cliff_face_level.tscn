@@ -56,12 +56,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 14)
 level_path = "res://scenes/GameScene/Levels/entry_way_level.tscn"
 entering_door_name = "ExitDoor4"
-flipped = true
 
 [node name="ExitDoor5" parent="." index="7" instance=ExtResource("3_fa4hx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, 14)
 level_path = "res://scenes/GameScene/Levels/entry_way_level.tscn"
 entering_door_name = "ExitDoor5"
+flipped = true
 
 [node name="DoorTrigger" parent="." index="8" node_paths=PackedStringArray("doors", "orbs") instance=ExtResource("4_gd3ew")]
 doors = [NodePath("../Door"), NodePath("../Door2")]
@@ -131,10 +131,12 @@ doors = [NodePath("../Door6")]
 [node name="ExitDoor" parent="." index="23" instance=ExtResource("3_fa4hx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, -168)
 level_path = "res://scenes/GameScene/Levels/first_dungeon.tscn"
+flipped = true
 
 [node name="ExitDoor2" parent="." index="24" instance=ExtResource("3_fa4hx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, -133)
 level_path = "res://scenes/GameScene/Levels/first_dungeon.tscn"
+flipped = true
 
 [editable path="DoorTrigger"]
 [editable path="LightSource"]
