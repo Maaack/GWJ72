@@ -33,9 +33,10 @@ func has_orbs():
 	return !held_orbs.is_empty()
 
 func give_orb(orb : Orb):
-	add_orb(orb)
+	hold_orb(orb, true)
 	var index = orbs.size() - 1
-	orb.global_position = global_position + _get_ring_offset(index)
+	var ring_offset = _get_ring_offset(index)
+	orb.global_position = global_position + ring_offset
 
 func get_closest_orb(direction : Vector3 = Vector3.FORWARD):
 	if held_orbs.size() == 0: return
@@ -86,8 +87,8 @@ func _get_ring_offset(index : int, time : float = 0.0) -> Vector3:
 		radians += 2*PI * fmod(time, 1.0 / ring_spin) * ring_spin
 	return offset.rotated(Vector3.UP, radians)
 
-func hold_orb(orb : Orb):
-	if orb.can_be_held():
+func hold_orb(orb : Orb, force_hold = false):
+	if orb.can_be_held() or force_hold:
 		if not orb in orbs:
 			orbs.append(orb)
 		if not orb in held_orbs:

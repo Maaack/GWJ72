@@ -159,11 +159,9 @@ func _on_interacting_component_interactable_unfocused(object):
 
 func give_orb(orb : Orb):
 	if orb is SpecialOrb:
-		orb.global_position = %SpecialOrbHolder.global_position
-		%SpecialOrbHolder.hold_orb(orb)
+		%SpecialOrbHolder.give_orb(orb)
 	else:
-		orb.global_position = %OrbHolder.global_position
-		%OrbHolder.hold_orb(orb)
+		%OrbHolder.give_orb(orb)
 
 func get_held_orbs_count():
 	return %OrbHolder.get_held_orb_count()
