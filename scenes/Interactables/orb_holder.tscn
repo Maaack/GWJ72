@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcngmdlsgnb21"]
+[gd_scene load_steps=4 format=3 uid="uid://bcngmdlsgnb21"]
 
 [ext_resource type="Script" path="res://scenes/Interactables/orb_holder.gd" id="1_ksghw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6crp8"]
-radius = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6imsy"]
+radius = 1.5
 
 [node name="OrbHolder" type="Node3D" groups=["orb_holders"]]
 script = ExtResource("1_ksghw")
@@ -12,13 +14,21 @@ ring_radius = 0.15
 ring_scaling = 0.025
 collision_fudge = Vector3(0, 0.1, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="GrabArea3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea3D"]
 shape = SubResource("SphereShape3D_6crp8")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[node name="ReleaseArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ReleaseArea3D"]
+shape = SubResource("SphereShape3D_6imsy")
+
+[connection signal="body_entered" from="GrabArea3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="ReleaseArea3D" to="." method="_on_area_3d_body_exited"]
