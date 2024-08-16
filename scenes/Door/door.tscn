@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0eheh04avnu8"]
+[gd_scene load_steps=16 format=3 uid="uid://c0eheh04avnu8"]
 
 [ext_resource type="Script" path="res://scenes/Door/door.gd" id="1_i0hpn"]
 [ext_resource type="Texture2D" uid="uid://buc7b8r52ttff" path="res://assets/objects/dungeon_texture.png" id="2_5jnh1"]
 [ext_resource type="Script" path="res://scenes/Interactables/interactable_3d.gd" id="2_bydd8"]
+[ext_resource type="AudioStream" uid="uid://cbu63vn58wspt" path="res://assets/sounds/DoorWood_open_1.wav" id="4_h02h4"]
+[ext_resource type="AudioStream" uid="uid://cil2hrudv3pop" path="res://assets/sounds/DoorWood_close_1.wav" id="5_kkwwr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8gto"]
 resource_name = "texture"
@@ -72,6 +74,21 @@ _data = {
 "RESET": SubResource("Animation_cqppi")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7lwsn"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_h02h4")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hvt8y"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_kkwwr")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_007gg"]
+random_pitch = 1.1
+
 [node name="Door" type="Node3D"]
 script = ExtResource("1_i0hpn")
 
@@ -98,12 +115,15 @@ libraries = {
 }
 
 [node name="OpeningStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7lwsn")
 bus = &"SFX"
 
 [node name="ClosingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_hvt8y")
 bus = &"SFX"
 
 [node name="LockedStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_007gg")
 bus = &"SFX"
 
 [node name="LockingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

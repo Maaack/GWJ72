@@ -2,7 +2,7 @@
 class_name ExitDoor3D
 extends Node3D
 
-signal player_exited(new_level : String)
+signal player_exited(new_level : String, door_name : String, wait_on : Signal)
 
 const CENTER_OFFSET = Vector3(0, 1, 0)
 
@@ -26,9 +26,12 @@ func get_start_direction():
 	return get_start_position() + offset_centered_position
 
 func _on_character_body_3d_interacting_succeeded():
-	$ExitDelayTimer.start()
-	await $ExitDelayTimer.timeout
-	player_exited.emit(level_path, entering_door_name)
+	$OpeningStreamPlayer3D.play()
+	var await_signal = $OpeningStreamPlayer3D.finished
+	if not $OpeningStreamPlayer3D.playing:
+		$ExitDelayTimer.start()
+		await_signal = $ExitDelayTimer.timeout
+	player_exited.emit(level_path, entering_door_name, await_signal)
 
 func _prefill_level_name():
 	if level_path:

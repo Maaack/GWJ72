@@ -7,7 +7,11 @@ signal level_changed(new_level : String, entering_door : String)
 @export var orb_scene : PackedScene
 @export var special_orb_scene : PackedScene
 
-func _change_level(new_level : String, entering_door : String):
+func _change_level(new_level : String, entering_door : String, await_signal : Signal):
+	$Player.set_physics_process(false)
+	$Player.velocity = Vector3.ZERO
+	if await_signal:
+		await await_signal
 	_save_player_state()
 	_save_orb_holder_states()
 	_save_orb_states()
