@@ -54,7 +54,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Pivot")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.67559, 0, 0.737277)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.707107, 0, 0.707107, 1.0001, 1, 0, 0.707107, 0, 0.707107)
 
 [sub_resource type="Animation" id="Animation_cqppi"]
 length = 0.001

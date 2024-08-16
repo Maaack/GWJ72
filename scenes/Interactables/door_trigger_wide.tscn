@@ -65,7 +65,7 @@ height = 8.0
 script = ExtResource("1_e0jue")
 
 [node name="column" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
 mesh = SubResource("ArrayMesh_2ocg6")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_2qlmc")
@@ -76,7 +76,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2qlmc")
 shape = SubResource("ConvexPolygonShape3D_ffn2l")
 
 [node name="column2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 mesh = SubResource("ArrayMesh_2ocg6")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_2qlmc")
