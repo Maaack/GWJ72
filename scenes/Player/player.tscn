@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=12 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://ct4hnidrqacu0" path="res://scenes/Components/interacting_component.tscn" id="2_awhmw"]
 [ext_resource type="PackedScene" uid="uid://rlat8qxfsacl" path="res://scenes/Interactables/orb_attractor.tscn" id="6_o85go"]
 [ext_resource type="PackedScene" uid="uid://ouqfvb7r6tu8" path="res://scenes/Components/ranged_attack_component.tscn" id="6_skuyj"]
 [ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="7_k1v0c"]
+[ext_resource type="AudioStream" uid="uid://dshumai2sowr4" path="res://assets/sounds/Whoosh_5.wav" id="7_t1qpk"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="8_qpybw"]
 [ext_resource type="Script" path="res://scenes/Interactables/interactable_3d.gd" id="9_dfjyy"]
 
@@ -12,6 +13,12 @@
 height = 1.25
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_vj77x"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v4pyu"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_t1qpk")
+stream_0/weight = 1.0
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 3
@@ -94,8 +101,8 @@ max_polyphony = 2
 bus = &"SFX"
 
 [node name="RangedAttackStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.4, -0.4)
-volume_db = -15.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, 0.25, -1)
+stream = SubResource("AudioStreamRandomizer_v4pyu")
 unit_size = 1.0
 max_distance = 50.0
 max_polyphony = 2
