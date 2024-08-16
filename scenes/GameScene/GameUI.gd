@@ -3,7 +3,7 @@ extends Control
 const OPEN_DOOR_STRING : String = "Press E to open"
 const CLOSE_DOOR_STRING : String = "Press E to close"
 const LOCKED_DOOR_STRING : String = "Locked"
-const EXIT_DOOR_STRING : String = "Press E to exit"
+const EXIT_DOOR_STRING : String = "Enter the %s"
 
 @export var win_scene : PackedScene
 @export var end_credits_scene : PackedScene
@@ -76,15 +76,15 @@ func _on_player_door_focused(opened : bool, locked : bool):
 	else:
 		%InteractionLabel.text = ""
 
-func _on_player_exit_door_focused():
-	%InteractionLabel.text = EXIT_DOOR_STRING
+func _on_player_exit_door_focused(level_name : String):
+	%InteractionLabel.text = EXIT_DOOR_STRING % level_name
 
 func _on_player_interactable_focused(interactable_3d : Interactable3D):
 	match interactable_3d.interactable_type:
 		&"door":
 			_on_player_door_focused(interactable_3d.interactable_node.opened, interactable_3d.interactable_node.locked)
 		&"exit_door":
-			_on_player_exit_door_focused()
+			_on_player_exit_door_focused(interactable_3d.interactable_node.level_name)
 	%InteractionLabel.visible = true
 
 func _on_player_interactable_unfocused():
