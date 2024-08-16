@@ -116,10 +116,14 @@ libraries = {
 
 [node name="OpeningStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7lwsn")
+volume_db = -5.0
+unit_size = 20.0
 bus = &"SFX"
 
 [node name="ClosingStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_hvt8y")
+volume_db = -5.0
+unit_size = 20.0
 bus = &"SFX"
 
 [node name="LockedStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
