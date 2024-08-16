@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d4liq27rbec0e"]
+[gd_scene load_steps=28 format=3 uid="uid://d4liq27rbec0e"]
 
 [ext_resource type="Script" path="res://scenes/Interactables/win_trigger.gd" id="1_8km2j"]
 [ext_resource type="Texture2D" uid="uid://buc7b8r52ttff" path="res://assets/objects/dungeon_texture.png" id="2_ukg60"]
@@ -362,6 +362,9 @@ _data = {
 "RESET": SubResource("Animation_mt5en")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_1n82x"]
+radius = 6.0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_4muv0"]
 radius = 6.0
 
@@ -424,6 +427,9 @@ attracts_unholdable = true
 
 [node name="Area3D" parent="OrbAttractor" index="0"]
 collision_mask = 32
+
+[node name="CollisionShape3D" parent="OrbAttractor/Area3D" index="0"]
+shape = SubResource("SphereShape3D_1n82x")
 
 [node name="OrbHolder" parent="." instance=ExtResource("6_7wwcw")]
 unique_name_in_owner = true

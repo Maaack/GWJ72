@@ -9,7 +9,7 @@
 [sub_resource type="Environment" id="Environment_bbfkr"]
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.7
+ambient_light_energy = 0.65
 
 [node name="ThroneRoomLevel" instance=ExtResource("1_ykvtg")]
 script = ExtResource("2_520q4")
@@ -38,6 +38,9 @@ data = {
 "cells": PackedInt32Array(-1, 65527, 11, -2, 65527, 1048585, -65536, 65527, 9, 0, 65527, 9, 65536, 65527, 9, 65534, 65527, 1048585, 131070, 65527, 1048585, 131071, 65527, 6, 65535, 65527, 6, -1, 65531, 655378)
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="Player" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
 
 [node name="ExitDoor" parent="." index="5" instance=ExtResource("3_0uae4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -32)
