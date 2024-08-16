@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_0o86e")
-current_level = "res://scenes/GameScene/Levels/second_dungeon.tscn"
+current_level = "res://scenes/GameScene/Levels/throne_room_level.tscn"
 entered_from = ""
 player_orbs = 0
-player_special_orbs = 1
-entering_door_name = "ExitDoor"
+player_special_orbs = 0
+entering_door_name = ""
 level_states = {}
