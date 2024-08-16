@@ -64,7 +64,7 @@ height = 8.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qe78n"]
 
-[node name="DoorTrigger" type="Node3D"]
+[node name="DoorTriggerWide" type="Node3D"]
 script = ExtResource("1_e0jue")
 
 [node name="column" type="MeshInstance3D" parent="."]
