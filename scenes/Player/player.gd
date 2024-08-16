@@ -208,6 +208,7 @@ func get_camera_transform() -> Transform3D:
 	return %Camera3D.global_transform
 
 func _on_special_orb_holder_orb_held(orb):
+	$TakeOrbStreamPlayer3D.play()
 	%SpecialOrbHolder.lock = true
 	var orb_attractor_shape = %OrbAttractor/Area3D/CollisionShape3D.shape.duplicate()
 	if orb_attractor_shape is SphereShape3D:
@@ -227,3 +228,6 @@ func start_floating_upwards():
 
 func is_holding_orb(orb : Orb):
 	return orb in %OrbHolder.orbs or orb in %SpecialOrbHolder.orbs
+
+func _on_orb_holder_orb_held(orb):
+	$TakeOrbStreamPlayer3D.play()
