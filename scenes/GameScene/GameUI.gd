@@ -1,6 +1,7 @@
 extends Control
 
 const LOCKED_DOOR_STRING : String = "Locked"
+const OPEN_DOOR_STRING : String = "Open"
 const EXIT_DOOR_STRING : String = "Enter the %s"
 const PULL_ORB_STRING : String = "Pull Orb"
 const TAKE_ORB_STRING : String = "Take Orb"
@@ -78,6 +79,9 @@ func _on_player_door_focused(opened : bool, locked : bool):
 	%InputActionLabel.text = ""
 	if locked:
 		%InteractionLabel.text = LOCKED_DOOR_STRING
+	elif not opened:
+		%InteractionLabel.text = OPEN_DOOR_STRING
+		%InputActionLabel.text = RMB_STRING
 	else:
 		%InteractionLabel.text = ""
 
