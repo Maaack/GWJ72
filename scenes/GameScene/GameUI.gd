@@ -73,10 +73,8 @@ func _unhandled_input(event):
 func _on_player_door_focused(opened : bool, locked : bool):
 	if locked:
 		%InteractionLabel.text = LOCKED_DOOR_STRING
-	elif opened:
-		%InteractionLabel.text = CLOSE_DOOR_STRING
 	else:
-		%InteractionLabel.text = OPEN_DOOR_STRING
+		%InteractionLabel.text = ""
 
 func _on_player_exit_door_focused():
 	%InteractionLabel.text = EXIT_DOOR_STRING

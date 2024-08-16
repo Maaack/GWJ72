@@ -7,8 +7,9 @@ const OPEN_ANIMATION = &"OPEN"
 @export var locked : bool = false
 @export var opened : bool = false :
 	set(value):
+		var _changed = opened != value
 		opened = value
-		if is_inside_tree():
+		if _changed and is_inside_tree():
 			if opened:
 				_open_actions()
 			else:
