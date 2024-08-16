@@ -14,6 +14,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.2
 
 [node name="SecondDungeon" instance=ExtResource("1_cauw0")]
+level_name = "Second Dungeon"
 
 [node name="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_62g5m")
@@ -73,17 +74,20 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 1, 
 [node name="ExitDoor" parent="." index="7" instance=ExtResource("3_whfc1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -14)
 level_path = "res://scenes/GameScene/Levels/first_dungeon.tscn"
+level_name = "First Dungeon"
 entering_door_name = "ExitDoor2"
 flipped = true
 
 [node name="ExitDoor3" parent="." index="8" instance=ExtResource("3_whfc1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 8, 10)
 level_path = "res://scenes/GameScene/Levels/edge_of_darkness.tscn"
+level_name = "Edge of Darkness"
 entering_door_name = "ExitDoor2"
 
 [node name="ExitDoor2" parent="." index="9" instance=ExtResource("3_whfc1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, -12, 34)
 level_path = "res://scenes/GameScene/Levels/third_dungeon.tscn"
+level_name = "Third Dungeon"
 
 [node name="Door" parent="." index="10" instance=ExtResource("4_hrkjl")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 5)
@@ -144,11 +148,11 @@ has_orbs = true
 orbs = [NodePath("../../Orb")]
 
 [node name="Orb2" parent="." index="20" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97053, 1.35509, 1.95361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1088, 1.5, 1.89675)
 dimmed = true
 
 [node name="Orb5" parent="." index="21" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0297, 1.64512, 2.0466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.89119, 1.5, 2.10325)
 dimmed = true
 
 [node name="LightSource2" parent="." index="22" node_paths=PackedStringArray("orbs") instance=ExtResource("7_u4306")]

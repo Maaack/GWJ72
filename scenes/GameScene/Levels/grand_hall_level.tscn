@@ -10,6 +10,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.55
 
 [node name="GrandHallLevel" instance=ExtResource("1_6lthr")]
+level_name = "Grand Hall"
 
 [node name="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_vumlf")
@@ -65,13 +66,16 @@ metadata/_editor_floor_ = Vector3(0, 4, 0)
 [node name="ExitDoor" parent="." index="7" instance=ExtResource("3_mnv4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 12)
 level_path = "res://scenes/GameScene/Levels/throne_room_level.tscn"
+level_name = "Throne Room"
 
 [node name="ExitDoor2" parent="." index="8" instance=ExtResource("3_mnv4m")]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 6, -12, -98)
 level_path = "res://scenes/GameScene/Levels/entry_way_level.tscn"
+level_name = "Entryway"
 entering_door_name = "ExitDoor2"
 
 [node name="ExitDoor3" parent="." index="9" instance=ExtResource("3_mnv4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -12, -98)
 level_path = "res://scenes/GameScene/Levels/entry_way_level.tscn"
+level_name = "Entryway"
 flipped = true

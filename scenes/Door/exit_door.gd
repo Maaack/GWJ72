@@ -7,6 +7,7 @@ signal player_exited(new_level : String)
 const CENTER_OFFSET = Vector3(0, 1, 0)
 
 @export_file("*.tscn") var level_path : String
+@export var level_name : String
 @export var entering_door_name : String = "ExitDoor"
 @export var marker_position = Vector3(0, 1, 1.5)
 @export var flipped : bool = false :
@@ -29,5 +30,15 @@ func _on_character_body_3d_interacting_succeeded():
 	await $ExitDelayTimer.timeout
 	player_exited.emit(level_path, entering_door_name)
 
+func _prefill_level_name():
+	if level_path:
+		var load_level_scene : PackedScene = load(level_path)
+		var load_level_instance : LevelBase = load_level_scene.instantiate()
+		if load_level_instance:
+			level_name = load_level_instance.level_name
+
 func _ready():
 	flipped = flipped
+	level_path = level_path
+	if Engine.is_editor_hint():
+		_prefill_level_name()

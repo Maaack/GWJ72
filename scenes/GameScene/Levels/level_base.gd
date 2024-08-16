@@ -3,6 +3,7 @@ extends Node3D
 
 signal level_changed(new_level : String, entering_door : String)
 
+@export var level_name : String
 @export var orb_scene : PackedScene
 @export var special_orb_scene : PackedScene
 

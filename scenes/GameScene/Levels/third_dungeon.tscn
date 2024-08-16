@@ -15,6 +15,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
 
 [node name="ThirdDungeon" instance=ExtResource("1_165nt")]
+level_name = "Third Dungeon"
 
 [node name="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_61s2f")
@@ -82,6 +83,7 @@ level_path = "res://scenes/GameScene/Levels/second_dungeon.tscn"
 [node name="ExitDoor2" parent="." index="9" instance=ExtResource("3_6dlpg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -82)
 level_path = "res://scenes/GameScene/Levels/edge_of_darkness.tscn"
+level_name = "Edge of Darkness"
 flipped = true
 
 [node name="Door" parent="." index="10" instance=ExtResource("4_q2ti6")]
