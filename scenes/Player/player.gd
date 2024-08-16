@@ -25,7 +25,7 @@ var stamina : float :
 
 var mouse_relative_x = 0
 var mouse_relative_y = 0
-const SPEED = 350
+const SPEED = 400
 const AIR_FRICTION = 0.1
 const AIR_SPEED = 40
 const AIR_SPEED_MOD = 0.1
