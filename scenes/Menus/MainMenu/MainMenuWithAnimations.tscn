@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2pyxcyvffmro"]
+[gd_scene load_steps=18 format=3 uid="uid://b2pyxcyvffmro"]
 
 [ext_resource type="PackedScene" uid="uid://iidqmh1rwexo" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_o2fss"]
 [ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_vx3iv"]
+[ext_resource type="AudioStream" uid="uid://bb5axq4ioilbj" path="res://assets/music/start_finish.ogg" id="3_6xunw"]
 [ext_resource type="FontFile" uid="uid://bpyl8f38crdtu" path="res://assets/fonts/blackchancery/BLKCHCRY.TTF" id="3_kkdap"]
 
 [sub_resource type="Animation" id="1"]
@@ -360,6 +361,10 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
+
+[node name="BackgroundMusicPlayer" parent="." index="3"]
+stream = ExtResource("3_6xunw")
+volume_db = -5.0
 
 [node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
