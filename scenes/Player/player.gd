@@ -91,7 +91,7 @@ func _can_pull_orb():
 func _can_put_orb():
 	return %OrbHolder.has_orbs()
 
-func _toggle_orb_interactable():
+func _toggle_orb_pullable():
 	var _orb = _can_pull_orb()
 	var _orbs_in_range_now = is_instance_valid(_orb)
 	if _orbs_in_range_now == _orbs_in_range:
@@ -104,7 +104,7 @@ func _toggle_orb_interactable():
 		interactable_unfocused.emit()
 
 func _process(_delta):
-	_toggle_orb_interactable()
+	_toggle_orb_pullable()
 
 func _get_dot_product(vector : Vector3) -> float: 
 	var vector_a = (vector - global_position).normalized()
@@ -172,15 +172,6 @@ func initialize():
 	for child in get_children():
 		if child is ComponentBase or child is ComponentBase3D:
 			child.initialize()
-
-func _on_health_component_died():
-	died.emit()
-
-func _on_health_component_health_changed(new_value):
-	health_changed.emit(new_value)
-
-func _on_inventory_component_orbs_count_changed(new_count):
-	orbs_count_changed.emit(new_count)
 
 func _update_focused_interaction():
 	if focused_interactable is Interactable3D:
