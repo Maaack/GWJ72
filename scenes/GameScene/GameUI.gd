@@ -97,6 +97,9 @@ func _on_player_orb_holder_focused(orb_holder : OrbHolder):
 	if not orb_holder.has_orbs() and _player_node.can_put_orb():
 		%InputActionLabel.text = LMB_STRING
 		%InteractionLabel.text = PUT_ORB_STRING
+	else:
+		%InputActionLabel.text = ""
+		%InteractionLabel.text = ""
 
 func _on_player_interactable_focused(interactable_3d : Interactable3D):
 	match interactable_3d.interactable_type:
