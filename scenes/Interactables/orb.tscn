@@ -16,7 +16,7 @@ albedo_texture = SubResource("NoiseTexture2D_6if4j")
 roughness_texture = SubResource("NoiseTexture2D_6if4j")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.6
+emission_energy_multiplier = 0.42
 
 [sub_resource type="SphereMesh" id="SphereMesh_w2iin"]
 material = SubResource("StandardMaterial3D_184v4")
