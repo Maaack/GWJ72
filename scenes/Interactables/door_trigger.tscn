@@ -90,6 +90,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="PlayerFocusBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("interactable_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("7_p1ttl")
 interactable_type = &"orb_holder"
 interactable_node = NodePath("../OrbHolder")

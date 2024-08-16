@@ -121,6 +121,7 @@ restart={
 3d_physics/layer_4="orbs"
 3d_physics/layer_5="special_orb_collide"
 3d_physics/layer_6="special_orbs"
+3d_physics/layer_7="orb_holders"
 
 [maaacks_game_template]
 
