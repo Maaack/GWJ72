@@ -13,6 +13,7 @@ config_version=5
 config/name="GWJ72"
 run/main_scene="res://scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.0475577, 0.0475577, 0.0475576, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -25,6 +26,10 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autolo
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
+
+[gui]
+
+theme/custom="res://scripts/base_theme.tres"
 
 [input]
 

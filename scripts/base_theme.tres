@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b4ox3i41l5q5t"]
+
+[ext_resource type="FontFile" uid="uid://c1e4w03c5q1s4" path="res://assets/fonts/merienda/Merienda-Bold.ttf" id="1_5ygc3"]
+
+[resource]
+default_font = ExtResource("1_5ygc3")

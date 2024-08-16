@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2pyxcyvffmro"]
+[gd_scene load_steps=17 format=3 uid="uid://b2pyxcyvffmro"]
 
 [ext_resource type="PackedScene" uid="uid://iidqmh1rwexo" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_o2fss"]
 [ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_vx3iv"]
+[ext_resource type="FontFile" uid="uid://bpyl8f38crdtu" path="res://assets/fonts/blackchancery/BLKCHCRY.TTF" id="3_kkdap"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -365,9 +366,14 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]
 modulate = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("3_kkdap")
+theme_override_font_sizes/font_size = 90
+text = "A Darkness
+Like Gravity"
 
 [node name="SubTitle" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="1"]
 modulate = Color(1, 1, 1, 0)
+text = ""
 
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
