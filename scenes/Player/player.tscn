@@ -24,7 +24,6 @@ stream_0/weight = 1.0
 collision_layer = 3
 script = ExtResource("1_1w47b")
 base_mouse_sensitivity = 0.003
-max_stamina = 8.0
 orb_attraction_strength = 120.0
 special_pull_radius = 6.0
 
