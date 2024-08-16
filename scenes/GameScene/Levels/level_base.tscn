@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1fi1nji5pj2q"]
+[gd_scene load_steps=8 format=3 uid="uid://d1fi1nji5pj2q"]
 
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="1_5ekvh"]
 [ext_resource type="Script" path="res://scenes/GameScene/Levels/level_base.gd" id="1_lwkkh"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="2_35cx1"]
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/Player/player.tscn" id="2_k6i3t"]
 [ext_resource type="PackedScene" uid="uid://cxd028kkvymby" path="res://scenes/Interactables/special_orb.tscn" id="3_0o01v"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="6_32qfp"]
 
 [sub_resource type="Environment" id="Environment_5umm5"]
 background_mode = 1
@@ -16,6 +17,8 @@ ambient_light_energy = 0.05
 script = ExtResource("1_lwkkh")
 orb_scene = ExtResource("2_35cx1")
 special_orb_scene = ExtResource("3_0o01v")
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("6_32qfp")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5umm5")
