@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blhwdtcsf0s4y"]
+[gd_scene load_steps=15 format=3 uid="uid://blhwdtcsf0s4y"]
 
 [ext_resource type="Texture2D" uid="uid://buc7b8r52ttff" path="res://assets/objects/dungeon_texture.png" id="1_eabpb"]
 [ext_resource type="Script" path="res://scenes/Interactables/door_trigger.gd" id="1_xjake"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cd43f2eyqrxps" path="res://scenes/Interactables/orb_receiver.tscn" id="4_ed6u5"]
 [ext_resource type="PackedScene" uid="uid://rlat8qxfsacl" path="res://scenes/Interactables/orb_attractor.tscn" id="5_f4x6q"]
 [ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="6_v34uj"]
+[ext_resource type="Script" path="res://scenes/Interactables/interactable_3d.gd" id="7_p1ttl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12ggs"]
 resource_name = "texture"
@@ -58,6 +59,8 @@ emission_energy_multiplier = 0.2
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ffn2l"]
 points = PackedVector3Array(-0.35, 0, -0.35, 0.349931, 0, -0.35, -0.35, 0, 0.35, -0.35, 1.19992, -0.35, 0.35, 0, 0.349931, 0.349931, 1.19992, -0.35, -0.35, 1.19992, 0.35, -2.98023e-08, 1.4, -2.98023e-08, 0.35, 1.19992, 0.349931)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_vhxe0"]
+
 [node name="DoorTrigger" type="Node3D" groups=["orb_holder_containers"]]
 script = ExtResource("1_xjake")
 
@@ -84,6 +87,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="OrbHolder" parent="." instance=ExtResource("6_v34uj")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="PlayerFocusBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("interactable_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+script = ExtResource("7_p1ttl")
+interactable_type = &"orb_holder"
+interactable_node = NodePath("../OrbHolder")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerFocusBody3D"]
+shape = SubResource("SphereShape3D_vhxe0")
 
 [connection signal="body_entered" from="LightTrigger" to="." method="_on_light_trigger_body_entered"]
 [connection signal="body_exited" from="LightTrigger" to="." method="_on_light_trigger_body_exited"]

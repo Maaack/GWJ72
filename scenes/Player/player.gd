@@ -38,6 +38,7 @@ const SECONDARY_ATTACK_STAMINA_COST = 0.4
 var focused_interactable
 var _was_on_floor : bool
 var _orbs_in_range : bool
+var _orbs_in_range_held_by : bool
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -88,15 +89,20 @@ func _can_pull_orb():
 		if is_holding_orb(orb): continue
 		return orb
 
-func _can_put_orb():
+func can_put_orb():
 	return %OrbHolder.has_orbs()
 
-func _toggle_orb_pullable():
+func _toggle_orb_interactable():
 	var _orb = _can_pull_orb()
-	var _orbs_in_range_now = is_instance_valid(_orb)
-	if _orbs_in_range_now == _orbs_in_range:
+	var _orbs_in_range_now = _orb is Orb
+	var _orbs_in_range_held_by_now = _orbs_in_range_held_by
+	if _orbs_in_range_now:
+		_orbs_in_range_held_by_now = is_instance_valid(_orb.held_by)
+	var _changed = _orbs_in_range_now != _orbs_in_range or _orbs_in_range_held_by_now != _orbs_in_range_held_by
+	if not _changed:
 		return
 	_orbs_in_range = _orbs_in_range_now
+	_orbs_in_range_held_by = _orbs_in_range_held_by_now
 	if _orbs_in_range:
 		$Interactable3D.interactable_node = _orb
 		interactable_focused.emit($Interactable3D)
@@ -104,7 +110,7 @@ func _toggle_orb_pullable():
 		interactable_unfocused.emit()
 
 func _process(_delta):
-	_toggle_orb_pullable()
+	_toggle_orb_interactable()
 
 func _get_dot_product(vector : Vector3) -> float: 
 	var vector_a = (vector - global_position).normalized()
@@ -153,17 +159,16 @@ func _input(event):
 			var target_direction = %RangedAttackComponent.get_target_direction()
 			var throwing_orb = %OrbHolder.get_closest_orb(target_direction)
 			%RangedAttackComponent.attack(throwing_orb)
-	if event.is_action_pressed("pickup"):
-		_release_closest_orb_from_holder()
-		%OrbAttractor.attract_force = orb_attraction_strength
-		%SpecialOrbAttractor.attract_force = orb_attraction_strength
-	elif event.is_action_released("pickup"):
-		%OrbAttractor.attract_force = 0
-		%SpecialOrbAttractor.attract_force = 0
 	if event.is_action_pressed("interact"):
 		if focused_interactable is Interactable3D:
 			focused_interactable.interact()
 			_update_focused_interaction()
+		_release_closest_orb_from_holder()
+		%OrbAttractor.attract_force = orb_attraction_strength
+		%SpecialOrbAttractor.attract_force = orb_attraction_strength
+	elif event.is_action_released("interact"):
+		%OrbAttractor.attract_force = 0
+		%SpecialOrbAttractor.attract_force = 0
 	if event.is_action_pressed("cheat"):
 		%RangedAttackComponent.attack()
 

@@ -6,6 +6,9 @@ const PULL_ORB_STRING : String = "Pull Orb"
 const TAKE_ORB_STRING : String = "Take Orb"
 const PUT_ORB_STRING : String = "Put Orb"
 
+const RMB_STRING : String = "(RMB or E)"
+const LMB_STRING : String = "(LMB or Space)"
+
 @export var win_scene : PackedScene
 @export var end_credits_scene : PackedScene
 
@@ -72,19 +75,28 @@ func _unhandled_input(event):
 		$LevelLoader.load_level()
 
 func _on_player_door_focused(opened : bool, locked : bool):
+	%InputActionLabel.text = ""
 	if locked:
 		%InteractionLabel.text = LOCKED_DOOR_STRING
 	else:
 		%InteractionLabel.text = ""
 
 func _on_player_exit_door_focused(level_name : String):
+	%InputActionLabel.text = RMB_STRING
 	%InteractionLabel.text = EXIT_DOOR_STRING % level_name
 
 func _on_player_orb_focused(holding_node : Node3D):
+	%InputActionLabel.text = RMB_STRING
 	if holding_node:
 		%InteractionLabel.text = TAKE_ORB_STRING
 	else:
 		%InteractionLabel.text = PULL_ORB_STRING
+
+func _on_player_orb_holder_focused(orb_holder : OrbHolder):
+
+	if not orb_holder.has_orbs() and _player_node.can_put_orb():
+		%InputActionLabel.text = LMB_STRING
+		%InteractionLabel.text = PUT_ORB_STRING
 
 func _on_player_interactable_focused(interactable_3d : Interactable3D):
 	match interactable_3d.interactable_type:
@@ -96,10 +108,14 @@ func _on_player_interactable_focused(interactable_3d : Interactable3D):
 			_on_player_exit_door_focused(interactable_3d.interactable_node.level_name)
 		&"orb":
 			_on_player_orb_focused(interactable_3d.interactable_node.held_by)
+		&"orb_holder":
+			_on_player_orb_holder_focused(interactable_3d.interactable_node)
 	%InteractionLabel.visible = true
+	%InputActionLabel.visible = true
 
 func _on_player_interactable_unfocused():
 	%InteractionLabel.visible = false
+	%InputActionLabel.visible = false
 
 func _process(delta):
 	if is_instance_valid(_special_orb):
