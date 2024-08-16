@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=13 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://ct4hnidrqacu0" path="res://scenes/Components/interacting_component.tscn" id="2_awhmw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ouqfvb7r6tu8" path="res://scenes/Components/ranged_attack_component.tscn" id="6_skuyj"]
 [ext_resource type="PackedScene" uid="uid://bcngmdlsgnb21" path="res://scenes/Interactables/orb_holder.tscn" id="7_k1v0c"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="8_qpybw"]
+[ext_resource type="Script" path="res://scenes/Interactables/interactable_3d.gd" id="9_dfjyy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 height = 1.25
@@ -117,6 +118,11 @@ bus = &"SFX"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
 visible = false
 omni_range = 10.0
+
+[node name="Interactable3D" type="Node3D" parent="." node_paths=PackedStringArray("interactable_node")]
+script = ExtResource("9_dfjyy")
+interactable_type = &"orb"
+interactable_node = NodePath("..")
 
 [connection signal="interactable_focused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_focused"]
 [connection signal="interactable_unfocused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_unfocused"]

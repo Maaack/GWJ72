@@ -36,7 +36,8 @@ const PRIMARY_ATTACK_STAMINA_COST = 0.25
 const SECONDARY_ATTACK_STAMINA_COST = 0.4
 
 var focused_interactable
-var _was_on_floor
+var _was_on_floor : bool
+var _orbs_in_range : bool
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -80,6 +81,30 @@ func _physics_process(delta):
 	if not collision and _was_on_floor and %StepDownRayCast3D.is_colliding():
 		velocity.y -= gravity * delta * STEP_DOWN_BOOST
 	_was_on_floor = is_on_floor()
+
+func _can_pull_orb():
+	var attractable_orbs : Array[Orb] = %OrbAttractor.orbs + %SpecialOrbAttractor.orbs
+	for orb in attractable_orbs:
+		if is_holding_orb(orb): continue
+		return orb
+
+func _can_put_orb():
+	return %OrbHolder.has_orbs()
+
+func _toggle_orb_interactable():
+	var _orb = _can_pull_orb()
+	var _orbs_in_range_now = is_instance_valid(_orb)
+	if _orbs_in_range_now == _orbs_in_range:
+		return
+	_orbs_in_range = _orbs_in_range_now
+	if _orbs_in_range:
+		$Interactable3D.interactable_node = _orb
+		interactable_focused.emit($Interactable3D)
+	else:
+		interactable_unfocused.emit()
+
+func _process(_delta):
+	_toggle_orb_interactable()
 
 func _get_dot_product(vector : Vector3) -> float: 
 	var vector_a = (vector - global_position).normalized()
