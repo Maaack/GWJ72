@@ -50,16 +50,20 @@ func locked_feedback():
 	$LockedStreamPlayer3D.play()
 
 func opening_feedback():
-	$OpeningStreamPlayer3D.play()
+	if is_inside_tree():
+		$OpeningStreamPlayer3D.play()
 
 func closing_feedback():
-	$ClosingStreamPlayer3D.play()
+	if is_inside_tree():
+		$ClosingStreamPlayer3D.play()
 
 func locking_feedback():
-	$LockingStreamPlayer3D.play()
+	if is_inside_tree():
+		$LockingStreamPlayer3D.play()
 
 func unlocking_feedback():
-	$UnlockingStreamPlayer3D.play()
+	if is_inside_tree():
+		$UnlockingStreamPlayer3D.play()
 
 func _on_character_body_3d_interacting_succeeded():
 	toggle()
