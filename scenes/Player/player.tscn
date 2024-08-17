@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=15 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://ct4hnidrqacu0" path="res://scenes/Components/interacting_component.tscn" id="2_awhmw"]
@@ -12,6 +12,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 height = 1.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mc2uh"]
+radius = 0.3
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_vj77x"]
 
@@ -60,6 +63,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, -0.25, -1)
 preserve_state = false
 
+[node name="CollisionShape3D" parent="Head/OrbHolder/GrabArea3D" index="0"]
+shape = SubResource("SphereShape3D_mc2uh")
+
 [node name="OrbAttractor" parent="Head" instance=ExtResource("6_o85go")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, -0.25, -1)
@@ -73,6 +79,9 @@ preserve_state = false
 
 [node name="GrabArea3D" parent="Head/SpecialOrbHolder" index="0"]
 collision_mask = 32
+
+[node name="CollisionShape3D" parent="Head/SpecialOrbHolder/GrabArea3D" index="0"]
+shape = SubResource("SphereShape3D_mc2uh")
 
 [node name="ReleaseArea3D" parent="Head/SpecialOrbHolder" index="1"]
 collision_mask = 32
@@ -129,5 +138,6 @@ interactable_node = NodePath("..")
 [connection signal="orb_released" from="Head/OrbHolder" to="." method="_on_orb_holder_orb_released"]
 [connection signal="orb_held" from="Head/SpecialOrbHolder" to="." method="_on_special_orb_holder_orb_held"]
 
+[editable path="Head/OrbHolder"]
 [editable path="Head/SpecialOrbHolder"]
 [editable path="Head/SpecialOrbAttractor"]

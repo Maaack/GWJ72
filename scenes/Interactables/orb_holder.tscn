@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scenes/Interactables/orb_holder.gd" id="1_ksghw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6crp8"]
+resource_local_to_scene = true
+radius = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6imsy"]
 radius = 1.5
@@ -11,7 +13,7 @@ radius = 1.5
 script = ExtResource("1_ksghw")
 ring_spin = 0.25
 ring_radius = 0.15
-ring_scaling = 0.025
+ring_scaling = 0.035
 collision_fudge = Vector3(0, 0.1, 0)
 
 [node name="GrabArea3D" type="Area3D" parent="."]

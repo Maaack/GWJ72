@@ -29,7 +29,8 @@ func remove_orb(orb : Orb):
 	if orb in held_orbs:
 		held_orbs.erase(orb)
 		orb.release()
-	orb_released.emit(orb)
+		orb_released.emit(orb)
+		_update_grab_area_size()
 
 func has_orbs():
 	return !held_orbs.is_empty()
@@ -89,6 +90,14 @@ func _get_ring_offset(index : int, time : float = 0.0) -> Vector3:
 		radians += 2*PI * fmod(time, 1.0 / ring_spin) * ring_spin
 	return offset.rotated(Vector3.UP, radians)
 
+func _update_grab_area_size():
+	var grab_collision_shape = $GrabArea3D/CollisionShape3D.shape
+	if grab_collision_shape is SphereShape3D:
+		if held_orbs.size() < 2:
+			grab_collision_shape.radius = 0.10 + (held_orbs.size() * 0.05) 
+		else:
+			grab_collision_shape.radius = 0.20 + (held_orbs.size() * 0.05) 
+
 func hold_orb(orb : Orb, force_hold = false):
 	if orb.can_be_held() or force_hold:
 		if not orb in orbs:
@@ -97,6 +106,7 @@ func hold_orb(orb : Orb, force_hold = false):
 			orb.hold(self, dim_orbs)
 			held_orbs.append(orb)
 		orb_held.emit(orb)
+		_update_grab_area_size()
 
 func get_held_orb_count():
 	return held_orbs.size()
