@@ -4,6 +4,7 @@ extends Node3D
 var orbs : Array[Orb]
 @export var attract_force : float = 0
 @export var attracts_unholdable : bool = false
+@export var add_friction_mod : float = 0.0
 
 func add_orb(orb : Orb):
 	orbs.append(orb)
@@ -25,5 +26,8 @@ func _physics_process(delta):
 			continue
 		var relative_position = global_position - orb.global_position
 		relative_position = relative_position.normalized()
+		if add_friction_mod > 0:
+			orb.velocity.x = move_toward(orb.velocity.x, 0, delta * add_friction_mod)
+			orb.velocity.y = move_toward(orb.velocity.y, 0, delta * add_friction_mod)
 		var acceleration = relative_position * attract_force * delta
 		orb.velocity += acceleration
