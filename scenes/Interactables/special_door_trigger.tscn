@@ -10,8 +10,11 @@ collision_mask = 32
 [node name="Area3D" parent="OrbAttractor" index="0"]
 collision_mask = 32
 
-[node name="Area3D" parent="OrbHolder" index="0"]
-collision_mask = 32
+[node name="PlayerFocusBody3D" parent="." index="5"]
+visible = false
+
+[node name="CollisionShape3D" parent="PlayerFocusBody3D" index="0"]
+disabled = true
 
 [editable path="OrbAttractor"]
 [editable path="OrbHolder"]
