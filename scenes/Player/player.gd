@@ -230,3 +230,7 @@ func is_holding_orb(orb : Orb):
 
 func _on_orb_holder_orb_held(orb):
 	$TakeOrbStreamPlayer3D.play()
+	orbs_count_changed.emit(%OrbHolder.orbs.size())
+
+func _on_orb_holder_orb_released(orb):
+	orbs_count_changed.emit(%OrbHolder.orbs.size())

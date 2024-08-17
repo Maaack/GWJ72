@@ -3,6 +3,7 @@ class_name OrbHolder
 extends Node3D
 
 signal orb_held(orb : Orb)
+signal orb_released(orb : Orb)
 
 @export var ring_spin : float = 0.0
 @export var ring_radius : float = 0.0
@@ -28,6 +29,7 @@ func remove_orb(orb : Orb):
 	if orb in held_orbs:
 		held_orbs.erase(orb)
 		orb.release()
+	orb_released.emit(orb)
 
 func has_orbs():
 	return !held_orbs.is_empty()

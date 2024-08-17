@@ -126,6 +126,7 @@ interactable_node = NodePath("..")
 [connection signal="interactable_focused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_focused"]
 [connection signal="interactable_unfocused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_unfocused"]
 [connection signal="orb_held" from="Head/OrbHolder" to="." method="_on_orb_holder_orb_held"]
+[connection signal="orb_released" from="Head/OrbHolder" to="." method="_on_orb_holder_orb_released"]
 [connection signal="orb_held" from="Head/SpecialOrbHolder" to="." method="_on_special_orb_holder_orb_held"]
 
 [editable path="Head/SpecialOrbHolder"]

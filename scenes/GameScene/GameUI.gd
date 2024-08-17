@@ -41,6 +41,8 @@ func _connect_player_node_signals():
 		_player_node.connect(&"interactable_focused", _on_player_interactable_focused)
 	if _player_node.has_signal(&"interactable_unfocused") and not _player_node.is_connected(&"interactable_unfocused", _on_player_interactable_unfocused):
 		_player_node.connect(&"interactable_unfocused", _on_player_interactable_unfocused)
+	if _player_node.has_signal(&"orbs_count_changed") and not _player_node.is_connected(&"orbs_count_changed", _on_player_orb_count_changed):
+		_player_node.connect(&"orbs_count_changed", _on_player_orb_count_changed)
 
 func _connect_level_node_signals():
 	if _current_level.has_signal(&"level_changed") and not _current_level.is_connected("level_changed", _on_level_changed):
@@ -125,6 +127,9 @@ func _on_player_interactable_focused(interactable_3d : Interactable3D):
 func _on_player_interactable_unfocused():
 	%InteractionLabel.visible = false
 	%InputActionLabel.visible = false
+
+func _on_player_orb_count_changed(orb_count : int):
+	%CrossHairTextureRect.visible = orb_count > 0
 
 func _process(delta):
 	if is_instance_valid(_special_orb):

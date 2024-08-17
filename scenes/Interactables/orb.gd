@@ -35,7 +35,6 @@ func release():
 	if dimmed:
 		dimmed = false
 		$GlowAnimationPlayer.play(&"LIGHT_UP")
-
 	if $HoldDelayTimer.is_inside_tree():
 		$HoldDelayTimer.start()
 
