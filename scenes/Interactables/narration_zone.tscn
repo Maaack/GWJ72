@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbi0xongm7u2l"]
+
+[ext_resource type="Script" path="res://scenes/Interactables/narration_zone.gd" id="1_wd7h8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lwvls"]
+radius = 3.0
+
+[node name="NarrationZone" type="Node3D"]
+script = ExtResource("1_wd7h8")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_lwvls")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

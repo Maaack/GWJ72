@@ -47,6 +47,8 @@ func _connect_level_node_signals():
 		_current_level.level_changed.connect(_on_level_changed)
 	if _current_level.has_signal(&"win_triggered") and not _current_level.is_connected(&"win_triggered", _on_level_win_triggered):
 		_current_level.win_triggered.connect(_on_level_win_triggered)
+	if _current_level.has_signal(&"narration_received") and not _current_level.is_connected(&"narration_received", _on_level_narration_received):
+		_current_level.narration_received.connect(_on_level_narration_received)
 
 func _level_setup():
 	_player_node = get_tree().get_first_node_in_group(&"player")
@@ -131,3 +133,14 @@ func _process(delta):
 		%LightMaskWorld.set_sprite_position(_special_orb.global_position)
 	else:
 		%LightMaskWorld.hide_sprite()
+
+func _on_level_narration_received(narrated_text : String, narrated_audio : AudioStream, timer : float = 4.0):
+	if narrated_text.is_empty(): return
+	%NarrationLabel.text = narrated_text
+	%NarrationLabel.modulate = Color.WHITE
+	%NarrationLabel.show()
+	await get_tree().create_timer(timer, false).timeout
+	var tween := get_tree().create_tween()
+	tween.tween_property(%NarrationLabel, ^"modulate", Color.TRANSPARENT, 2.0)
+	await tween.finished
+	%NarrationLabel.hide()

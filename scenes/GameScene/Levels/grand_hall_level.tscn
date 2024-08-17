@@ -12,6 +12,8 @@ ambient_light_energy = 0.55
 
 [node name="GrandHallLevel" instance=ExtResource("1_6lthr")]
 level_name = "Grand Hall"
+opening_text = "You venture from the warm glow of the light in search of...
+something..."
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("2_gt58u")

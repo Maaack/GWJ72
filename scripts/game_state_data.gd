@@ -17,6 +17,7 @@ func get_current_level_state():
 		var new_level_state = LevelStateData.new()
 		new_level_state.level = current_level
 		level_states[current_level] = new_level_state
+		return new_level_state
 
 func get_current_level_state_orb_positions():
 	var level_state = get_current_level_state()

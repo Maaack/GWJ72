@@ -10,3 +10,10 @@ static func start_new():
 static func get_current_level_state():
 	if current:
 		return current.get_current_level_state()
+
+static func mark_level_visited():
+	var level_state = get_current_level_state()
+	if level_state is LevelStateData:
+		level_state.visits += 1
+	
+		

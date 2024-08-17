@@ -48,3 +48,10 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_k6i3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="OpeningNarrationTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="narrated_area_entered" from="Player" to="." method="_on_player_narrated_area_entered"]
+[connection signal="timeout" from="OpeningNarrationTimer" to="." method="_on_opening_narration_timer_timeout"]

@@ -16,6 +16,9 @@ ambient_light_energy = 0.5
 
 [node name="EntryWayLevel" instance=ExtResource("1_yyhry")]
 level_name = "Entryway"
+opening_text = "We built walls to protect us from the darkness.
+Thankfully we added doors."
+opening_timer = 6.0
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("2_h6reu")
@@ -117,8 +120,16 @@ orbs = [NodePath("../../Orb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 doors = [NodePath("../Door7"), NodePath("../Door8"), NodePath("../Door9"), NodePath("../Door10"), NodePath("../Door11"), NodePath("../Door12")]
 
-[node name="LightSource" parent="." index="18" node_paths=PackedStringArray("orbs") instance=ExtResource("6_b8bdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -4, -72)
+[node name="Orb2" parent="." index="18" instance=ExtResource("5_587f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 17.5, -30)
+dimmed = true
+
+[node name="Orb3" parent="." index="19" instance=ExtResource("5_587f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 17.5, -30)
+dimmed = true
+
+[node name="LightSource" parent="." index="20" node_paths=PackedStringArray("orbs") instance=ExtResource("6_b8bdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 16, -30)
 orbs = [NodePath("../Orb2")]
 toggled = true
 
@@ -128,8 +139,8 @@ has_orbs = true
 [node name="OrbHolder" parent="LightSource" index="3" node_paths=PackedStringArray("orbs")]
 orbs = [NodePath("../../Orb2")]
 
-[node name="LightSource2" parent="." index="19" node_paths=PackedStringArray("orbs") instance=ExtResource("6_b8bdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -4, -72)
+[node name="LightSource2" parent="." index="21" node_paths=PackedStringArray("orbs") instance=ExtResource("6_b8bdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 16, -30)
 orbs = [NodePath("../Orb3")]
 toggled = true
 
@@ -138,14 +149,6 @@ has_orbs = true
 
 [node name="OrbHolder" parent="LightSource2" index="3" node_paths=PackedStringArray("orbs")]
 orbs = [NodePath("../../Orb3")]
-
-[node name="Orb2" parent="." index="20" instance=ExtResource("5_587f4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -2.5, -72)
-dimmed = true
-
-[node name="Orb3" parent="." index="21" instance=ExtResource("5_587f4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2.5, -72)
-dimmed = true
 
 [node name="ExitDoor" parent="." index="22" instance=ExtResource("7_22mdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 42)

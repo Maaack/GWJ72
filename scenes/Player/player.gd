@@ -1,12 +1,11 @@
 class_name PlayerCharacter
 extends CharacterBody3D
 
-signal died
 signal orbs_count_changed(new_count : int)
-signal health_changed(new_value : float)
 signal stamina_changed(new_value : float, max_value : float)
 signal interactable_focused(interactable_3d : Interactable3D)
 signal interactable_unfocused
+signal narrated_area_entered(narrated_text : String, narrated_audio : AudioStream, narrated_timer : float)
 
 @export var base_mouse_sensitivity = 0.005
 @export var max_stamina : float = 10.0 :

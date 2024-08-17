@@ -2,10 +2,15 @@ class_name LevelBase
 extends Node3D
 
 signal level_changed(new_level : String, entering_door : String)
+signal narration_received(narrated_text : String, narrated_audio : AudioStream, timer : float)
 
 @export var level_name : String
 @export var orb_scene : PackedScene
 @export var special_orb_scene : PackedScene
+@export_group("Opening")
+@export_multiline var opening_text : String
+@export var opening_audio : AudioStream
+@export var opening_timer : float = 4.0
 
 func _change_level(new_level : String, entering_door : String, await_signal : Signal):
 	$Player.set_physics_process(false)
@@ -51,6 +56,7 @@ func _give_player_special_orbs():
 		$Player.give_orb(special_orb_instance)
 
 func _save_level_state(level_path : String, entering_door : String):
+	GameState.mark_level_visited()
 	GameState.current.current_level = level_path
 	GameState.current.entering_door_name = entering_door
 
@@ -142,6 +148,12 @@ func _load_orbs_from_level_state():
 			_spawn_orbs_at_positions(level_state.orb_positions)
 			_spawn_special_orbs_at_positions(level_state.special_orb_positions)
 
+func _show_opening_text_if_first_time():
+	var level_state = GameState.get_current_level_state()
+	if level_state is LevelStateData:
+		if level_state.visits == 0:
+			$OpeningNarrationTimer.start()
+
 func _ready():
 	_move_player_to_door()
 	_give_player_orbs()
@@ -150,3 +162,11 @@ func _ready():
 	_reset_orb_holder_containers()
 	_connect_exit_doors()
 	$Player.initialize()
+	_show_opening_text_if_first_time()
+
+func _on_player_narrated_area_entered(narrated_text, narrated_audio, narrated_timer):
+	narration_received.emit(narrated_text, narrated_audio, narrated_timer)
+
+func _on_opening_narration_timer_timeout():
+	if opening_text.is_empty() : return
+	narration_received.emit(opening_text, opening_audio)
