@@ -18,6 +18,6 @@ environment = SubResource("Environment_5ll0v")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 visible = false
-pixel_size = 0.005
+pixel_size = 0.006
 billboard = 1
 texture = ExtResource("2_kbepm")
