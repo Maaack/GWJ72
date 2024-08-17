@@ -12,8 +12,13 @@ signal narration_received(narrated_text : String, narrated_audio : AudioStream, 
 @export var opening_audio : AudioStream
 @export var opening_timer : float = 4.0
 
+var _level_exiting : bool = false
+
 func _change_level(new_level : String, entering_door : String, await_signal : Signal):
+	if _level_exiting : return
+	_level_exiting = true
 	$Player.set_physics_process(false)
+	$Player.set_process_input(false)
 	$Player.velocity = Vector3.ZERO
 	if await_signal:
 		await await_signal
