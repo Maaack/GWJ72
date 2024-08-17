@@ -63,6 +63,7 @@ radius = 2.5
 height = 8.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qe78n"]
+radius = 1.0
 
 [node name="DoorTriggerWide" type="Node3D"]
 script = ExtResource("1_e0jue")
