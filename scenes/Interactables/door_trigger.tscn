@@ -60,7 +60,7 @@ emission_energy_multiplier = 0.2
 points = PackedVector3Array(-0.35, 0, -0.35, 0.349931, 0, -0.35, -0.35, 0, 0.35, -0.35, 1.19992, -0.35, 0.35, 0, 0.349931, 0.349931, 1.19992, -0.35, -0.35, 1.19992, 0.35, -2.98023e-08, 1.4, -2.98023e-08, 0.35, 1.19992, 0.349931)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vhxe0"]
-radius = 1.0
+radius = 1.25
 
 [node name="DoorTrigger" type="Node3D" groups=["orb_holder_containers"]]
 script = ExtResource("1_xjake")
