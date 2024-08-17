@@ -1,7 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://jinydkgnvit8"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_kfnf7"]
+[ext_resource type="PackedScene" uid="uid://dp3rgqaehb3xu" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Input/InputOptionsMenu.tscn" id="1_kfnf7"]
 [ext_resource type="Script" path="res://scenes/Menus/OptionsMenu/Input/InputOptionsMenu.gd" id="2_yd3q4"]
 
 [node name="Controls" instance=ExtResource("1_kfnf7")]
 script = ExtResource("2_yd3q4")
+action_name_map = {
+"interact": "Interact",
+"move_backward": "Move Backward",
+"move_forward": "Move Forward",
+"move_left": "Move Left",
+"move_right": "Move Right",
+"restart": "Restart Level",
+"run": "Run",
+"throw": "Throw"
+}
