@@ -17,12 +17,14 @@ var _current_level
 var _player_node
 var _special_orb
 
-var _restarted : bool = false
+var win_triggered : bool = false
+var end_credits_instance
+
 
 func _ready():
 	InGameMenuController.scene_tree = get_tree()
 
-func _on_level_changed(level_path : String, entering_door : String):
+func _on_level_changed(level_path : String, _entering_door : String):
 	if level_path.is_empty():
 		InGameMenuController.open_menu(win_scene, get_viewport())
 		return
@@ -30,9 +32,11 @@ func _on_level_changed(level_path : String, entering_door : String):
 	_on_player_interactable_unfocused()
 
 func _on_level_win_triggered():
+	if win_triggered : return
+	win_triggered = true
 	%LightMaskWorld.glow_up()
 	await get_tree().create_timer(20.0, false).timeout
-	var end_credits_instance = end_credits_scene.instantiate()
+	end_credits_instance = end_credits_scene.instantiate()
 	add_child(end_credits_instance)
 
 func _connect_player_node_signals():
@@ -53,6 +57,10 @@ func _connect_level_node_signals():
 		_current_level.narration_received.connect(_on_level_narration_received)
 
 func _level_setup():
+	win_triggered = false
+	%LightMaskWorld.reset()
+	if is_instance_valid(end_credits_instance):
+		end_credits_instance.queue_free()
 	_player_node = get_tree().get_first_node_in_group(&"player")
 	_special_orb = get_tree().get_first_node_in_group(&"special_orbs")
 	_connect_player_node_signals()
@@ -101,7 +109,6 @@ func _on_player_orb_focused(holding_node : Node3D):
 		%InteractionLabel.text = PULL_ORB_STRING
 
 func _on_player_orb_holder_focused(orb_holder : OrbHolder):
-
 	if not orb_holder.has_orbs() and _player_node.can_put_orb():
 		%InputActionLabel.text = LMB_STRING
 		%InteractionLabel.text = PUT_ORB_STRING
@@ -139,7 +146,7 @@ func _process(delta):
 	else:
 		%LightMaskWorld.hide_sprite()
 
-func _on_level_narration_received(narrated_text : String, narrated_audio : AudioStream, timer : float = 4.0):
+func _on_level_narration_received(narrated_text : String, _narrated_audio : AudioStream, timer : float = 4.0):
 	if narrated_text.is_empty(): return
 	%NarrationLabel.text = narrated_text
 	%NarrationLabel.modulate = Color.WHITE

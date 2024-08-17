@@ -26,6 +26,7 @@ func _change_level(new_level : String, entering_door : String, await_signal : Si
 	_save_orb_holder_states()
 	_save_orb_states()
 	_save_level_state(new_level, entering_door)
+	GameState.save_game()
 	level_changed.emit(new_level, entering_door)
 
 func _connect_exit_door(exit_door : ExitDoor3D):

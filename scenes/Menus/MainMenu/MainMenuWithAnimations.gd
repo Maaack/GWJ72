@@ -36,5 +36,18 @@ func _input(event):
 	super._input(event)
 
 func _ready():
+	GameState.load_game()
 	super._ready()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+
+func _setup_play():
+	if GameState.current == null:
+		%NewGameButton.hide()
+		%ContinueButton.hide()
+	else:
+		%PlayButton.hide()
+	super._setup_play()
+
+func _on_continue_button_pressed():
+	GameLog.game_started()
+	super.play_game()
