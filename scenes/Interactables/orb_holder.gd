@@ -23,7 +23,7 @@ func add_orb(orb : Orb):
 		orbs.append(orb)
 
 func remove_orb(orb : Orb):
-	if lock: 
+	if lock:
 		orb.global_position = global_position
 		return
 	if orb in orbs:
@@ -126,6 +126,8 @@ func _physics_process(delta):
 		if _run_body_test_motion(held_orb, motion, result):
 			var direction = ((index % 2) * 2) - 1
 			held_orb.global_position += result.get_travel() + (direction * collision_fudge * delta)
+			held_orb.velocity = result.get_remainder()
+			held_orb.move_and_slide()
 		else:
 			held_orb.global_position = target_position
 		index += 1
