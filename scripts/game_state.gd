@@ -1,10 +1,14 @@
 class_name GameState
 extends Node
 
-static var starting : GameStateData = preload("res://scripts/starting_game_state.tres")
+const STARTING_GAME_STATE_PATH = "res://scripts/starting_game_state.tres"
+
+static var starting : GameStateData
 static var current : GameStateData
 
 static func start_new():
+	if not starting is GameStateData:
+		starting = load(STARTING_GAME_STATE_PATH)
 	current = starting.duplicate()
 
 static func get_current_level_state():
