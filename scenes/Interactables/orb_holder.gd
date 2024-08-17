@@ -23,7 +23,9 @@ func add_orb(orb : Orb):
 		orbs.append(orb)
 
 func remove_orb(orb : Orb):
-	if lock: return
+	if lock: 
+		orb.global_position = global_position
+		return
 	if orb in orbs:
 		orbs.erase(orb)
 	if orb in held_orbs:
