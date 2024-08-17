@@ -132,11 +132,16 @@ script = ExtResource("9_dfjyy")
 interactable_type = &"orb"
 interactable_node = NodePath("..")
 
+[node name="AttractorDisableDelayTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="interactable_focused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_focused"]
 [connection signal="interactable_unfocused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_unfocused"]
 [connection signal="orb_held" from="Head/OrbHolder" to="." method="_on_orb_holder_orb_held"]
 [connection signal="orb_released" from="Head/OrbHolder" to="." method="_on_orb_holder_orb_released"]
 [connection signal="orb_held" from="Head/SpecialOrbHolder" to="." method="_on_special_orb_holder_orb_held"]
+[connection signal="timeout" from="AttractorDisableDelayTimer" to="." method="_on_attractor_disable_delay_timer_timeout"]
 
 [editable path="Head/OrbHolder"]
 [editable path="Head/SpecialOrbHolder"]

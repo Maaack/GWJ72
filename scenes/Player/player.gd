@@ -159,6 +159,8 @@ func _input(event):
 			var throwing_orb = %OrbHolder.get_closest_orb(target_direction)
 			%RangedAttackComponent.attack(throwing_orb)
 	if event.is_action_pressed("interact"):
+		if not $AttractorDisableDelayTimer.is_stopped():
+			$AttractorDisableDelayTimer.stop()
 		if focused_interactable is Interactable3D:
 			focused_interactable.interact()
 			_update_focused_interaction()
@@ -166,8 +168,7 @@ func _input(event):
 		%OrbAttractor.attract_force = orb_attraction_strength
 		%SpecialOrbAttractor.attract_force = orb_attraction_strength
 	elif event.is_action_released("interact"):
-		%OrbAttractor.attract_force = 0
-		%SpecialOrbAttractor.attract_force = 0
+		$AttractorDisableDelayTimer.start()
 	if event.is_action_pressed("cheat"):
 		%RangedAttackComponent.attack()
 
@@ -234,3 +235,7 @@ func _on_orb_holder_orb_held(orb):
 
 func _on_orb_holder_orb_released(orb):
 	orbs_count_changed.emit(%OrbHolder.orbs.size())
+
+func _on_attractor_disable_delay_timer_timeout():
+	%OrbAttractor.attract_force = 0
+	%SpecialOrbAttractor.attract_force = 0
