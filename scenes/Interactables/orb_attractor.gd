@@ -21,6 +21,7 @@ func _on_area_3d_body_exited(body):
 		remove_orb(body)
 
 func _physics_process(delta):
+	if is_zero_approx(attract_force) : return
 	for orb in orbs:
 		if not orb.can_be_held() and not attracts_unholdable:
 			continue
