@@ -18,7 +18,6 @@ var _player_node
 var _special_orb
 
 var win_triggered : bool = false
-var end_credits_instance
 
 
 func _ready():
@@ -35,9 +34,7 @@ func _on_level_win_triggered():
 	if win_triggered : return
 	win_triggered = true
 	%LightMaskWorld.glow_up()
-	await get_tree().create_timer(20.0, false).timeout
-	end_credits_instance = end_credits_scene.instantiate()
-	add_child(end_credits_instance)
+	$ScrollCreditsDelayTimer.start()
 
 func _connect_player_node_signals():
 	if not _player_node is PlayerCharacter: return
@@ -59,8 +56,10 @@ func _connect_level_node_signals():
 func _level_setup():
 	win_triggered = false
 	%LightMaskWorld.reset()
-	if is_instance_valid(end_credits_instance):
-		end_credits_instance.queue_free()
+	$EndCredits.reset()
+	$EndCredits.enabled = false
+	if not $ScrollCreditsDelayTimer.is_stopped():
+		$ScrollCreditsDelayTimer.stop()
 	_player_node = get_tree().get_first_node_in_group(&"player")
 	_special_orb = get_tree().get_first_node_in_group(&"special_orbs")
 	_connect_player_node_signals()
@@ -156,3 +155,6 @@ func _on_level_narration_received(narrated_text : String, _narrated_audio : Audi
 	tween.tween_property(%NarrationLabel, ^"modulate", Color.TRANSPARENT, 2.0)
 	await tween.finished
 	%NarrationLabel.hide()
+
+func _on_scroll_credits_delay_timer_timeout():
+	$EndCredits.enabled = true

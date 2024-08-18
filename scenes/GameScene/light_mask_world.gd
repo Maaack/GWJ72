@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var initial_pixel_size = $Sprite3D.pixel_size
+var tween
 
 func set_camera_transform(new_transform : Transform3D):
 	$Camera3D.global_transform = new_transform
@@ -16,11 +17,14 @@ func show_sprite():
 
 func glow_up():
 	var environment : Environment = $WorldEnvironment.environment
-	var tween = get_tree().create_tween()
+	tween = create_tween()
 	tween.tween_property($Sprite3D, ^"pixel_size", 0.2, 10.0)
 	tween.parallel().tween_property(environment, ^"background_color", Color.WHITE, 10.0)
 
 func reset():
+	if tween is Tween:
+		tween.stop()
 	var environment : Environment = $WorldEnvironment.environment
 	$Sprite3D.pixel_size = initial_pixel_size
 	environment.background_color = Color.BLACK
+		
