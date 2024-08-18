@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1yq2ty0salaw"]
+[gd_scene load_steps=11 format=3 uid="uid://c1yq2ty0salaw"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_cauw0"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_10yx4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://blhwdtcsf0s4y" path="res://scenes/Interactables/door_trigger.tscn" id="5_2wfsk"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="6_v2jpw"]
 [ext_resource type="PackedScene" uid="uid://c1l848ekwb200" path="res://scenes/Interactables/light_source.tscn" id="7_u4306"]
+[ext_resource type="PackedScene" uid="uid://cb26buxushx8s" path="res://scenes/Interactables/hint_books.tscn" id="9_1eq87"]
 
 [sub_resource type="Environment" id="Environment_62g5m"]
 ambient_light_source = 2
@@ -149,11 +150,13 @@ has_orbs = true
 orbs = [NodePath("../../Orb")]
 
 [node name="Orb2" parent="." index="20" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.881, 1.38968, 1.92903)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.85484, 1.43641, 2.03878)
+velocity = Vector3(0.0249745, -0.0280774, -0.0522898)
 dimmed = true
 
 [node name="Orb5" parent="." index="21" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.119, 1.61032, 2.07097)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1448, 1.56289, 1.96144)
+velocity = Vector3(0.0187775, 0, 0.121466)
 dimmed = true
 
 [node name="LightSource2" parent="." index="22" node_paths=PackedStringArray("orbs") instance=ExtResource("7_u4306")]
@@ -187,6 +190,26 @@ orbs = [NodePath("../../Orb3")]
 
 [node name="Player" parent="." index="26"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 1, -10)
+
+[node name="HintBooks" parent="." index="28" instance=ExtResource("9_1eq87")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 0, -4)
+interactable_type = &"restart_hint"
+
+[node name="HintBooks5" parent="." index="29" instance=ExtResource("9_1eq87")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -2, 0, -12)
+interactable_type = &"progress_hint"
+
+[node name="HintBooks2" parent="." index="30" instance=ExtResource("9_1eq87")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 12, 0, 6)
+interactable_type = &"throw_orb_hint"
+
+[node name="HintBooks3" parent="." index="31" instance=ExtResource("9_1eq87")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 3, 0, 1)
+interactable_type = &"pedastals_hint"
+
+[node name="HintBooks4" parent="." index="32" instance=ExtResource("9_1eq87")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -12, 0, 8)
+interactable_type = &"torches_hint"
 
 [editable path="DoorTrigger2"]
 [editable path="DoorTrigger4"]

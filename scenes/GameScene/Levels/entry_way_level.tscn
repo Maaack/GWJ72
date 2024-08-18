@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr1hp03uwukc6"]
+[gd_scene load_steps=11 format=3 uid="uid://cr1hp03uwukc6"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_yyhry"]
 [ext_resource type="AudioStream" uid="uid://hhqsr2gmv87j" path="res://assets/music/1-level.ogg" id="2_h6reu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="5_587f4"]
 [ext_resource type="PackedScene" uid="uid://c1l848ekwb200" path="res://scenes/Interactables/light_source.tscn" id="6_b8bdc"]
 [ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="7_22mdc"]
+[ext_resource type="PackedScene" uid="uid://cb26buxushx8s" path="res://scenes/Interactables/hint_books.tscn" id="9_1uxas"]
 
 [sub_resource type="Environment" id="Environment_h7ncb"]
 ambient_light_source = 2
@@ -185,6 +186,10 @@ entering_door_name = "ExitDoor5"
 
 [node name="Player" parent="." index="27"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 39)
+
+[node name="HintBooks" parent="." index="29" instance=ExtResource("9_1uxas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
+interactable_type = &"progress_hint"
 
 [editable path="DoorTrigger"]
 [editable path="LightSource"]
