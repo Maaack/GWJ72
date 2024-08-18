@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8wihwdnxj8gs"]
+
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="1_crqjh"]
+
+[node name="HintBooks" instance=ExtResource("1_crqjh")]
+interaction_text = "Pedastals can open some doors, or close others."

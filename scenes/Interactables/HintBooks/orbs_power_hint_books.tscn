@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hm5wwnhmi4ik"]
+
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="1_b3inn"]
+
+[node name="HintBooks" instance=ExtResource("1_b3inn")]
+interaction_text = "The orbs of light can power some devices in the world."

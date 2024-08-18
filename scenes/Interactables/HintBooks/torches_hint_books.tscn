@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://hjm1a2y647op"]
+
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="1_74g5b"]
+
+[node name="HintBooks" instance=ExtResource("1_74g5b")]
+interaction_text = "Torches will light up dark areas,
+better than an orb can alone."

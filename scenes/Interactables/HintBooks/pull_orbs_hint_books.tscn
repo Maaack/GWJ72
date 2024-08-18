@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcsj23nfmanm8"]
+
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="1_e7slc"]
+
+[node name="HintBooks" instance=ExtResource("1_e7slc")]
+interaction_text = "Your majesty can pull orbs of light to you.
+However, your distance is limited."
+input_action_text = "[RMB] or [E]"

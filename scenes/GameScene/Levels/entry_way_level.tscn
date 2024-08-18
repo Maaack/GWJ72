@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cr1hp03uwukc6"]
+[gd_scene load_steps=14 format=3 uid="uid://cr1hp03uwukc6"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_yyhry"]
 [ext_resource type="AudioStream" uid="uid://hhqsr2gmv87j" path="res://assets/music/1-level.ogg" id="2_h6reu"]
@@ -8,7 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="5_587f4"]
 [ext_resource type="PackedScene" uid="uid://c1l848ekwb200" path="res://scenes/Interactables/light_source.tscn" id="6_b8bdc"]
 [ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="7_22mdc"]
-[ext_resource type="PackedScene" uid="uid://cb26buxushx8s" path="res://scenes/Interactables/hint_books.tscn" id="9_1uxas"]
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="9_1uxas"]
+[ext_resource type="PackedScene" uid="uid://bjoqf1wrvpy5y" path="res://scenes/Interactables/HintBooks/run_sprint_hint_books.tscn" id="9_3yuy7"]
+[ext_resource type="PackedScene" uid="uid://beahxahsslp8a" path="res://scenes/Interactables/HintBooks/progress_hint_books.tscn" id="10_0cp3r"]
+[ext_resource type="PackedScene" uid="uid://8wihwdnxj8gs" path="res://scenes/Interactables/HintBooks/pedastals_hint_books.tscn" id="11_s3biw"]
 
 [sub_resource type="Environment" id="Environment_h7ncb"]
 ambient_light_source = 2
@@ -187,9 +190,18 @@ entering_door_name = "ExitDoor5"
 [node name="Player" parent="." index="27"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 39)
 
-[node name="HintBooks" parent="." index="29" instance=ExtResource("9_1uxas")]
+[node name="HintBooks" parent="." index="29" instance=ExtResource("9_3yuy7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 24)
+
+[node name="HintBooks2" parent="." index="30" instance=ExtResource("10_0cp3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
-interactable_type = &"progress_hint"
+
+[node name="HintBooks3" parent="." index="31" instance=ExtResource("11_s3biw")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0, -4)
+
+[node name="HintBooks4" parent="." index="32" instance=ExtResource("9_1uxas")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -12, 0, -22)
+interaction_text = "Orbs of light may need to stay behind on your journey into darkness."
 
 [editable path="DoorTrigger"]
 [editable path="LightSource"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cb26buxushx8s"]
+[gd_scene load_steps=15 format=3 uid="uid://da1nbjut6543i"]
 
 [ext_resource type="Texture2D" uid="uid://ntswhbghcjuk" path="res://assets/objects/furniturebits_texture.png" id="1_8l17o"]
+[ext_resource type="Script" path="res://scenes/Interactables/hint_books.gd" id="1_vybvq"]
 [ext_resource type="Script" path="res://scenes/Interactables/interactable_3d.gd" id="1_ww7hw"]
 [ext_resource type="Texture2D" uid="uid://buc7b8r52ttff" path="res://assets/objects/dungeon_texture.png" id="3_md2bo"]
 
@@ -121,43 +122,48 @@ shadow_mesh = SubResource("ArrayMesh_jyuf8")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1s64e"]
 points = PackedVector3Array(0.981365, 0.844554, 0.950625, -0.982566, 0.905931, -0.982566, -0.976337, 0.997327, -0.976337, -0.984052, 1.03148, 0.984052, -0.899198, 0.00641213, 0.868306, 0.868115, 0.00643379, -0.899196, -0.253769, 1.88889, -0.603001, 0.976337, 0.997327, -0.976337, -0.899198, 0.00641213, -0.868306, 0.868115, 0.00643379, 0.899196, 0.984052, 1.03148, 0.984052, 0.793304, 1.54657, -0.57959, -0.476116, 1.88889, -0.507937, -0.476116, 0.555701, 1.01587, 0.489551, 1.51792, -0.856954, -0.222148, 0.524008, -1.01587, 0.571379, -0.0157177, 0.92061, -0.317411, 1.88889, -0.444295, 0.899196, 0.00643379, -0.868115, 0.571379, -0.0157177, -0.92061, 0.741525, 1.5, -0.177854, 0.919919, 1.3964, -0.521249, 0.476116, 0.555701, 1.01587, 0.476116, 0.555701, -1.01587, 0.899196, 0.00643379, 0.868115, -0.396848, 1.85237, -0.641077, -0.86809, 0.00664287, -0.89917, 0.982566, 0.905931, -0.982566, -0.86809, 0.00664287, 0.89917, -0.98139, 0.844732, 0.95065, 0.704501, 1.54897, -0.735207, -0.476116, 0.555701, -1.01587)
 
-[node name="HintBooks" type="StaticBody3D"]
-script = ExtResource("1_ww7hw")
+[node name="HintBooks" type="Node3D"]
+script = ExtResource("1_vybvq")
 
-[node name="book_set" type="MeshInstance3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("interactable_node")]
+script = ExtResource("1_ww7hw")
+interactable_type = &"hint_books"
+interactable_node = NodePath("..")
+
+[node name="book_set" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23379, 0)
 mesh = SubResource("ArrayMesh_vhca6")
 skeleton = NodePath("")
 
-[node name="book_set2" type="MeshInstance3D" parent="."]
+[node name="book_set2" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, -0.491641, 1.36447, 0.459219)
 mesh = SubResource("ArrayMesh_vhca6")
 skeleton = NodePath("")
 
-[node name="book_set3" type="MeshInstance3D" parent="."]
+[node name="book_set3" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(-0.965926, -0.258819, 5.35353e-08, -4.37114e-08, -4.37114e-08, -1, 0.258819, -0.965926, 3.09086e-08, -0.273311, 1.1859, -0.597985)
 mesh = SubResource("ArrayMesh_vhca6")
 skeleton = NodePath("")
 
-[node name="book_single" type="MeshInstance3D" parent="."]
+[node name="book_single" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(-3.78552e-08, -0.866025, -0.5, 1, -4.37114e-08, 0, -2.18557e-08, -0.5, 0.866025, 0, 1.61607, 0)
 mesh = SubResource("ArrayMesh_6gjrk")
 skeleton = NodePath("")
 
-[node name="book_single3" type="MeshInstance3D" parent="."]
+[node name="book_single3" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(-2.18557e-08, -0.5, -0.866025, 1, -4.37114e-08, -8.57914e-16, -3.78552e-08, -0.866025, 0.5, 0.640662, 1.11388, -0.44454)
 mesh = SubResource("ArrayMesh_6gjrk")
 skeleton = NodePath("")
 
-[node name="book_single2" type="MeshInstance3D" parent="."]
+[node name="book_single2" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.221151, 1.24441, 0.567899)
 mesh = SubResource("ArrayMesh_6gjrk")
 skeleton = NodePath("")
 
-[node name="table_medium" type="MeshInstance3D" parent="."]
+[node name="table_medium" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("ArrayMesh_wfkr8")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_1s64e")

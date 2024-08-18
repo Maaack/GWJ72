@@ -6,18 +6,9 @@ const EXIT_DOOR_STRING : String = "Enter the %s"
 const PULL_ORB_STRING : String = "Pull Orb"
 const TAKE_ORB_STRING : String = "Take Orb"
 const PUT_ORB_STRING : String = "Put Orb"
-const PULL_ORB_HINT_STRING : String = "Your majesty can draw the orbs of light to you."
-const THROW_ORB_HINT_STRING : String = "Your majesty can throw orbs of light at your target."
-const RESTART_HINT_STRING : String = "Your majesty can restart any room from the beginning."
-const PROGRESS_HINT_STRING : String = "Your majesty can rest at any time.\nProgress is saved every room."
-const ORB_POWER_HINT_STRING : String = "The orbs of light can power different tools in the world."
-const PEDASTALS_HINT_STRING : String = "Pedastals will close some doors, or open others."
-const TORCHES_HINT_STRING : String = "Torches will light up dark areas,\nbetter than an orb can alone."
-const SPECIAL_ORB_HINT_STRING : String = "Special orbs have special properties."
 
 const RMB_STRING : String = "[RMB] or [E]"
 const LMB_STRING : String = "[LMB] or [Space]"
-const R_STRING : String = "[R]"
 
 @export var win_scene : PackedScene
 @export var end_credits_scene : PackedScene
@@ -111,7 +102,11 @@ func _on_player_exit_door_focused(level_name : String):
 
 func _on_player_orb_focused(holding_node : Node3D):
 	%InputActionLabel.text = RMB_STRING
-	if holding_node:
+	if holding_node is OrbHolder:
+		if holding_node.lock:
+			%InputActionLabel.text = ""
+			%InteractionLabel.text = ""
+			return
 		%InteractionLabel.text = TAKE_ORB_STRING
 	else:
 		%InteractionLabel.text = PULL_ORB_STRING
@@ -123,39 +118,10 @@ func _on_player_orb_holder_focused(orb_holder : OrbHolder):
 	else:
 		%InputActionLabel.text = ""
 		%InteractionLabel.text = ""
-		
-func _on_pull_orb_hint_focused():
-	%InputActionLabel.text = RMB_STRING
-	%InteractionLabel.text = PULL_ORB_HINT_STRING
 
-func _on_throw_orb_hint_focused():
-	%InputActionLabel.text = LMB_STRING
-	%InteractionLabel.text = THROW_ORB_HINT_STRING
-
-func _on_restart_hint_focused():
-	%InputActionLabel.text = R_STRING
-	%InteractionLabel.text = RESTART_HINT_STRING
-
-func _on_progress_hint_focused():
-	%InputActionLabel.text = ""
-	%InteractionLabel.text = PROGRESS_HINT_STRING
-
-
-func _on_torches_hint_focused():
-	%InputActionLabel.text = ""
-	%InteractionLabel.text = TORCHES_HINT_STRING
-	
-func _on_pedastals_hint_focused():
-	%InputActionLabel.text = ""
-	%InteractionLabel.text = PEDASTALS_HINT_STRING
-	
-func _on_orb_power_hint_focused():
-	%InputActionLabel.text = ""
-	%InteractionLabel.text = ORB_POWER_HINT_STRING
-
-func _on_special_orb_hint_focused():
-	%InputActionLabel.text = ""
-	%InteractionLabel.text = SPECIAL_ORB_HINT_STRING
+func _on_hint_books_focused(interaction_text : String, input_action_text : String = ""):
+	%InputActionLabel.text = input_action_text
+	%InteractionLabel.text = interaction_text
 
 func _on_player_interactable_focused(interactable_3d : Interactable3D):
 	match interactable_3d.interactable_type:
@@ -169,22 +135,8 @@ func _on_player_interactable_focused(interactable_3d : Interactable3D):
 			_on_player_orb_focused(interactable_3d.interactable_node.held_by)
 		&"orb_holder":
 			_on_player_orb_holder_focused(interactable_3d.interactable_node)
-		&"pull_orb_hint":
-			_on_pull_orb_hint_focused()
-		&"throw_orb_hint":
-			_on_throw_orb_hint_focused()
-		&"restart_hint":
-			_on_restart_hint_focused()
-		&"progress_hint":
-			_on_progress_hint_focused()
-		&"torches_hint":
-			_on_torches_hint_focused()
-		&"pedastals_hint":
-			_on_pedastals_hint_focused()
-		&"orb_power_hint":
-			_on_orb_power_hint_focused()
-		&"special_orb_hint":
-			_on_special_orb_hint_focused()
+		&"hint_books":
+			_on_hint_books_focused(interactable_3d.interactable_node.interaction_text, interactable_3d.interactable_node.input_action_text)
 	%InteractionLabel.visible = true
 	%InputActionLabel.visible = true
 

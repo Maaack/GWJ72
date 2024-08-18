@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxc73c01cwkvl"]
+[gd_scene load_steps=16 format=3 uid="uid://dxc73c01cwkvl"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_n71aw"]
 [ext_resource type="PackedScene" uid="uid://cxd028kkvymby" path="res://scenes/Interactables/special_orb.tscn" id="2_0crkm"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://c0eheh04avnu8" path="res://scenes/Door/door.tscn" id="9_ywo3n"]
 [ext_resource type="PackedScene" uid="uid://blhwdtcsf0s4y" path="res://scenes/Interactables/door_trigger.tscn" id="10_eflna"]
 [ext_resource type="PackedScene" uid="uid://stkq11ww5oyd" path="res://scenes/Interactables/door_trigger_wide.tscn" id="11_mplst"]
-[ext_resource type="PackedScene" uid="uid://cb26buxushx8s" path="res://scenes/Interactables/hint_books.tscn" id="13_rwdrt"]
+[ext_resource type="PackedScene" uid="uid://dcsj23nfmanm8" path="res://scenes/Interactables/HintBooks/pull_orbs_hint_books.tscn" id="13_6ny26"]
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="13_rwdrt"]
+[ext_resource type="PackedScene" uid="uid://b1stehlnekef3" path="res://scenes/Interactables/chest.tscn" id="15_2eiqc"]
 
 [node name="EdgeOfDarkness" instance=ExtResource("1_n71aw")]
 script = ExtResource("2_doxqk")
@@ -175,13 +177,15 @@ entering_door_name = "ExitDoor3"
 [node name="Player" parent="." index="24"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 14, 20)
 
-[node name="HintBooks" parent="." index="26" instance=ExtResource("13_rwdrt")]
+[node name="HintBooks3" parent="." index="26" instance=ExtResource("13_6ny26")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -4, 0, 20)
-interactable_type = &"pull_orb_hint"
 
-[node name="HintBooks2" parent="." index="27" instance=ExtResource("13_rwdrt")]
+[node name="HintBooks4" parent="." index="27" instance=ExtResource("13_rwdrt")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -44.5, 24, 38)
-interactable_type = &"special_orb_hint"
+interaction_text = "Special orbs have special properties..."
+
+[node name="Chest" parent="." index="28" instance=ExtResource("15_2eiqc")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -39.5, 24, 38)
 
 [editable path="SpecialDoorTrigger"]
 [editable path="SpecialDoorTrigger/OrbAttractor"]

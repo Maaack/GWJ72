@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ll5rxwg5hn1"]
+
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="1_aqj1p"]
+
+[node name="HintBooks" instance=ExtResource("1_aqj1p")]
+interaction_text = "Your majesty can throw orbs of light at your target."
+input_action_text = "[LMB] or [Space]"
