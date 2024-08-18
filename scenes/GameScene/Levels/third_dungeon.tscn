@@ -22,6 +22,8 @@ ambient_light_energy = 0.1
 
 [node name="ThirdDungeon" instance=ExtResource("1_165nt")]
 level_name = "Third Dungeon"
+opening_text = "As you slip further into the darkness, you wonder...
+Will you be able to work your way to the light?"
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("2_4vdgi")

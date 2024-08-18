@@ -21,8 +21,8 @@ ambient_light_energy = 0.5
 
 [node name="EntryWayLevel" instance=ExtResource("1_yyhry")]
 level_name = "Entryway"
-opening_text = "We built walls to protect us from the darkness.
-Thankfully we added doors."
+opening_text = "Your majesty built defenses to protect us from the darkness.
+This journey requires breaching them."
 opening_timer = 6.0
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]

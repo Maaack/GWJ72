@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxc73c01cwkvl"]
+[gd_scene load_steps=17 format=3 uid="uid://dxc73c01cwkvl"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_n71aw"]
 [ext_resource type="PackedScene" uid="uid://cxd028kkvymby" path="res://scenes/Interactables/special_orb.tscn" id="2_0crkm"]
@@ -15,10 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://dcsj23nfmanm8" path="res://scenes/Interactables/HintBooks/pull_orbs_hint_books.tscn" id="13_6ny26"]
 [ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="13_rwdrt"]
 [ext_resource type="PackedScene" uid="uid://b1stehlnekef3" path="res://scenes/Interactables/chest.tscn" id="15_2eiqc"]
+[ext_resource type="PackedScene" uid="uid://bbi0xongm7u2l" path="res://scenes/Interactables/narration_zone.tscn" id="16_7xr6q"]
 
 [node name="EdgeOfDarkness" instance=ExtResource("1_n71aw")]
 script = ExtResource("2_doxqk")
 level_name = "Edge of Darkness"
+opening_text = "That orb, suspended on the edge of darkness - 
+it looks... different."
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("3_gq612")
@@ -178,7 +181,7 @@ entering_door_name = "ExitDoor3"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 14, 20)
 
 [node name="HintBooks3" parent="." index="26" instance=ExtResource("13_6ny26")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -4, 0, 20)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -3.5, 0, 8)
 
 [node name="HintBooks4" parent="." index="27" instance=ExtResource("13_rwdrt")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -44.5, 24, 38)
@@ -186,6 +189,11 @@ interaction_text = "Special orbs have special properties..."
 
 [node name="Chest" parent="." index="28" instance=ExtResource("15_2eiqc")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -39.5, 24, 38)
+
+[node name="NarrationZone" parent="." index="29" instance=ExtResource("16_7xr6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 19)
+narration_text = "Your majesty's mind is stretched by the special orb.
+Your can reach orbs from further away now."
 
 [editable path="SpecialDoorTrigger"]
 [editable path="SpecialDoorTrigger/OrbAttractor"]

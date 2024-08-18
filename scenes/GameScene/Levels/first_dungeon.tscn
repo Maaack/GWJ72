@@ -20,6 +20,9 @@ ambient_light_energy = 0.3
 
 [node name="FirstDungeon" instance=ExtResource("1_rm8ue")]
 level_name = "First Dungeon"
+opening_text = "Now you are really venturing into the darkness.
+Why let yourself fall this far?"
+opening_timer = 5.0
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("2_mpd0g")

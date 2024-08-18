@@ -24,7 +24,8 @@ ambient_light_energy = 0.4
 
 [node name="CliffFaceLevel" instance=ExtResource("1_e77k2")]
 level_name = "Cliff"
-opening_text = "On this journey, going down will be easier than going up."
+opening_text = "On this journey, going into darkness is as easy as falling.
+It's getting back to the light that is a challenge."
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
 stream = ExtResource("2_w3q16")
@@ -185,10 +186,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 16,
 doors = [NodePath("../Door13")]
 
 [node name="Orb" parent="." index="29" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0839388, 1.71327, 0.0722896)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0508861, 1.72424, -0.0329379)
 
 [node name="Orb2" parent="." index="30" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0826419, 1.88774, -0.0736103)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0511283, 1.87582, 0.0323846)
 
 [node name="DoorTrigger2" parent="." index="31" node_paths=PackedStringArray("doors") instance=ExtResource("4_gd3ew")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, -46)
@@ -207,18 +208,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, -74)
 doors = [NodePath("../Door6")]
 
 [node name="Orb4" parent="." index="35" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0247684, -38.3166, -137.951)
-velocity = Vector3(0.157756, 0.116704, -0.0942592)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0236676, -38.3015, -138.013)
+velocity = Vector3(-0.0141394, 0.100837, -0.0191682)
 dimmed = true
 
 [node name="Orb5" parent="." index="36" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0420749, -38.103, -138.007)
-velocity = Vector3(-0.180564, -0.0962729, -0.116251)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0241431, -38.1017, -137.95)
+velocity = Vector3(0.123459, 0, 0.0634566)
 dimmed = true
 
 [node name="Orb6" parent="." index="37" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0443962, -38.2962, -137.965)
-velocity = Vector3(-0.0525517, -0.0188014, 0.0451851)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0363074, -38.2699, -138.001)
+velocity = Vector3(0.0233994, 0.068979, 0.00366035)
 dimmed = true
 
 [node name="DoorTrigger6" parent="." index="38" node_paths=PackedStringArray("doors", "orbs") instance=ExtResource("4_gd3ew")]
