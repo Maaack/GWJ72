@@ -23,6 +23,7 @@ func _ready():
 	super._ready()
 
 func _unhandled_input(event):
+	if not enabled: return
 	if event.is_action_pressed("ui_cancel"):
 		if not %EndMessagePanel.visible:
 			_end_reached()
