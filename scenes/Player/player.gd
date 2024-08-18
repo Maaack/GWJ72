@@ -174,8 +174,6 @@ func _input(event):
 		%SpecialOrbAttractor.attract_force = orb_attraction_strength
 	elif event.is_action_released("interact"):
 		$AttractorDisableDelayTimer.start()
-	if event.is_action_pressed("cheat"):
-		%RangedAttackComponent.attack()
 
 func initialize():
 	stamina = max_stamina
