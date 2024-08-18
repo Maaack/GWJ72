@@ -6,6 +6,7 @@ extends AttackComponent
 @export var position_reference: Node3D
 @export var initial_velocity : float
 @export var attack_audio_stream : AudioStreamPlayer3D
+@export var target_ray_cast_3d : RayCast3D
 
 func _spawn_projectile():
 	var projectile_instance : CharacterBody3D = projectile_scene.instantiate()
@@ -18,6 +19,10 @@ func _spawn_projectile():
 	return projectile_instance
 
 func get_target_direction() -> Vector3:
+	if target_ray_cast_3d is RayCast3D:
+		if target_ray_cast_3d.is_colliding():
+			var diff_vector = target_ray_cast_3d.get_collision_point() - position_reference.global_position
+			return diff_vector.normalized()
 	return (-rotation_reference.global_basis.z).normalized()
 
 func _apply_forces(projectile : PhysicsBody3D):

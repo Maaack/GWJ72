@@ -38,7 +38,7 @@ orb_attraction_strength = 120.0
 special_pull_radius = 6.0
 
 [node name="InteractingComponent" parent="." node_paths=PackedStringArray("ray_cast") instance=ExtResource("2_awhmw")]
-ray_cast = NodePath("../Head/RayCast3D")
+ray_cast = NodePath("../Head/InteractionRayCast3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_emkox")
@@ -51,17 +51,16 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="Head"]
+[node name="InteractionRayCast3D" type="RayCast3D" parent="Head"]
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 65
-
-[node name="ThrowMarker3D" type="Marker3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.6)
 
 [node name="OrbHolder" parent="Head" instance=ExtResource("7_k1v0c")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, -0.25, -1)
 preserve_state = false
+
+[node name="ThrowMarker3D" type="Marker3D" parent="Head/OrbHolder"]
 
 [node name="CollisionShape3D" parent="Head/OrbHolder/GrabArea3D" index="0"]
 shape = SubResource("SphereShape3D_mc2uh")
@@ -95,13 +94,19 @@ attracts_unholdable = true
 [node name="Area3D" parent="Head/SpecialOrbAttractor" index="0"]
 collision_mask = 32
 
-[node name="RangedAttackComponent" parent="." node_paths=PackedStringArray("rotation_reference", "position_reference", "attack_audio_stream") instance=ExtResource("6_skuyj")]
+[node name="TargettingRayCast3D" type="RayCast3D" parent="Head"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -40)
+collision_mask = 68
+
+[node name="RangedAttackComponent" parent="." node_paths=PackedStringArray("rotation_reference", "position_reference", "attack_audio_stream", "target_ray_cast_3d") instance=ExtResource("6_skuyj")]
 unique_name_in_owner = true
 projectile_scene = ExtResource("8_qpybw")
 rotation_reference = NodePath("../Head/Camera3D")
-position_reference = NodePath("../Head/ThrowMarker3D")
+position_reference = NodePath("../Head/OrbHolder/ThrowMarker3D")
 initial_velocity = 12.0
 attack_audio_stream = NodePath("../ThrowOrbStreamPlayer3D")
+target_ray_cast_3d = NodePath("../Head/TargettingRayCast3D")
 
 [node name="CollisionRay3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
