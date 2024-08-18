@@ -72,6 +72,8 @@ func _on_area_3d_body_entered(body):
 func _on_area_3d_body_exited(body):
 	if body is Orb:
 		reset_to_center_if_held(body)
+		if body in orbs:
+			orbs.erase(body)
 
 func _run_body_test_motion(body : PhysicsBody3D, motion : Vector3, result = null):
 	if not result : result = PhysicsTestMotionResult3D.new()
