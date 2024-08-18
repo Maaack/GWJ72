@@ -1,18 +1,34 @@
 # Attribution
-## Collaborators
+## Game By
 
-### Role
-Person 1  
-Person 2  
-[Person w/ Link]()  
+[Marek Belski](https://maaack.itch.io/)  
 
 
-## Sourced / Unaffiliated
-### Asset Type
-#### Use Case
-Author: [Name]()  
-Source: [Domain : webpage.html]()  
-License: [License]()
+## Music By
+
+Art Oldman
+
+
+## Sourced
+### 3D Models
+#### Kay Kit - Dungeon Remastered Pack
+Author: [Kay Lousberg](https://kaylousberg.itch.io/)  
+Source: [itch.io : kaykit-dungeon-remastered](https://kaylousberg.itch.io/kaykit-dungeon-remastered)  
+License: [Creative Commons Zero, CC0](http://creativecommons.org/publicdomain/zero/1.0/)
+
+### Fonts
+#### Black Chancery
+Author: [Earl Allen/Doug Miles](https://www.1001fonts.com/users/dougmiles/)
+Source: [1001fonts.com : blackchancery-font.html](https://www.1001fonts.com/blackchancery-font.html)  
+License: [Public Domian](https://www.1001fonts.com/licenses/public-domain.html)
+
+#### Merienda  
+Author: [Tip](https://www.1001fonts.com/users/tipo/)  
+Source: [1001fonts.com : merienda-font.html](https://www.1001fonts.com/merienda-font.html)  
+License: [SIL Open Font License (OFL)](https://openfontlicense.org/)  
+
+### SFX  
+#### Mega SFX Pack  
 
 ### Godot Wild Jam Logos
 Author: [Dawk](https://coreyaroberts.com/)  
