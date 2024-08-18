@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b52mkh0n7d3cy" path="res://assets/images/1bit_black_and_white.png" id="10_k5j6l"]
 [ext_resource type="Texture2D" uid="uid://byqtcevo5a1y5" path="res://assets/images/bayer16.png" id="11_61kct"]
 [ext_resource type="PackedScene" uid="uid://r27xbd24npvu" path="res://scenes/GameScene/light_mask_world.tscn" id="11_n6ijm"]
-[ext_resource type="Texture2D" uid="uid://c1y6wrcliwhsh" path="res://assets/images/dot-2x2.png" id="14_fwolg"]
+[ext_resource type="Texture2D" uid="uid://dkxj5mc4618e0" path="res://assets/images/dot-4x4-outlined.png" id="14_m638k"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_346v4"]
 viewport_path = NodePath("LightMaskViewportContainer/SubViewport")
@@ -183,7 +183,7 @@ autowrap_mode = 2
 
 [node name="CrossHairTextureRect" type="TextureRect" parent="MarginContainer/Control"]
 unique_name_in_owner = true
-visible = false
+modulate = Color(1, 1, 1, 0.5)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -198,7 +198,7 @@ offset_bottom = 328.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("14_fwolg")
+texture = ExtResource("14_m638k")
 stretch_mode = 3
 
 [node name="EndCredits" parent="." instance=ExtResource("3_8t2xt")]

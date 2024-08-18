@@ -164,7 +164,7 @@ func _on_player_interactable_unfocused():
 	%InputActionLabel.visible = false
 
 func _on_player_orb_count_changed(orb_count : int):
-	%CrossHairTextureRect.visible = orb_count > 0
+	%CrossHairTextureRect.modulate.a = 1.0 if orb_count > 0 else 0.5
 
 func _process(delta):
 	if is_instance_valid(_special_orb):
