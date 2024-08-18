@@ -142,6 +142,9 @@ has_orbs = true
 [node name="OrbHolder" parent="DoorTrigger" index="4" node_paths=PackedStringArray("orbs")]
 orbs = [NodePath("../../Orb")]
 
+[node name="CollisionShape3D" parent="DoorTrigger/PlayerFocusBody3D" index="0"]
+disabled = true
+
 [node name="DoorTrigger2" parent="." index="19" node_paths=PackedStringArray("doors") instance=ExtResource("4_7vhuo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 doors = [NodePath("../Door7"), NodePath("../Door8"), NodePath("../Door9"), NodePath("../Door10"), NodePath("../Door11"), NodePath("../Door12")]

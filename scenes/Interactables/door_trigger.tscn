@@ -102,3 +102,5 @@ shape = SubResource("SphereShape3D_vhxe0")
 
 [connection signal="body_entered" from="LightTrigger" to="." method="_on_light_trigger_body_entered"]
 [connection signal="body_exited" from="LightTrigger" to="." method="_on_light_trigger_body_exited"]
+[connection signal="orb_held" from="OrbHolder" to="." method="_on_orb_holder_orb_held"]
+[connection signal="orb_released" from="OrbHolder" to="." method="_on_orb_holder_orb_released"]

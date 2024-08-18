@@ -84,3 +84,10 @@ func reset_state():
 func _on_player_detector_area_3d_body_entered(body):
 	if body is PlayerCharacter:
 		body.release_special_orb()
+
+
+func _on_orb_holder_orb_held(orb):
+	$PlayerFocusBody3D/CollisionShape3D.disabled = %OrbHolder.get_held_orb_count() > 0
+
+func _on_orb_holder_orb_released(orb):
+	$PlayerFocusBody3D/CollisionShape3D.disabled = %OrbHolder.get_held_orb_count() > 0
