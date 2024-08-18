@@ -194,33 +194,33 @@ flipped = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="HintBooks4" parent="." index="14" instance=ExtResource("6_lvu0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -4, -24)
 
-[node name="HintBooks5" parent="." index="15" instance=ExtResource("7_8xmw1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, -4, -24)
+[node name="HintBooks5" parent="." index="15" instance=ExtResource("6_lvu0p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.5, -4, -24)
 
 [node name="torch2" type="MeshInstance3D" parent="." index="16"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, -3.5, -34)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -3.5, -34)
 mesh = SubResource("ArrayMesh_ucqis")
 skeleton = NodePath("")
 
 [node name="column2" type="MeshInstance3D" parent="." index="17"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, -4, -28)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -4, -28)
 mesh = SubResource("ArrayMesh_dq4q6")
 skeleton = NodePath("")
 
 [node name="Orb" parent="." index="18" instance=ExtResource("9_e1cv7")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, -2.75, -18)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -2.75, -18)
 
 [node name="Chest" parent="." index="19" instance=ExtResource("10_k6dv8")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, -4, -18)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -4, -18)
 
 [node name="OrbHolder" parent="Chest" index="1" node_paths=PackedStringArray("orbs")]
 lock = true
 orbs = [NodePath("../../Orb")]
 
 [node name="HintBooks7" parent="." index="20" instance=ExtResource("7_8xmw1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, -4, -24)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, -39.5)
 
 [node name="HintBooks6" parent="." index="21" instance=ExtResource("8_qleaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, -92.5)

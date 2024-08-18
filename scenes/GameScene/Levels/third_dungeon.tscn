@@ -162,10 +162,10 @@ surface_material_override/0 = null
 surface_material_override/0 = null
 
 [node name="Orb" parent="." index="20" instance=ExtResource("5_5guvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.8, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.8, -10)
 
 [node name="DoorTrigger" parent="." index="21" node_paths=PackedStringArray("doors", "orbs") instance=ExtResource("6_3wg2e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -10)
 doors = [NodePath("../Door"), NodePath("../Door2")]
 orbs = [NodePath("../Orb")]
 toggled = true
