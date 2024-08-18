@@ -59,6 +59,10 @@ func _physics_process(delta):
 	if _is_running:
 		_current_speed *= RUN_SPEED_MOD
 	var horizontal_velocity = direction * _current_speed
+	if is_on_floor() and velocity.length_squared() > 1.0:
+		$FootstepsRepeater3D.play_loop()
+	else:
+		$FootstepsRepeater3D.stop_loop()
 	if is_on_floor() and direction:
 		velocity.x = horizontal_velocity.x
 		velocity.z = horizontal_velocity.z

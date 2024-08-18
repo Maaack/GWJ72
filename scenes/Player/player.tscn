@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=27 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_1w47b"]
 [ext_resource type="PackedScene" uid="uid://ct4hnidrqacu0" path="res://scenes/Components/interacting_component.tscn" id="2_awhmw"]
@@ -9,6 +9,17 @@
 [ext_resource type="AudioStream" uid="uid://dshumai2sowr4" path="res://assets/sounds/Whoosh_5.wav" id="7_t1qpk"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="8_qpybw"]
 [ext_resource type="Script" path="res://scenes/Interactables/interactable_3d.gd" id="9_dfjyy"]
+[ext_resource type="PackedScene" uid="uid://33tu2t66ifbo" path="res://scenes/AudioStreamRepeater/AudioStreamRepeater3D.tscn" id="10_le10w"]
+[ext_resource type="AudioStream" uid="uid://bg3rmoojtjf4a" path="res://assets/sounds/1 step [2024-08-18 012325].wav" id="11_fyp8k"]
+[ext_resource type="AudioStream" uid="uid://lvyb6h7rcgya" path="res://assets/sounds/2 step [2024-08-18 012324].wav" id="12_fkfbt"]
+[ext_resource type="AudioStream" uid="uid://br40s1wvh6r0o" path="res://assets/sounds/3 step [2024-08-18 012323].wav" id="13_gp2r2"]
+[ext_resource type="AudioStream" uid="uid://bu106mblplbg4" path="res://assets/sounds/4 step [2024-08-18 012322].wav" id="14_coqos"]
+[ext_resource type="AudioStream" uid="uid://c0btxl1ov5yfr" path="res://assets/sounds/5 step [2024-08-18 012321].wav" id="15_2s8n1"]
+[ext_resource type="AudioStream" uid="uid://ccs28splpyth2" path="res://assets/sounds/6 step [2024-08-18 012321].wav" id="16_5n3cd"]
+[ext_resource type="AudioStream" uid="uid://be45vteoufbp7" path="res://assets/sounds/7 step [2024-08-18 012320].wav" id="17_1uxfk"]
+[ext_resource type="AudioStream" uid="uid://c1qthvvdteufy" path="res://assets/sounds/8 step [2024-08-18 012319].wav" id="18_bi124"]
+[ext_resource type="AudioStream" uid="uid://bvhtxh4sinpau" path="res://assets/sounds/9 step [2024-08-18 012318].wav" id="19_8owbp"]
+[ext_resource type="AudioStream" uid="uid://dbl7vwmge4gdi" path="res://assets/sounds/10 step [2024-08-18 012317].wav" id="20_4wpen"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 height = 1.25
@@ -29,6 +40,30 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("7_t1qpk")
 stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_53d1c"]
+random_pitch = 1.1
+streams_count = 10
+stream_0/stream = ExtResource("11_fyp8k")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_fkfbt")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_gp2r2")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_coqos")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_2s8n1")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("16_5n3cd")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("17_1uxfk")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("18_bi124")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("19_8owbp")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("20_4wpen")
+stream_9/weight = 1.0
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 3
@@ -140,6 +175,13 @@ interactable_node = NodePath("..")
 [node name="AttractorDisableDelayTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="FootstepsRepeater3D" parent="." instance=ExtResource("10_le10w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+stream = SubResource("AudioStreamRandomizer_53d1c")
+volume_db = -20.0
+bus = &"SFX"
+repeat_delay = 0.5
 
 [connection signal="interactable_focused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_focused"]
 [connection signal="interactable_unfocused" from="InteractingComponent" to="." method="_on_interacting_component_interactable_unfocused"]

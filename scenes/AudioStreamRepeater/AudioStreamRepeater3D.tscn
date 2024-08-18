@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://33tu2t66ifbo"]
+
+[ext_resource type="Script" path="res://scenes/AudioStreamRepeater/AudioStreamRepeater3D.gd" id="1_n0bae"]
+
+[node name="AudioStreamRepeater3D" type="AudioStreamPlayer3D"]
+script = ExtResource("1_n0bae")
+
+[node name="Timer" type="Timer" parent="."]

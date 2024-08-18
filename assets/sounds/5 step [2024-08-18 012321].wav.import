@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0btxl1ov5yfr"
+path="res://.godot/imported/5 step [2024-08-18 012321].wav-7540af6cb2ecb8f3f531fbbe324b3348.sample"
+
+[deps]
+
+source_file="res://assets/sounds/5 step [2024-08-18 012321].wav"
+dest_files=["res://.godot/imported/5 step [2024-08-18 012321].wav-7540af6cb2ecb8f3f531fbbe324b3348.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
