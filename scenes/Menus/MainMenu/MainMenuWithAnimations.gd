@@ -45,8 +45,13 @@ func _setup_play():
 		%NewGameButton.hide()
 		%ContinueButton.hide()
 	else:
-		%PlayButton.hide()
+		%PlayButton2.hide()
 	super._setup_play()
+
+func _setup_for_web():
+	if OS.has_feature("web"):
+		%ExitButton2.hide()
+
 
 func _on_continue_button_pressed():
 	GameLog.game_started()
