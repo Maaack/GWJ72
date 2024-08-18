@@ -185,10 +185,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 16,
 doors = [NodePath("../Door13")]
 
 [node name="Orb" parent="." index="29" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0437321, 1.69167, -0.0601541)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0839388, 1.71327, 0.0722896)
 
 [node name="Orb2" parent="." index="30" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0433095, 1.90925, 0.0616289)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0826419, 1.88774, -0.0736103)
 
 [node name="DoorTrigger2" parent="." index="31" node_paths=PackedStringArray("doors") instance=ExtResource("4_gd3ew")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, -46)
@@ -207,18 +207,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, -74)
 doors = [NodePath("../Door6")]
 
 [node name="Orb4" parent="." index="35" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0449715, -38.3028, -138.187)
-velocity = Vector3(-0.189741, 0.102017, 0.0409969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0247684, -38.3166, -137.951)
+velocity = Vector3(0.157756, 0.116704, -0.0942592)
 dimmed = true
 
 [node name="Orb5" parent="." index="36" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0122788, -38.1501, -137.839)
-velocity = Vector3(0.109693, -0.048681, -0.019887)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0420749, -38.103, -138.007)
+velocity = Vector3(-0.180564, -0.0962729, -0.116251)
 dimmed = true
 
 [node name="Orb6" parent="." index="37" instance=ExtResource("7_5uamk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.126715, -38.2298, -138.138)
-velocity = Vector3(-0.012117, 0.0280738, -0.044118)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0443962, -38.2962, -137.965)
+velocity = Vector3(-0.0525517, -0.0188014, 0.0451851)
 dimmed = true
 
 [node name="DoorTrigger6" parent="." index="38" node_paths=PackedStringArray("doors", "orbs") instance=ExtResource("4_gd3ew")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_cauw0"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_10yx4"]
-[ext_resource type="AudioStream" uid="uid://43cy755f0wu0" path="res://assets/music/3-level.ogg" id="2_ft1tj"]
+[ext_resource type="AudioStream" uid="uid://b1xj6n4l4c3jk" path="res://assets/music/4-level.ogg" id="2_om6mg"]
 [ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="3_whfc1"]
 [ext_resource type="PackedScene" uid="uid://c0eheh04avnu8" path="res://scenes/Door/door.tscn" id="4_hrkjl"]
 [ext_resource type="PackedScene" uid="uid://blhwdtcsf0s4y" path="res://scenes/Interactables/door_trigger.tscn" id="5_2wfsk"]
@@ -67,7 +67,7 @@ points = PackedVector3Array(-0.975137, 0.974975, -1, -0.875098, 8.19564e-08, -0.
 level_name = "Second Dungeon"
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
-stream = ExtResource("2_ft1tj")
+stream = ExtResource("2_om6mg")
 
 [node name="WorldEnvironment" parent="." index="1"]
 environment = SubResource("Environment_62g5m")
@@ -198,11 +198,11 @@ has_orbs = true
 orbs = [NodePath("../../Orb")]
 
 [node name="Orb2" parent="." index="20" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0882, 1.5, 2.12135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.89393, 1.5, 2.10607)
 dimmed = true
 
 [node name="Orb5" parent="." index="21" instance=ExtResource("6_v2jpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.91183, 1.5, 1.87865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1061, 1.5, 1.89393)
 dimmed = true
 
 [node name="LightSource2" parent="." index="22" node_paths=PackedStringArray("orbs") instance=ExtResource("7_u4306")]

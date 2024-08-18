@@ -19,7 +19,7 @@ orb_scene = ExtResource("2_35cx1")
 special_orb_scene = ExtResource("3_0o01v")
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("6_32qfp")]
-volume_db = -5.0
+volume_db = -10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5umm5")

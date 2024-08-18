@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_6lthr"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_345d3"]
-[ext_resource type="AudioStream" uid="uid://bb5axq4ioilbj" path="res://assets/music/start_finish.ogg" id="2_gt58u"]
+[ext_resource type="AudioStream" uid="uid://c4vaep63wshxi" path="res://assets/music/start_finish_new-ver.ogg" id="2_qbgp7"]
 [ext_resource type="PackedScene" uid="uid://bmp381aiiqv5a" path="res://scenes/Door/exit_door.tscn" id="3_mnv4m"]
 [ext_resource type="MeshLibrary" uid="uid://xa8a2u0bpy36" path="res://scenes/Meshes/deco_mesh_library.tres" id="3_vrsdh"]
 [ext_resource type="PackedScene" uid="uid://dcsj23nfmanm8" path="res://scenes/Interactables/HintBooks/pull_orbs_hint_books.tscn" id="6_lvu0p"]
@@ -99,7 +99,7 @@ opening_text = "You venture from the warm glow of the light in search of...
 something..."
 
 [node name="BackgroundMusicPlayer" parent="." index="0"]
-stream = ExtResource("2_gt58u")
+stream = ExtResource("2_qbgp7")
 
 [node name="WorldEnvironment" parent="." index="1"]
 environment = SubResource("Environment_vumlf")

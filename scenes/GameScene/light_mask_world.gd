@@ -3,6 +3,8 @@ extends Node3D
 @onready var initial_pixel_size = $Sprite3D.pixel_size
 var tween
 
+@export var glow_up_duration : float = 20.0
+
 func set_camera_transform(new_transform : Transform3D):
 	$Camera3D.global_transform = new_transform
 
@@ -18,8 +20,8 @@ func show_sprite():
 func glow_up():
 	var environment : Environment = $WorldEnvironment.environment
 	tween = create_tween()
-	tween.tween_property($Sprite3D, ^"pixel_size", 0.2, 10.0)
-	tween.parallel().tween_property(environment, ^"background_color", Color.WHITE, 10.0)
+	tween.tween_property($Sprite3D, ^"pixel_size", 0.2, glow_up_duration)
+	tween.parallel().tween_property(environment, ^"background_color", Color.WHITE, glow_up_duration)
 
 func reset():
 	if tween is Tween:
