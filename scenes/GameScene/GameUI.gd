@@ -6,9 +6,14 @@ const EXIT_DOOR_STRING : String = "Enter the %s"
 const PULL_ORB_STRING : String = "Pull Orb"
 const TAKE_ORB_STRING : String = "Take Orb"
 const PUT_ORB_STRING : String = "Put Orb"
+const PULL_ORB_HINT_STRING : String = "You can draw the orbs of light to you."
+const THROW_ORB_HINT_STRING : String = "You can throw orbs of light at your target."
+const RESTART_HINT_STRING : String = "You can restart any room from the beginning."
+const PROGRESS_HINT_STRING : String = "Feel free to take a break.\nYour progress is remembered."
 
-const RMB_STRING : String = "(RMB or E)"
-const LMB_STRING : String = "(LMB or Space)"
+const RMB_STRING : String = "[RMB] or [E]"
+const LMB_STRING : String = "[LMB] or [Space]"
+const R_STRING : String = "[R]"
 
 @export var win_scene : PackedScene
 @export var end_credits_scene : PackedScene
@@ -114,6 +119,22 @@ func _on_player_orb_holder_focused(orb_holder : OrbHolder):
 	else:
 		%InputActionLabel.text = ""
 		%InteractionLabel.text = ""
+		
+func _on_pull_orb_hint_focused():
+	%InputActionLabel.text = RMB_STRING
+	%InteractionLabel.text = PULL_ORB_HINT_STRING
+
+func _on_throw_orb_hint_focused():
+	%InputActionLabel.text = LMB_STRING
+	%InteractionLabel.text = THROW_ORB_HINT_STRING
+
+func _on_restart_hint_focused():
+	%InputActionLabel.text = R_STRING
+	%InteractionLabel.text = RESTART_HINT_STRING
+
+func _on_progress_hint_focused():
+	%InputActionLabel.text = ""
+	%InteractionLabel.text = PROGRESS_HINT_STRING
 
 func _on_player_interactable_focused(interactable_3d : Interactable3D):
 	match interactable_3d.interactable_type:
@@ -127,6 +148,14 @@ func _on_player_interactable_focused(interactable_3d : Interactable3D):
 			_on_player_orb_focused(interactable_3d.interactable_node.held_by)
 		&"orb_holder":
 			_on_player_orb_holder_focused(interactable_3d.interactable_node)
+		&"pull_orb_hint":
+			_on_pull_orb_hint_focused()
+		&"throw_orb_hint":
+			_on_throw_orb_hint_focused()
+		&"restart_hint":
+			_on_restart_hint_focused()
+		&"progress_hint":
+			_on_progress_hint_focused()
 	%InteractionLabel.visible = true
 	%InputActionLabel.visible = true
 
