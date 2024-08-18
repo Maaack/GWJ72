@@ -364,7 +364,7 @@ parameters/conditions/intro_done = false
 
 [node name="BackgroundMusicPlayer" parent="." index="3"]
 stream = ExtResource("3_6xunw")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
