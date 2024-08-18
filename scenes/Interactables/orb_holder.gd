@@ -22,9 +22,12 @@ func add_orb(orb : Orb):
 	if not orb in orbs:
 		orbs.append(orb)
 
-func remove_orb(orb : Orb):
-	if lock:
+func reset_to_center_if_held(orb : Orb):
+	if orb in held_orbs:
 		orb.global_position = global_position
+
+func remove_orb(orb : Orb, force : bool = false):
+	if lock and not force:
 		return
 	if orb in orbs:
 		orbs.erase(orb)
@@ -68,7 +71,7 @@ func _on_area_3d_body_entered(body):
 
 func _on_area_3d_body_exited(body):
 	if body is Orb:
-		remove_orb(body)
+		reset_to_center_if_held(body)
 
 func _run_body_test_motion(body : PhysicsBody3D, motion : Vector3, result = null):
 	if not result : result = PhysicsTestMotionResult3D.new()
