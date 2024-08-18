@@ -117,8 +117,7 @@ func _get_dot_product(vector : Vector3) -> float:
 	return vector_a.dot(vector_b)
 
 func get_nearest_orb_not_held():
-	var orbs : Array[Orb] = %OrbAttractor.orbs
-	orbs.append_array(%SpecialOrbAttractor.orbs)
+	var orbs : Array[Orb] = %OrbAttractor.orbs + %SpecialOrbAttractor.orbs
 	var focused_orbs : Array[Orb] = []
 	if orbs.is_empty() : return
 	for orb in orbs:
