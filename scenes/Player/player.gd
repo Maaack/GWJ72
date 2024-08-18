@@ -59,7 +59,7 @@ func _physics_process(delta):
 	if _is_running:
 		_current_speed *= RUN_SPEED_MOD
 	var horizontal_velocity = direction * _current_speed
-	if is_on_floor() and velocity.length_squared() > 1.0:
+	if is_on_floor() and velocity.length_squared() > 4.0:
 		$FootstepsRepeater3D.play_loop()
 	else:
 		$FootstepsRepeater3D.stop_loop()
@@ -79,11 +79,13 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, delta)
 			velocity.z = move_toward(velocity.z, 0, delta)
 		velocity.y -= gravity * delta
-
-
+	var downward_velocity = -velocity.y
 	var collision = move_and_slide()
 	if not collision and _was_on_floor and %StepDownRayCast3D.is_colliding():
 		velocity.y -= gravity * delta * STEP_DOWN_BOOST
+	if collision and is_on_floor() and not _was_on_floor:
+		if downward_velocity > 10.0:
+			$HitGroundStreamPlayer3D.play()
 	_was_on_floor = is_on_floor()
 
 func _can_pull_orb():

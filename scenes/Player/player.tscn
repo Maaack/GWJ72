@@ -176,10 +176,15 @@ interactable_node = NodePath("..")
 wait_time = 0.5
 one_shot = true
 
+[node name="HitGroundStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+stream = SubResource("AudioStreamRandomizer_53d1c")
+bus = &"SFX"
+
 [node name="FootstepsRepeater3D" parent="." instance=ExtResource("10_le10w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 stream = SubResource("AudioStreamRandomizer_53d1c")
-volume_db = -20.0
+volume_db = -30.0
 bus = &"SFX"
 repeat_delay = 0.5
 
