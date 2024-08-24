@@ -70,7 +70,7 @@ grow_vertical = 2
 [node name="SubViewport" type="SubViewport" parent="LightMaskViewportContainer"]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="LightMaskWorld" parent="LightMaskViewportContainer/SubViewport" instance=ExtResource("11_n6ijm")]
@@ -91,7 +91,7 @@ color_palettes = Array[Texture]([ExtResource("13_aq6ms"), ExtResource("14_c3tcn"
 handle_input_locally = false
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(1920, 1080)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 script = ExtResource("9_7l15f")
 
@@ -145,7 +145,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
 [node name="InputActionLabel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
@@ -153,7 +153,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
 [node name="NarrationLabel" type="Label" parent="MarginContainer/Control"]
@@ -169,7 +169,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
