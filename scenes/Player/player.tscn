@@ -68,7 +68,7 @@ stream_9/weight = 1.0
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 3
 script = ExtResource("1_1w47b")
-base_mouse_sensitivity = 0.003
+base_mouse_sensitivity = 0.002
 orb_attraction_strength = 120.0
 special_pull_radius = 6.0
 
