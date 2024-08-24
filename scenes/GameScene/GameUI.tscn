@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://brb5jdbu1vpib"]
+[gd_scene load_steps=17 format=3 uid="uid://brb5jdbu1vpib"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_cxna0"]
 [ext_resource type="PackedScene" uid="uid://drlf5jqav4jn8" path="res://scenes/WinScreen/WinScreen.tscn" id="2_02jfp"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_ekdma"]
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_uru51"]
 [ext_resource type="Script" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_7l15f"]
-[ext_resource type="Script" path="res://scenes/GameScene/sub_viewport_screen_matcher.gd" id="9_ad4jf"]
 [ext_resource type="Shader" path="res://scenes/GameScene/texture_dither.gdshader" id="9_n7375"]
 [ext_resource type="Texture2D" uid="uid://b52mkh0n7d3cy" path="res://assets/images/1bit_black_and_white.png" id="10_k5j6l"]
 [ext_resource type="Texture2D" uid="uid://byqtcevo5a1y5" path="res://assets/images/bayer16.png" id="11_61kct"]
@@ -62,7 +61,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_ad4jf")
 
 [node name="SubViewport" type="SubViewport" parent="LightMaskViewportContainer"]
 own_world_3d = true
@@ -81,7 +79,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_ad4jf")
 
 [node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
 handle_input_locally = false
