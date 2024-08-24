@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brb5jdbu1vpib"]
+[gd_scene load_steps=22 format=3 uid="uid://brb5jdbu1vpib"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_cxna0"]
 [ext_resource type="PackedScene" uid="uid://drlf5jqav4jn8" path="res://scenes/WinScreen/WinScreen.tscn" id="2_02jfp"]
@@ -13,7 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://b52mkh0n7d3cy" path="res://assets/images/1bit_black_and_white.png" id="10_k5j6l"]
 [ext_resource type="Texture2D" uid="uid://byqtcevo5a1y5" path="res://assets/images/bayer16.png" id="11_61kct"]
 [ext_resource type="PackedScene" uid="uid://r27xbd24npvu" path="res://scenes/GameScene/light_mask_world.tscn" id="11_n6ijm"]
+[ext_resource type="Script" path="res://scenes/GameScene/sub_viewport_contrast_setting.gd" id="12_qf6l4"]
+[ext_resource type="Texture2D" uid="uid://bhas8rievdig7" path="res://assets/images/1bit_black_and_white_high.png" id="13_aq6ms"]
+[ext_resource type="Texture2D" uid="uid://bgbbhu7hmavgk" path="res://assets/images/1bit_black_and_white_mid.png" id="14_c3tcn"]
 [ext_resource type="Texture2D" uid="uid://dkxj5mc4618e0" path="res://assets/images/dot-4x4-outlined.png" id="14_m638k"]
+[ext_resource type="Texture2D" uid="uid://bf28kaxbdhhyt" path="res://assets/images/1bit_black_and_white_low.png" id="15_4ya05"]
+[ext_resource type="Texture2D" uid="uid://bl3d82rdutm5c" path="res://assets/images/1bit_black_and_white_lowest.png" id="16_5gnld"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_346v4"]
 viewport_path = NodePath("LightMaskViewportContainer/SubViewport")
@@ -79,6 +84,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("12_qf6l4")
+color_palettes = Array[Texture]([ExtResource("13_aq6ms"), ExtResource("14_c3tcn"), ExtResource("15_4ya05"), ExtResource("16_5gnld")])
 
 [node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
 handle_input_locally = false

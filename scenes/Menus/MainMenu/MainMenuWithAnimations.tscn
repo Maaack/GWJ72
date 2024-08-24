@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2pyxcyvffmro"]
+[gd_scene load_steps=29 format=3 uid="uid://b2pyxcyvffmro"]
 
 [ext_resource type="PackedScene" uid="uid://iidqmh1rwexo" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_o2fss"]
 [ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_vx3iv"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://knxwxs30xke6" path="res://scenes/GameScene/black_hole_world.tscn" id="4_okf8f"]
 [ext_resource type="Texture2D" uid="uid://byqtcevo5a1y5" path="res://assets/images/bayer16.png" id="5_mgjn0"]
 [ext_resource type="PackedScene" uid="uid://ecxvkpm2wofu" path="res://scenes/Menus/main_menu_world.tscn" id="5_u23v6"]
+[ext_resource type="Script" path="res://scenes/GameScene/sub_viewport_contrast_setting.gd" id="6_xefwy"]
+[ext_resource type="Texture2D" uid="uid://bhas8rievdig7" path="res://assets/images/1bit_black_and_white_high.png" id="7_8f6el"]
+[ext_resource type="Texture2D" uid="uid://bgbbhu7hmavgk" path="res://assets/images/1bit_black_and_white_mid.png" id="8_3t638"]
+[ext_resource type="Texture2D" uid="uid://bf28kaxbdhhyt" path="res://assets/images/1bit_black_and_white_low.png" id="9_7a7d6"]
+[ext_resource type="Texture2D" uid="uid://bl3d82rdutm5c" path="res://assets/images/1bit_black_and_white_lowest.png" id="10_lp03d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eq1xn"]
 resource_local_to_scene = true
@@ -376,6 +381,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_xefwy")
+color_palettes = Array[Texture]([ExtResource("7_8f6el"), ExtResource("8_3t638"), ExtResource("9_7a7d6"), ExtResource("10_lp03d")])
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" index="0"]
 handle_input_locally = false
@@ -393,6 +400,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+script = ExtResource("6_xefwy")
+color_palettes = Array[Texture]([ExtResource("7_8f6el"), ExtResource("8_3t638"), ExtResource("9_7a7d6"), ExtResource("10_lp03d")])
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" index="0"]
 own_world_3d = true
