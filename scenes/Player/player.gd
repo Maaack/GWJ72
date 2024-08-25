@@ -195,11 +195,11 @@ func _on_interacting_component_interactable_unfocused(object):
 		focused_interactable = null
 		interactable_unfocused.emit()
 
-func give_orb(orb : Orb):
+func give_orb(orb : Orb, silent : bool = false):
 	if orb is SpecialOrb:
-		%SpecialOrbHolder.give_orb(orb)
+		%SpecialOrbHolder.give_orb(orb, silent)
 	else:
-		%OrbHolder.give_orb(orb)
+		%OrbHolder.give_orb(orb, silent)
 
 func get_held_orbs_count():
 	return %OrbHolder.get_held_orb_count()
