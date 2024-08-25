@@ -216,7 +216,7 @@ entering_door_name = "ExitDoor5"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 39)
 
 [node name="HintBooks" parent="." index="31" instance=ExtResource("9_3yuy7")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 24)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 20)
 
 [node name="HintBooks2" parent="." index="32" instance=ExtResource("10_0cp3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)

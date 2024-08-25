@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1wdapujvu835"]
+[gd_scene load_steps=20 format=3 uid="uid://b1wdapujvu835"]
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_6lthr"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="2_345d3"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://3ll5rxwg5hn1" path="res://scenes/Interactables/HintBooks/throw_orbs_hint_books.tscn" id="8_qleaq"]
 [ext_resource type="PackedScene" uid="uid://jn0xjth7242y" path="res://scenes/Interactables/orb.tscn" id="9_e1cv7"]
 [ext_resource type="PackedScene" uid="uid://b1stehlnekef3" path="res://scenes/Interactables/chest.tscn" id="10_k6dv8"]
+[ext_resource type="PackedScene" uid="uid://da1nbjut6543i" path="res://scenes/Interactables/hint_books.tscn" id="12_fw7eu"]
 
 [sub_resource type="Environment" id="Environment_vumlf"]
 ambient_light_source = 2
@@ -110,9 +111,9 @@ cell_center_y = false
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PackedInt32Array(65529, 5, 1441801, 65528, 4, 1441801, 65529, 4, 1441801, 65529, 3, 1441801, 65529, 1, 1441801, 65529, 0, 1441801, 65529, 65535, 1441801, 65528, 65535, 1441801, 65528, 65534, 1441801, 65529, 65534, 1441801, 65529, 65531, 1441801, 65529, 65530, 1441801, 65529, 65532, 1441801, 65529, 65529, 1048599, -196611, 65504, 655375, -262142, 65504, 15, -196611, 65502, 15, -196611, 65500, 17, -262142, 65502, 16, -262142, 65500, 15, 196606, 4, 655376, 131073, 4, 16, 131073, 2, 16, 196606, 2, 16, 196605, 5, 655381, 196604, 6, 1048598, 196603, 5, 23, 196604, 4, 1441813, 131075, 4, 1441813, 131074, 5, 655381, 131076, 6, 655381, 131074, 3, 655382, 131076, 4, 1048598, 131075, 5, 1048598, 196605, 4, 22, 196605, 3, 23, 131075, 3, 23, 196603, 3, 23, 131075, 6, 1441813, 131074, 6, 1048597, 196603, 6, 21, 196605, 6, 1441813, 196604, 5, 655383)
+"cells": PackedInt32Array(65529, 5, 1441801, 65529, 4, 1441801, 65529, 3, 1441801, 65529, 1, 1441801, 65529, 0, 1441801, 65529, 65535, 1441801, 65529, 65534, 1441801, -196611, 65504, 655375, -262142, 65504, 15, -196611, 65502, 15, -196611, 65500, 17, -262142, 65502, 16, -262142, 65500, 15, 196606, 4, 655376, 131073, 4, 16, 131073, 2, 16, 196606, 2, 16, 196605, 5, 655381, 196604, 6, 1048598, 196603, 5, 23, 196604, 4, 1441813, 131075, 4, 1441813, 131074, 5, 655381, 131076, 6, 655381, 131074, 3, 655382, 131076, 4, 1048598, 131075, 5, 1048598, 196605, 4, 22, 196605, 3, 23, 131075, 3, 23, 196603, 3, 23, 131075, 6, 1441813, 131074, 6, 1048597, 196603, 6, 21, 196605, 6, 1441813, 196604, 5, 655383)
 }
-metadata/_editor_floor_ = Vector3(0, 2, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="OffsetDecorationGridMap" type="GridMap" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
@@ -121,9 +122,9 @@ cell_center_y = false
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PackedInt32Array(-196609, 65505, 1441807, -196611, 65505, 1441808, -262143, 65505, 1048591, -196611, 65506, 1441800, -196610, 65506, 1441800, -196609, 65506, 1441800, -262144, 65506, 1441800, -262143, 65506, 1441800, -196613, 65504, 655368, -196613, 65503, 655368, -196613, 65502, 655368, -196613, 65501, 655368, -196613, 65500, 655368, -262141, 65504, 8, -262141, 65503, 8, -262141, 65502, 8, -262141, 65501, 8, -262141, 65500, 8, -327685, 65494, 1441808, -393213, 65494, 1441808, -327687, 65488, 655379, -327687, 65490, 655379, -327687, 65492, 655379, -393211, 65488, 655379, -393211, 65490, 655379, -393211, 65492, 655379, -131067, 65513, 1048592, -65543, 65513, 1048592, 131077, 65535, 18, 196604, 1, 1441808, 196602, 1, 1441808, 131074, 1, 1441808, 131076, 1, 1441808, 196601, 65535, 1441810, -327681, 65487, 1441805, -393211, 65494, 1441806, -327687, 65494, 1048590)
+"cells": PackedInt32Array(-196609, 65505, 1441807, -196611, 65505, 1441808, -262143, 65505, 1048591, -196611, 65506, 1441800, -196610, 65506, 1441800, -196609, 65506, 1441800, -262144, 65506, 1441800, -262143, 65506, 1441800, -196613, 65504, 655368, -196613, 65503, 655368, -196613, 65502, 655368, -196613, 65501, 655368, -196613, 65500, 655368, -262141, 65504, 8, -262141, 65503, 8, -262141, 65502, 8, -262141, 65501, 8, -262141, 65500, 8, -327685, 65494, 1441808, -393213, 65494, 1441808, -327687, 65488, 655379, -327687, 65490, 655379, -327687, 65492, 655379, -393211, 65488, 655379, -393211, 65490, 655379, -393211, 65492, 655379, -131067, 65513, 1048592, -65543, 65513, 1048592, 196604, 1, 1441808, 196602, 1, 1441808, 131074, 1, 1441808, 131076, 1, 1441808, -327681, 65487, 1441805, -393211, 65494, 1441806, -327687, 65494, 1048590, 131077, 0, 18, 196601, 0, 18)
 }
-metadata/_editor_floor_ = Vector3(0, -6, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="FloorGridMap" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
@@ -220,9 +221,21 @@ lock = true
 orbs = [NodePath("../../Orb")]
 
 [node name="HintBooks7" parent="." index="20" instance=ExtResource("7_8xmw1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -4, -39.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, -4, -37)
+interaction_text = "The light of the orbs can power some devices in the world.
+When unpowered, these devices show a dark void instead."
 
-[node name="HintBooks6" parent="." index="21" instance=ExtResource("8_qleaq")]
+[node name="HintBooks8" parent="." index="21" instance=ExtResource("7_8xmw1")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7.5, -4, -37)
+interaction_text = "The light of the orbs can power some devices in the world.
+When unpowered, these devices show a dark void instead."
+
+[node name="HintBooks9" parent="." index="22" instance=ExtResource("8_qleaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -39.5)
+
+[node name="HintBooks" parent="." index="23" instance=ExtResource("12_fw7eu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, -92.5)
+interaction_text = "Doors with keys on them are always unlocked,
+for your majesty."
 
 [editable path="Chest"]
