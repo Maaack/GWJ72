@@ -1,3 +1,6 @@
+//License:  CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/deed.en)
+//Author: Celyk (https://github.com/celyk)
+
 shader_type spatial;
 
 render_mode unshaded;
@@ -40,10 +43,10 @@ vec4 texturePolar(sampler2D tex, vec2 polar_uv){ // given
 	// Rotate by 180 degrees. This won't change the derivative, but moves the discontinuity to the opposite side.
 	vec2 p1 = vec2(polar_uv.x,fract(polar_uv.y-0.5));
 	vec2 p0 = polar_uv;
-	
+
 	vec2 dx = dFdx(p0);
 	vec2 dy = dFdy(p0);
-	
+
 	// Patch up the partial derivatives on the left half
 	if(abs(polar_uv.y-0.5) > 0.25){
 		dx = dFdx(p1);
@@ -94,25 +97,32 @@ float EventHorizon(vec3 ro, vec3 rd){
 	return t/r - 1.0;
 }
 
-float proximityFade(mat4 clipToModel, vec3 ro, vec2 uv, float scene_depth, vec3 model_pos){
-	vec4 scene_pos = clipToModel * vec4(uv*2.0-1.0,scene_depth,1); scene_pos.xyz /= scene_pos.w;
+float proximityFade(mat4 clipToModel, vec3 ro, vec2 uv, float scene_depth, vec3 model_pos, bool compatibility){
+	vec3 ndc;
+	if (!compatibility){
+		ndc = vec3(uv * 2.0 - 1.0, scene_depth);
+	} else {
+		ndc = vec3(uv, scene_depth) * 2.0 - 1.0;
+	}
+	vec4 scene_pos = clipToModel * vec4(ndc,1);
+	scene_pos.xyz /= scene_pos.w;
 	return length(scene_pos.xyz - ro) - length(model_pos - ro);
 }
 
 float intersectAccretionDisk(vec3 ro, vec3 rd){
 	float d = EventHorizon(ro, rd);
-	
+
 	float distortion = rd.y - normalize(-ro).y;
 	distortion = lensing_strength * exp(-pow(max(d,0.0), lensing_falloff) / lensing_radius) * smoothstep(-0.0, 0.01, distortion);
-	
-	
+
+
 	mat3 rotator = rotationAxisAngle(normalize(cross(rd,vec3(0,1,0))), distortion * black_hole_radius * PI/4.0);
-	
+
 	ro *= rotator;
 	rd *= rotator;
-	
+
 	if(rd.y > 0.0) return -1.0;
-	
+
 	return planeIntersect(ro,rd,vec4(0,1,0,0));
 }
 
@@ -121,7 +131,7 @@ vec2 screenDisplacement(mat4 clipToView, vec2 screen_uv, vec2 displacement){
 	//float aspect = length(clipToView[1].xy) / length(clipToView[0].xy);
 	//displacement.x /= aspect;
 	//displacement = (mat2(clipToView)) * displacement;
-	
+
 	return screen_uv + displacement;
 }
 
@@ -129,10 +139,10 @@ vec2 screenDisplacement(mat4 clipToView, vec2 screen_uv, vec2 displacement){
 void over(inout vec3 RGB, inout float A, vec4 col){
 	RGB.xyz *= A;
 	col.xyz *= col.w;
-	
+
 	RGB = col.xyz + RGB * (1.0 - col.a);
 	A = col.a + A * (1.0 - col.a);
-	
+
 	if(A > 0.0) {
 		RGB /= A;
 	}
@@ -152,11 +162,11 @@ void fragment() {
 	// transform ray to model space
 	ro = (inv_modelview * vec4(ro,1)).xyz;
 	rd = normalize( mat3(inv_modelview) * rd );
-	
+
 	float d = EventHorizon(ro, rd);
-	
+
 	vec2 sphere_ts = sphIntersect(ro,rd,vec3(0), black_hole_radius);
-	
+
 	float sphere_t = sphere_ts.x;
 	if(sphere_t < 0.0){
 		sphere_t = sphere_ts.y;
@@ -164,65 +174,65 @@ void fragment() {
 			sphere_t = accretion_radius_outer + black_hole_radius / 2.0;
 		}
 	}
-	
+
 	vec3 sphere_p = ro + rd * sphere_t;
-	
+
 	float displacement = lensing_strength * min(exp(-d/lensing_radius),1.0);
-	
+
 	vec2 displaced_uv = screenDisplacement(PROJECTION_MATRIX, SCREEN_UV, vec2(1) * displacement);
 	//displaced_uv = SCREEN_UV + displacement;
-	
+
 	ALBEDO = texture(screen_tex, SCREEN_UV + displacement).rgb * smoothstep(-0.1, 0.2, -box(displaced_uv - vec2(0.5),vec2(0.5)) );
-	
+
 	float scene_depth = texture(depth_tex, SCREEN_UV).x;
-	
-	float fade = smoothstep(0.0, proximity_fade, proximityFade(inv_modelview * INV_PROJECTION_MATRIX,ro,SCREEN_UV,scene_depth,sphere_p));
-	
+
+	float fade = smoothstep(0.0, proximity_fade, proximityFade(inv_modelview * INV_PROJECTION_MATRIX,ro,SCREEN_UV,scene_depth,sphere_p, OUTPUT_IS_SRGB));
+
 	// Some rim glow to complement the accretion disk
 	ALBEDO += energy * color.a * color.rgb * min(exp(-d / rim * 10.0),1.0);
-	
+
 	ALPHA = 1.0;
 	ALPHA *= smoothstep(0.0,.002,displacement);
-	
+
 	ALPHA *= fade;
-	
+
 	// The hole
 	ALBEDO = mix(ALBEDO, hole_color.rgb, 1.0-clamp(d/fwidth(d), 0.0, 1.0));
-	
+
 	// Accretion disk (both sides)
 	float s = sign(ro.y);
-	
+
 	ro.y *= s;
 	rd.y *= s;
-	
+
 	for(int i = 0; i<2; i++){
 		ro.y *= -1.0;
 		rd.y *= -1.0;
-		
+
 		float t = intersectAccretionDisk(ro,rd);
 		vec3 p = ro + rd * t;
-		
+
 		vec2 uv = cartesianToPolarUV(p.xz);
 		uv.x = (uv.x - accretion_radius_inner - black_hole_radius / 2.0) / (accretion_radius_outer - accretion_radius_inner);
-		
+
 		vec2 accretion_uv = uv * uv_mul + uv_add;
 		vec4 samp = texturePolar(accretion_disk, accretion_uv);
 		samp.rgb = smoothstep(0.0, 1.0, samp.rgb - texturePolar(errosion_ramp, uv.xy).x);
-		
+
 		if(t>0.0) {
 			fade = smoothstep(0.0,0.5,0.5-abs(uv.x-0.5));
-			fade *= smoothstep(0.0, proximity_fade, proximityFade(inv_modelview * INV_PROJECTION_MATRIX,ro,SCREEN_UV,scene_depth,p));
-			
+			fade *= smoothstep(0.0, proximity_fade, proximityFade(inv_modelview * INV_PROJECTION_MATRIX,ro,SCREEN_UV,scene_depth,p,OUTPUT_IS_SRGB));
+
 			// Camera fade
 			fade *= smoothstep(0.0, proximity_fade, length(p - ro));
-			
+
 			if(i == 0) {
 				fade *= step(0.0,d);
 			}
-			
+
 			//ALBEDO = mix(ALBEDO, energy * color.rgb, samp.x * fade);
 			//ALPHA = mix(ALPHA, 1.0, samp.x * fade);
-			
+
 			over(ALBEDO, ALPHA, vec4(energy * color.rgb, color.a * samp.x * fade));
 		}
 	}

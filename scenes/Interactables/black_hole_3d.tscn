@@ -36,10 +36,10 @@ shader_parameter/accretion_radius_outer = 9.0
 shader_parameter/lensing_radius = 0.2
 shader_parameter/lensing_falloff = 1.0
 shader_parameter/lensing_strength = 0.5
-shader_parameter/uv_mul = Vector2(1, 1)
-shader_parameter/uv_add = Vector2(0, 0)
 shader_parameter/accretion_disk = SubResource("NoiseTexture2D_q5mw1")
 shader_parameter/errosion_ramp = SubResource("CurveTexture_bqw3x")
+shader_parameter/uv_mul = Vector2(1, 1)
+shader_parameter/uv_add = Vector2(0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_3pc0l"]
 material = SubResource("ShaderMaterial_xmbuj")
