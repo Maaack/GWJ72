@@ -218,7 +218,8 @@ func _on_special_orb_holder_orb_held(orb):
 		orb_attractor_shape.radius = special_pull_radius
 		%OrbAttractor/Area3D/CollisionShape3D.shape = orb_attractor_shape 
 	await get_tree().create_timer(1.0, false).timeout
-	narrated_area_entered.emit("Your majesty found a special orb.\nWill you choose to bring it back to the light?", null, 4.0)
+	if GameState.current.player_special_orbs == 0:
+		narrated_area_entered.emit("Your majesty found a special orb.\nWill you choose to bring it back to the light?", null, 4.0)
 
 func release_special_orb():
 	%SpecialOrbHolder.lock = false
