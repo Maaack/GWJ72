@@ -52,14 +52,14 @@ func _give_player_orbs():
 	for i in range(orb_count):
 		var orb_instance = orb_scene.instantiate()
 		add_child(orb_instance)
-		$Player.give_orb(orb_instance, true)
+		$Player.give_orb(orb_instance)
 
 func _give_player_special_orbs():
 	var special_orb_count = GameState.current.player_special_orbs
 	for i in range(special_orb_count):
 		var special_orb_instance = special_orb_scene.instantiate()
 		add_child(special_orb_instance)
-		$Player.give_orb(special_orb_instance, true)
+		$Player.give_orb(special_orb_instance)
 
 func _save_level_state(level_path : String, entering_door : String):
 	GameState.mark_level_visited()

@@ -40,8 +40,8 @@ func remove_orb(orb : Orb, force : bool = false):
 func has_orbs():
 	return !held_orbs.is_empty()
 
-func give_orb(orb : Orb, silent : bool = false):
-	hold_orb(orb, true, silent)
+func give_orb(orb : Orb):
+	hold_orb(orb, true)
 	var index = orbs.size() - 1
 	var ring_offset = _get_ring_offset(index)
 	orb.global_position = global_position + ring_offset
@@ -102,15 +102,14 @@ func _update_grab_area_size():
 	if grab_collision_shape is CylinderShape3D:
 		grab_collision_shape.radius = 0.20 + (held_orbs.size() * 0.05) 
 
-func hold_orb(orb : Orb, force_hold : bool = false, silent : bool = false):
+func hold_orb(orb : Orb, force_hold = false):
 	if orb.can_be_held() or force_hold:
 		if not orb in orbs:
 			orbs.append(orb)
 		if not orb in held_orbs:
 			orb.hold(self, dim_orbs)
 			held_orbs.append(orb)
-		if not silent:
-			orb_held.emit(orb)
+		orb_held.emit(orb)
 		_update_grab_area_size()
 
 func get_held_orb_count():
