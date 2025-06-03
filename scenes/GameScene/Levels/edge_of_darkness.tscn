@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1fi1nji5pj2q" path="res://scenes/GameScene/Levels/level_base.tscn" id="1_n71aw"]
 [ext_resource type="PackedScene" uid="uid://cxd028kkvymby" path="res://scenes/Interactables/special_orb.tscn" id="2_0crkm"]
-[ext_resource type="Script" path="res://scenes/GameScene/Levels/edge_of_darkness.gd" id="2_doxqk"]
+[ext_resource type="Script" uid="uid://ci1mpimfkmrnb" path="res://scenes/GameScene/Levels/edge_of_darkness.gd" id="2_doxqk"]
 [ext_resource type="AudioStream" uid="uid://b8x3ww1rjxch" path="res://assets/music/5-level.ogg" id="3_gq612"]
 [ext_resource type="MeshLibrary" uid="uid://dneqqhqntkac6" path="res://scenes/Meshes/mesh_library.tres" id="3_rcfpk"]
 [ext_resource type="PackedScene" uid="uid://b2hkb4wywcxs7" path="res://scenes/Interactables/special_door_trigger.tscn" id="3_x5uv3"]

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://i6laau0j4sut"
 path.s3tc="res://.godot/imported/glowing_orb_sprite_small.png-c863f37da97264098d4356de8c52c8d7.s3tc.ctex"
+path.etc2="res://.godot/imported/glowing_orb_sprite_small.png-c863f37da97264098d4356de8c52c8d7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/glowing_orb_sprite_small.png"
-dest_files=["res://.godot/imported/glowing_orb_sprite_small.png-c863f37da97264098d4356de8c52c8d7.s3tc.ctex"]
+dest_files=["res://.godot/imported/glowing_orb_sprite_small.png-c863f37da97264098d4356de8c52c8d7.s3tc.ctex", "res://.godot/imported/glowing_orb_sprite_small.png-c863f37da97264098d4356de8c52c8d7.etc2.ctex"]
 
 [params]
 

@@ -1,19 +1,19 @@
 [gd_scene load_steps=22 format=3 uid="uid://brb5jdbu1vpib"]
 
-[ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_cxna0"]
+[ext_resource type="Script" uid="uid://t3mmjdyordo5" path="res://scenes/GameScene/GameUI.gd" id="1_cxna0"]
 [ext_resource type="PackedScene" uid="uid://drlf5jqav4jn8" path="res://scenes/WinScreen/WinScreen.tscn" id="2_02jfp"]
 [ext_resource type="PackedScene" uid="uid://cu65a48yncws4" path="res://scenes/EndCredits/EndCredits.tscn" id="3_8t2xt"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_qgesj"]
+[ext_resource type="Script" uid="uid://ch44l576lqtql" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_qgesj"]
 [ext_resource type="PackedScene" uid="uid://ns1o08cpcrk7" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_pmtgl"]
-[ext_resource type="Script" path="res://scenes/GameScene/level_loader.gd" id="6_si4ym"]
+[ext_resource type="Script" uid="uid://woghoitdu61u" path="res://scenes/GameScene/level_loader.gd" id="6_si4ym"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_ekdma"]
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_uru51"]
-[ext_resource type="Script" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_7l15f"]
-[ext_resource type="Shader" path="res://scenes/GameScene/texture_dither.gdshader" id="9_n7375"]
+[ext_resource type="Script" uid="uid://um3phy4uhggn" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_7l15f"]
+[ext_resource type="Shader" uid="uid://bwqlrh183fp4g" path="res://scenes/GameScene/texture_dither.gdshader" id="9_n7375"]
 [ext_resource type="Texture2D" uid="uid://b52mkh0n7d3cy" path="res://assets/images/1bit_black_and_white.png" id="10_k5j6l"]
 [ext_resource type="Texture2D" uid="uid://byqtcevo5a1y5" path="res://assets/images/bayer16.png" id="11_61kct"]
 [ext_resource type="PackedScene" uid="uid://r27xbd24npvu" path="res://scenes/GameScene/light_mask_world.tscn" id="11_n6ijm"]
-[ext_resource type="Script" path="res://scenes/GameScene/sub_viewport_contrast_setting.gd" id="12_qf6l4"]
+[ext_resource type="Script" uid="uid://dxciyy730yol5" path="res://scenes/GameScene/sub_viewport_contrast_setting.gd" id="12_qf6l4"]
 [ext_resource type="Texture2D" uid="uid://bhas8rievdig7" path="res://assets/images/1bit_black_and_white_high.png" id="13_aq6ms"]
 [ext_resource type="Texture2D" uid="uid://bgbbhu7hmavgk" path="res://assets/images/1bit_black_and_white_mid.png" id="14_c3tcn"]
 [ext_resource type="Texture2D" uid="uid://dkxj5mc4618e0" path="res://assets/images/dot-4x4-outlined.png" id="14_m638k"]
@@ -26,14 +26,14 @@ viewport_path = NodePath("LightMaskViewportContainer/SubViewport")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hpjnc"]
 resource_local_to_scene = true
 shader = ExtResource("9_n7375")
+shader_parameter/dither_texture = ExtResource("11_61kct")
+shader_parameter/mask_texture = SubResource("ViewportTexture_346v4")
+shader_parameter/color_palette = ExtResource("10_k5j6l")
 shader_parameter/bit_depth = 32
 shader_parameter/pixel_size = 1
 shader_parameter/contrast = 1.0
 shader_parameter/offset = 0.1
 shader_parameter/active = true
-shader_parameter/dither_texture = ExtResource("11_61kct")
-shader_parameter/mask_texture = SubResource("ViewportTexture_346v4")
-shader_parameter/color_palette = ExtResource("10_k5j6l")
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
